@@ -22,12 +22,18 @@ const stats = {
 }
 
 const Plot = (props) => {
-    return (
+	if (props.data != 'None') {
+		console.log(props.data)
+		return (
 			<div>
 				<CanvasJSChart options = {getStats(props.data)}/>
 			</div>
 
 		);
+	} else {
+		return null;
+		// return <CanvasJSChart/>;
+	}
 };
 
 function getStats(data) {
