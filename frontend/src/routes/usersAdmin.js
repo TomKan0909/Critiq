@@ -5,7 +5,7 @@ const UsersAdmin = () => {
   return (
     <>
       <main>
-        <Plot>
+        <Plot data='ageDistribution'>
         </Plot>
       </main>
       <nav>
