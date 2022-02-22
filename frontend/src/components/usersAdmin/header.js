@@ -5,6 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Grid from '@mui/material/Grid';
 
+// https://mui.com/components/grid/
 const Header = (props) => {
 
     const {data, setData} = props
@@ -22,14 +23,11 @@ const Header = (props) => {
             </Grid>
             <Grid item xs={2}>
                 <FormControl fullWidth>
-                    <InputLabel id="data-select-label">Data</InputLabel>
+                    <InputLabel >Data</InputLabel>
                     <Select
-                        labelId="data-select-label"
-                        id="demo-simple-select"
                         value={data}
                         label="Age"
-                        onChange={handleChange}
-                    >
+                        onChange={handleChange}>
                         <MenuItem value={'None'}>None</MenuItem>
                         <MenuItem value={'ageDistribution'}>Age Distribution</MenuItem>
                     </Select>

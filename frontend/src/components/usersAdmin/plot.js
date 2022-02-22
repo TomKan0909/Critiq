@@ -1,6 +1,7 @@
 import { CanvasJSChart } from 'canvasjs-react-charts';
 import React from 'react';
 
+// https://canvasjs.com/docs/charts/integration/react/
 const stats = {
 	ageDistribution: {
 		title: {
@@ -25,14 +26,10 @@ const Plot = (props) => {
 	if (props.data != 'None') {
 		console.log(props.data)
 		return (
-			<div>
-				<CanvasJSChart options = {getStats(props.data)}/>
-			</div>
-
+			<CanvasJSChart options = {getStats(props.data)}/>
 		);
 	} else {
 		return null;
-		// return <CanvasJSChart/>;
 	}
 };
 
