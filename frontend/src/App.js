@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import Profile from './routes/profile';
+import RoastRoom from './routes/roastRoom';
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="roastRoom" element={<RoastRoom />} />
       </Routes>
     </div>
   );
@@ -24,6 +26,7 @@ function Home() {
       </main>
       <nav>
         <Link to="/profile">profile</Link>
+        <Link to="/roastRoom">roastRoom</Link>
       </nav>
     </>
   );
