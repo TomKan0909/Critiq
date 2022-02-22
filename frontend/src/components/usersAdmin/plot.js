@@ -23,7 +23,7 @@ const stats = [
     }
 ]
 
-const KeyStats = () => {
+const Plot = () => {
     return (
 			<div>
 				<CanvasJSChart options = {stats[0].ageDistribution}/>
@@ -32,4 +32,4 @@ const KeyStats = () => {
 		);
 };
 
-export default KeyStats;
+export default Plot;

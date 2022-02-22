@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import KeyStats from "../components/usersAdmin/plot";
+import Plot from "../components/usersAdmin/plot";
 
 const UsersAdmin = () => {
   return (
     <>
       <main>
-        <KeyStats>
-        </KeyStats>
+        <Plot>
+        </Plot>
       </main>
       <nav>
         <Link to="/">Home</Link>
