@@ -2,6 +2,7 @@ import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import Profile from './routes/profile';
 import RoastRoom from './routes/roastRoom';
+import UsersAdmin from './routes/usersAdmin';
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="profile" element={<Profile />} />
         <Route path="roastRoom" element={<RoastRoom />} />
+        <Route path="usersAdmin" element={<UsersAdmin />} />
       </Routes>
     </div>
   );
@@ -25,8 +27,9 @@ function Home() {
         </p>
       </main>
       <nav>
-        <Link to="/profile">profile</Link>
-        <Link to="/roastRoom">roastRoom</Link>
+        <Link className="navBarLink" to="/profile">profile</Link>
+        <Link className="navBarLink" to="/roastRoom">roastRoom</Link>
+        <Link className="navBarLink" to="/usersAdmin">usersAdmin</Link>
       </nav>
     </>
   );

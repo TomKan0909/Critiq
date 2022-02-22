@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+/* https://stackoverflow.com/questions/58141494/react-jsx-how-do-i-add-white-space-between-navigation-links-in-my-navbar */
+.navBarLink {
+  margin: 5px;
+}
