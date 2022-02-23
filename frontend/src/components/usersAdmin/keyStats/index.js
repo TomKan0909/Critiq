@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Plot from "./plot";
 
 // https://mui.com/components/grid/
-const DataSelector = (props) => {
+const KeyStats = (props) => {
 
     const [data, setData] = React.useState('None');
 
@@ -41,4 +41,4 @@ const DataSelector = (props) => {
     );
 };
 
-export default DataSelector;
+export default KeyStats;
