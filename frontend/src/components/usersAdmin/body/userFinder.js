@@ -6,7 +6,7 @@ import Select from '@mui/material/Select';
 import Grid from '@mui/material/Grid';
 
 // https://mui.com/components/grid/
-const Header = (props) => {
+const DataSelector = (props) => {
 
     const {data, setData} = props
 
@@ -37,4 +37,4 @@ const Header = (props) => {
     );
 };
 
-export default Header;
+export default DataSelector;
