@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-import Plot from "../components/usersAdmin/plot";
-import Header from "../components/usersAdmin/header";
+import Plot from "../components/usersAdmin/header/plot";
+import Header from "../components/usersAdmin/header/keyStats";
 
 const UsersAdmin = () => {
 
