@@ -5,9 +5,10 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Grid from '@mui/material/Grid';
 import Plot from "./plot";
+import Box from '@mui/material/Box';
 
 // https://mui.com/components/grid/
-const KeyStats = (props) => {
+const KeyStats = () => {
 
     const [data, setData] = React.useState('None');
 
@@ -16,7 +17,7 @@ const KeyStats = (props) => {
     };
 
     return (
-        <main>
+        <Box>
             <Grid container rowSpacing={1} 
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }} 
                 alignItems="center">
@@ -37,7 +38,7 @@ const KeyStats = (props) => {
                 </Grid>
             </Grid>
             <Plot data={data}></Plot>
-        </main>
+        </Box>
     );
 };
 
