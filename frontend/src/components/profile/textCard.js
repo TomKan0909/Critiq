@@ -12,10 +12,10 @@ export default function TextCard() {
     <Card sx={{ maxWidth: 300, maxHeight: 300, borderRadius: '10px'}}>
       <CardContent>
         <Typography variant="caption">
-          Loren Ipsum
+          Student
         </Typography>
         <Typography variant="h5">
-          Loren Ipsum 
+          Good Student
         </Typography>
       </CardContent>
     </Card>

@@ -13,7 +13,7 @@ export default function Image() {
         component="img"
         height="100%"
         width="100%"
-        image="/images/kanye_profile.jpeg"
+        image="/images/profile.png"
       /> 
     </Card>
   );

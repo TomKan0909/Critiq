@@ -1,5 +1,6 @@
 import { Table, TableBody, TableRow } from '@mui/material';
 import Button from '@mui/material/Button';
+import UserInfo from './userInfo';
 
 const UserInfoList = (props) => {
     console.log(props.users)
@@ -7,9 +8,8 @@ const UserInfoList = (props) => {
         <Table>
             <TableBody>
                 {props.users.map(user => (
-                    <TableRow>
-                        <Button>{user}</Button>
-                    </TableRow>
+                    <UserInfo user={user}>
+                    </UserInfo>
                     ))}
             </TableBody>
         </Table>

@@ -41,11 +41,11 @@ export default function StatsCard(){
           <Box sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper' }}>
            <List>
                <ListItem>
-                   <ListItemText primary="Dropout"/>
+                   <ListItemText primary="University of Toronto"/>
                </ListItem>
                <Divider/>
                <ListItem>
-                   <ListItemText primary="Gigachad schizo"/>
+                   <ListItemText primary="Just a human"/>
                </ListItem>
            </List>
            </Box>
