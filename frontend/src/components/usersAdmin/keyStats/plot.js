@@ -23,7 +23,7 @@ const stats = {
 }
 
 const Plot = (props) => {
-	if (props.data != 'None') {
+	if (props.data !== 'None') {
 		console.log(props.data)
 		return (
 			<CanvasJSChart options = {getStats(props.data)}/>

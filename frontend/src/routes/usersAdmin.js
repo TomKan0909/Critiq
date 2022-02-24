@@ -1,17 +1,14 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-import Plot from "../components/usersAdmin/plot";
-import Header from "../components/usersAdmin/header";
+import KeyStats from "../components/usersAdmin/keyStats";
+import UserViewer from '../components/usersAdmin/userViewer';
 
 const UsersAdmin = () => {
-
-  const [data, setData] = React.useState('None');
-
   return (
     <>
       <main>
-        <Header data={data} setData={setData}></Header>
-        <Plot data={data}></Plot>
+        <KeyStats></KeyStats>
+        <UserViewer></UserViewer>
       </main>
       <nav>
         <Link to="/">Home</Link>
