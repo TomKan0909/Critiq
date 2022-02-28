@@ -9,13 +9,50 @@ import { CgProfile } from 'react-icons/cg'
 import { FaRulerVertical, FaGraduationCap } from 'react-icons/fa'
 import { RiGlobeLine, RiSuitcaseLine } from 'react-icons/ri'
 import { BiWine } from 'react-icons/bi'
+import './stats.css'
 
-
+// scrollbarWidth: 'thin', '&::-webkit-scrollbar': { width: '2px'}, '&::-webkit-scrollbar-track': {backgroundColor: 'orange', 
+//     '&::webkit-scrollbar-thumb': {backgroundColor: 'red', borderRadius: 2}}
 
 function StatsTop() {
   return(
-    <Box sx={{ mx: 'auto', width: '380px', bgcolor: 'background.paper'}}>
-      <Tabs
+    <Box sx={{ mx: 'auto', my: '3px', width: '380px', bgcolor: 'background.paper'}}>
+       <List sx={{display: 'flex', flexDirection: 'row', width: 'auto', overflowX: 'scroll'}}>
+        <ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
+          <ListItemIcon>
+            <HiOutlineCake/>
+          </ListItemIcon>
+          <ListItemText primary="Age" />
+        </ListItem>
+        <ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
+          <ListItemIcon>
+            <HiOutlineCake/>
+          </ListItemIcon>
+          <ListItemText primary="Age" />
+        </ListItem><ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
+          <ListItemIcon>
+            <HiOutlineCake/>
+          </ListItemIcon>
+          <ListItemText primary="Age" />
+        </ListItem><ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
+          <ListItemIcon>
+            <HiOutlineCake/>
+          </ListItemIcon>
+          <ListItemText primary="Age" />
+        </ListItem><ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
+          <ListItemIcon>
+            <HiOutlineCake/>
+          </ListItemIcon>
+          <ListItemText primary="Age" />
+        </ListItem><ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
+          <ListItemIcon>
+            <HiOutlineCake/>
+          </ListItemIcon>
+          <ListItemText primary="Age" />
+        </ListItem>
+      </List>   
+
+      {/* <Tabs
         variant="scrollable"
         scrollButtons="auto"
         aria-label="scrollable auto tabs example"
@@ -26,14 +63,14 @@ function StatsTop() {
         <Tab icon={<HiOutlineLocationMarker/> } iconPosition='start' label="Location" sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)', paddingTop:'0px', paddingBottom:'0px' }}/>
         <Tab icon={<RiGlobeLine/>} iconPosition='start' label="Ethnicity" sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)', paddingTop:'0px', paddingBottom:'0px' }}/>
         <Tab icon={<BiWine/>} iconPosition='start' label="Alcohol?" sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)', paddingTop:'0px', paddingBottom:'0px' }}/>
-      </Tabs>
+      </Tabs> */}
     </Box>
     )
 }
 
 export default function StatsCard(){
     return (
-        <Card sx={{ maxWidth: 420, margin:'20px'}}>
+        <Card sx={{ maxWidth: 420, marginX:'auto', marginY: '20px'}}>
           <CardContent>
           <StatsTop/>
           <Divider/>

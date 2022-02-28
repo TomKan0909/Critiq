@@ -4,10 +4,12 @@ import Profile from './routes/profile';
 import RoastRoom from './routes/roastRoom';
 import UsersAdmin from './routes/usersAdmin';
 import React from 'react';
-
+import { ThemeProvider } from '@mui/material/styles';
+import { themeOptions } from './theme';
 
 function App() {
   return (
+  <ThemeProvider theme={themeOptions}>
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
@@ -16,6 +18,7 @@ function App() {
         <Route path="usersAdmin" element={<UsersAdmin />} />
       </Routes>
     </div>
+   </ThemeProvider>
   );
 }
 

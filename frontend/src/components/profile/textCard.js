@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 
 export default function TextCard() {
   return (
-    <Card sx={{ maxWidth: 420, borderRadius: '10px', margin: '20px'}}>
+    <Card sx={{ maxWidth: 420, borderRadius: '10px', marginX: 'auto', marginY: '20px'}}>
       <CardContent>
         <Typography variant="caption">
           Student
