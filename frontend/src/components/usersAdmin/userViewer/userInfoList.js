@@ -1,13 +1,13 @@
-import { Table, TableBody, TableRow } from '@mui/material';
-import Button from '@mui/material/Button';
+import { Table, TableBody } from '@mui/material';
 import UserInfo from './userInfo';
 
 const UserInfoList = (props) => {
-    console.log(props.users)
+    const {users} = props
+
     return (
         <Table>
             <TableBody>
-                {props.users.map(user => (
+                {users.map(user => (
                     <UserInfo user={user}>
                     </UserInfo>
                     ))}

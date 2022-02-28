@@ -5,7 +5,7 @@ import MessageLog from './messageLog';
 import { Grid, Button, TextField } from '@mui/material';
 const Chat = () => {
 
-    const [messages, setMessages] = React.useState([])
+    const [messages, setMessages] = React.useState([{sender:2, content:'hi'}])
     const [text, setText] = React.useState('')
 
     const addMessage = (message) => {

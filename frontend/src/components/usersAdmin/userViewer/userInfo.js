@@ -32,13 +32,16 @@ const modalStyle = {
 
 // https://mui.com/components/modal/
 export default function UserInfo(props) {
+
+  const {user} = props
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <TableRow>
-      <Button onClick={handleOpen}>{props.user}</Button>
+      <Button onClick={handleOpen}>{user}</Button>
       <Modal
         open={open}
         onClose={handleClose}
