@@ -3,6 +3,7 @@ import Image from '../components/profile/image';
 import TextCard from "../components/profile/textCard";
 import StatsCard from '../components/profile/stats';
 import Grid from "@mui/material/Grid";
+import Chat from "../components/roastRoom/chat";
 
 const RoastRoom = () => {
   return (
@@ -17,6 +18,7 @@ const RoastRoom = () => {
                 <StatsCard/>
               </Grid>
               <Grid item xs={2}>
+                <Chat/>
               </Grid>
           </Grid>
       </main>
