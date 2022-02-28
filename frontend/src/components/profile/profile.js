@@ -6,7 +6,7 @@ import React from 'react';
 
 export default function Profile () {
     return (
-    <Box style={{border: '2px solid black', borderRadius: '10px', marginLeft:'10%', marginTop:'2%'}}>
+    <Box style={{border: '2px solid black', borderRadius: '10px', marginLeft:'10%', marginRight:'10%', marginTop:'2%', marginBottom:'2%' }}>
         <Box
         // marginLeft='10%'
         marginY='6px'
