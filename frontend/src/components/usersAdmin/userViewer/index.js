@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import usernames from '../../../data/usernames';
 import UserInfoList from './userInfoList';
+import { Container } from '@mui/material';
 
 // https://mui.com/components/text-fields/
 const UserViewer = () => {
@@ -21,14 +22,16 @@ const UserViewer = () => {
         return usernames.filter(username => username.toLowerCase().startsWith(prefix))
     }
 
+    const formTheme = {
+        marginTop: '2em',
+        marginBottom: '2em'
+    }
+
     return (
-        <Box component="form">
-            <TextField
-                variant="outlined"
-                placeholder="Search for a user"
-                onChange={handleChange} />
+        <Container component="form">
+            <TextField onChange={handleChange} fullWidth sx={formTheme}/>
             <UserInfoList users={users}></UserInfoList>
-        </Box>
+        </Container>
     );
 }
 

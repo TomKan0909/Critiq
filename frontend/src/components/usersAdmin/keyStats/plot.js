@@ -6,6 +6,7 @@ const stats = {
 	ageDistribution: {
 		title: {
 			text: "Age Distribution",
+			fontFamily: "Helvetica"
 		},
 		data: [{
 			type: "column",
@@ -19,7 +20,7 @@ const stats = {
 				{ label: "53-over",  y: 5 },
 			]}
 		]
-	}
+	}	
 }
 
 const Plot = (props) => {
