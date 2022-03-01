@@ -1,10 +1,12 @@
 
-import { TableRow, TableCell } from '@mui/material';
+import { Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 const Message = (props) => {
 
-    const {sender, viewer, content} = props 
+    const messageStyle = {
+    }
 
-    console.log(props)
+    const {sender, viewer, content} = props 
 
     let senderColContent;
     let nonSenderColContent;
@@ -17,11 +19,19 @@ const Message = (props) => {
     }  
 
     return (
-        <TableRow>
-            <TableCell align='left'>{nonSenderColContent}</TableCell>
-            <TableCell></TableCell>
-            <TableCell align='right'>{senderColContent}</TableCell>
-        </TableRow> 
+        <Grid container>
+            <Grid item xs={4}>
+                <Typography align='left' variant='body1' marginLeft={3} marginY={1} fontSize={'1.2rem'}>
+                    {nonSenderColContent}
+                </Typography> 
+            </Grid>
+            <Grid item xs={4}></Grid>
+            <Grid item xs={4}>
+                <Typography align='right' variant='body1' marginRight={3} marginY={1} fontSize={'1.2rem'}> 
+                    {senderColContent}
+                </Typography> 
+            </Grid>
+        </Grid> 
     )
 }
 export default Message

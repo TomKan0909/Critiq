@@ -47,15 +47,15 @@ const Chat = () => {
 
     return (
         <Box sx={chatStyle}>
-            <Typography variant="h4" sx={chatBarStyle} align='centre' >Roast Room</Typography> 
+            <Typography variant="h4" sx={chatBarStyle} align='center' gutterBottom >Roast Room</Typography> 
             <MessageLog messages={messages} viewer={1}></MessageLog>
             <Grid container rowSpacing={1} 
               alignItems="center">
               <Grid item xs={10}>
-                  <TextField fullWidth fullHeight onChange={updateMessage} onKeyDown={detectReturn} value={text}></TextField>
+                  <TextField fullWidth onChange={updateMessage} onKeyDown={detectReturn} value={text}></TextField>
               </Grid>
               <Grid item xs={2}>
-                  <Button fullWidth fullHeight onClick={sendMessage}>Send</Button>
+                  <Button fullWidth onClick={sendMessage}>Send</Button>
               </Grid>
             </Grid> 
         </Box>
