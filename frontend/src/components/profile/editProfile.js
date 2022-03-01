@@ -20,7 +20,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 600,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -170,15 +170,27 @@ function InputForm() {
 // Form to enter Age (Enter a number), Gender (Dropdown M/F/T), Height (string input ()),
 // Location (string input), Ethnicity (string input), Alcohol preference (Dropdown Yes/no)
 
+
 export default function EditProfile({ open, handleClose }) {
   return (
     <Modal
       open={open}
       onClose={handleClose}
-      BackdropProps={{ style: { backgroundColor: "rgba(255, 255, 255, 0.8)" } }}
-      sx={{ overflow: "scroll" }}
+      BackdropProps={{ style: { backgroundColor: "rgba(255, 255, 255, 0.97)" } }}
     >
-      <Stack>
+      <Box
+        // marginLeft='10%'
+        marginY='6px'
+      display="block"
+    //   flexDirection="column"
+      // justifyContent="flex-end" # DO NOT USE THIS WITH 'scroll'
+      height="90vh" // fixed the height
+      sx={{
+        //   border: "2px solid black",
+        // borderRadius: '10px',
+        overflowY: "scroll", // added scroll
+        alignItems: 'center',
+    }}>
         <ImageComponent />
         <Prompt />
         <Prompt />
@@ -186,11 +198,20 @@ export default function EditProfile({ open, handleClose }) {
         <InputForm />
         <Button
           type="submit" 
-          color="secondary" 
-          variant="contained">
-          Submit
+          color="success" 
+          variant="contained"
+          sx={{margin:'auto', display:'block'}}>
+          Save
         </Button>
-      </Stack>
+        <Button
+          type="submit" 
+          color="info" 
+          variant="contained"
+          onClick={handleClose}
+          sx={{margin:'auto', display:'block'}}>
+          Cancel
+        </Button>
+      </Box>
     </Modal>
   );
 }
