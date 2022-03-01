@@ -60,9 +60,11 @@ const Chat = () => {
                 onChange={updateMessage} 
                 onKeyDown={detectReturn}
                 placeholder={'Aa'} 
-                value={text}>
+                value={text}
+                inputProps={{style: {fontSize: '1.2rem'}}}> 
             </TextField>
         </Box>
+        // https://stackoverflow.com/a/55992355
     )
 }
 export default Chat
