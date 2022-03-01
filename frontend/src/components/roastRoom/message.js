@@ -18,9 +18,9 @@ const Message = (props) => {
 
     return (
         <TableRow>
-            <TableCell>{nonSenderColContent}</TableCell>
+            <TableCell align='left'>{nonSenderColContent}</TableCell>
             <TableCell></TableCell>
-            <TableCell>{senderColContent}</TableCell>
+            <TableCell align='right'>{senderColContent}</TableCell>
         </TableRow> 
     )
 }
