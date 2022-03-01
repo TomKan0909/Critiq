@@ -15,6 +15,12 @@ const Chat = () => {
         setText(event.target.value)
     }
 
+    const detectReturn = (event) => {
+        if (event.key === 'Enter' && text !== '') {
+            sendMessage()
+        }
+    }
+
     const sendMessage = () => {
         addMessage({
             sender: 1,
@@ -46,7 +52,7 @@ const Chat = () => {
             <Grid container rowSpacing={1} 
               alignItems="center">
               <Grid item xs={10}>
-                  <TextField fullWidth fullHeight onChange={updateMessage} value={text}></TextField>
+                  <TextField fullWidth fullHeight onChange={updateMessage} onKeyDown={detectReturn} value={text}></TextField>
               </Grid>
               <Grid item xs={2}>
                   <Button fullWidth fullHeight onClick={sendMessage}>Send</Button>

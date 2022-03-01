@@ -1,7 +1,4 @@
 import { Link } from "react-router-dom";
-import Image from '../components/profile/image';
-import TextCard from "../components/profile/textCard";
-import StatsCard from '../components/profile/stats';
 import Grid from "@mui/material/Grid";
 import Chat from "../components/roastRoom/chat";
 import { Container } from "@mui/material";
