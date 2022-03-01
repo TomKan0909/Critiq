@@ -11,7 +11,7 @@ export default function SideProfile() {
   return (
     <Container>
       <Image />
-      <TextCard />
+      <TextCard name="Good Student"/>
       <StatsCard />
       <Stack
         spacing="40px"

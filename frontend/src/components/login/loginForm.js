@@ -50,7 +50,7 @@ export default function LoginForm() {
         variant="contained"
         color="primary"
       >
-        LOGIN
+        Login
       </Button>
     </form>
   );

@@ -22,13 +22,13 @@ export default function Profile () {
     }}
     >
             <Image/>
-            <TextCard/>
+            <TextCard name="Good Student"/>
             <StatsCard/>
             <Image/>
             <Image/>
-            <TextCard/>
+            <TextCard name="Good Student"/>
             <Image/>
-            <TextCard/>
+            <TextCard name="Good Student"/>
             <Image/>
             <Image/>
         </Box>

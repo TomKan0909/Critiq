@@ -15,7 +15,7 @@ export default function RoastList() {
       <Table>
         <TableBody>
           {users.map((user) => (
-            <RoastCard userName={user} />
+            <RoastCard name={user} />
           ))}
         </TableBody>
       </Table>
