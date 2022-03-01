@@ -21,7 +21,7 @@ export default function LoginForm() {
       setUsername("");
       setPassword("");
       setError(false);
-      navigate('/profile');
+      navigate('/');
 
     } else {
       setError(true);
@@ -55,9 +55,11 @@ export default function LoginForm() {
         <Button
           sx={{ marginTop: "40px" }}
           onClick={handleLogin}
+          variant="contained"
+          color="primary"
         >
           LOGIN
-        </Button>
+        </Button >
       </form>
       
     )

@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Login from './routes/login';
 import Profile from './routes/profile';
 import RoastRoom from './routes/roastRoom';
@@ -7,6 +7,12 @@ import UsersAdmin from './routes/usersAdmin';
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { themeOptions } from './theme';
+import { Grid, Button, Stack } from '@mui/material';
+
+
+import NavDebug from './components/home/navDebug';
+import SideProfile from './components/home/sideProfile';
+import RoastList from './components/home/roastList';
 
 function App() {
   return (
@@ -25,20 +31,20 @@ function App() {
 }
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
-    <>
-      <main>
-        <p>
-          NYU GIRLS ROAST TECH GUYS 
-        </p>
-      </main>
-      <nav>
-        <Link className="navBarLink" to="/login">login</Link>
-        <Link className="navBarLink" to="/profile">profile</Link>
-        <Link className="navBarLink" to="/roastRoom">roastRoom</Link>
-        <Link className="navBarLink" to="/usersAdmin">usersAdmin</Link>
-      </nav>
-    </>
+    <Grid container justifyContent="center" spacing={2}>
+      <Grid item xs={12} sx={{margin : "50px"}}>
+        <NavDebug />
+      </Grid>
+      <Grid item xs={6}>
+        <RoastList />
+      </Grid>
+      <Grid item xs={2}>
+        <SideProfile />
+      </Grid>
+    </Grid>
   );
 }
 
