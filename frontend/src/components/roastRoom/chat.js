@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Box } from '@mui/material';
 import ChatBar from './chatBar';
 import MessageLog from './messageLog';
-import { Grid, Button, TextField } from '@mui/material';
+import { Grid, Button, TextField, Container, Typography, Box } from '@mui/material';
 const Chat = () => {
 
     const [messages, setMessages] = React.useState([{sender:2, content:'hi'}])
@@ -25,21 +24,34 @@ const Chat = () => {
     }
 
 
+    const chatStyle = {
+        border: '2px solid black',
+        borderRadius: '10px',
+        marginTop:'2%',
+        height: '91.5vh',
+        width: '100%',
+     }
+
+    const chatBarStyle = {
+        backgroundColor: 'pink',
+        width: '100%',
+        borderRadius: '10px',
+
+    }
+
     return (
-        <Box>
-            <ChatBar></ChatBar>
+        <Box sx={chatStyle}>
+            <Typography variant="h4" sx={chatBarStyle} align='centre' >Roast Room</Typography> 
             <MessageLog messages={messages} viewer={1}></MessageLog>
             <Grid container rowSpacing={1} 
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }} 
               alignItems="center">
-              <Grid item xs={5}>
-                  <TextField onChange={updateMessage} value={text}></TextField>
+              <Grid item xs={10}>
+                  <TextField fullWidth fullHeight onChange={updateMessage} value={text}></TextField>
               </Grid>
               <Grid item xs={2}>
-                  <Button onClick={sendMessage}>Send</Button>
+                  <Button fullWidth fullHeight onClick={sendMessage}>Send</Button>
               </Grid>
-            </Grid>
-            
+            </Grid> 
         </Box>
     )
 }

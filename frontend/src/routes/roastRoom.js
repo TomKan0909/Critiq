@@ -4,24 +4,22 @@ import TextCard from "../components/profile/textCard";
 import StatsCard from '../components/profile/stats';
 import Grid from "@mui/material/Grid";
 import Chat from "../components/roastRoom/chat";
+import { Container } from "@mui/material";
+import Profile from '../components/profile/profile';
 
 const RoastRoom = () => {
   return (
     <>
-      <main>
-          <Grid container rowSpacing={1} 
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }} 
-              alignItems="center">
-              <Grid item xs={3}>
-                <Image/>
-                <TextCard/>
-                <StatsCard/>
+      <Container>
+          <Grid container>
+              <Grid item xs={6}>
+                <Profile/>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={6}>
                 <Chat/>
               </Grid>
           </Grid>
-      </main>
+      </Container>
       <nav>
         <Link to="/">Home</Link>
       </nav>
