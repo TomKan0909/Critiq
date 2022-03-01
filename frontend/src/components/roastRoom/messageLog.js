@@ -7,7 +7,7 @@ const MessageList = (props) => {
         overflowY: 'scroll'
     }
     return (
-        <Box sx={chatStyle} maxHeight={'80%'}>
+        <Box sx={chatStyle} maxHeight={'75%'}>
             {messages.map(message => (
             <Message 
                 sender={message.sender}

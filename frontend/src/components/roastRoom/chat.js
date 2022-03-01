@@ -1,7 +1,6 @@
 import * as React from 'react';
-import ChatBar from './chatBar';
 import MessageLog from './messageLog';
-import { Grid, Button, TextField, Container, Typography, Box } from '@mui/material';
+import { TextField, Container, Typography, Box } from '@mui/material';
 const Chat = () => {
 
     const [messages, setMessages] = React.useState([{sender:2, content:'hi'}])
@@ -45,19 +44,24 @@ const Chat = () => {
 
     }
 
+    const chatFormStyle = {
+        position: 'sticky',
+        top: '80%',
+        width: '90%',
+        placeholder: 'Aa'
+    }
+
     return (
         <Box sx={chatStyle}>
             <Typography variant="h4" sx={chatBarStyle} align='center' gutterBottom >Roast Room</Typography> 
             <MessageLog messages={messages} viewer={1}></MessageLog>
-            <Grid container rowSpacing={1} 
-              alignItems="center">
-              <Grid item xs={10}>
-                  <TextField fullWidth onChange={updateMessage} onKeyDown={detectReturn} value={text}></TextField>
-              </Grid>
-              <Grid item xs={2}>
-                  <Button fullWidth onClick={sendMessage}>Send</Button>
-              </Grid>
-            </Grid> 
+            <TextField 
+                sx={chatFormStyle}
+                onChange={updateMessage} 
+                onKeyDown={detectReturn}
+                placeholder={'Aa'} 
+                value={text}>
+            </TextField>
         </Box>
     )
 }
