@@ -10,6 +10,7 @@ import {
   Select,
   InputAdornment,
   InputLabel,
+  Button
 } from "@mui/material";
 import Image from "./image";
 import React from "react";
@@ -74,7 +75,7 @@ function Prompt() {
           select
           onChange={handleChange}
           variant="filled"
-          sx={{ display: "block", margin: "auto"}}
+          sx={{ display: "grid"}}
         >
           {prompts.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -91,7 +92,7 @@ function Prompt() {
           rows={5}
           defaultValue="Enter your Prompt Response"
           variant="filled"
-          sx={{ display: "block", margin: "auto" }}
+          sx={{ display: "grid", margin: "auto" }}
         />
       </form>
     </Container>
@@ -118,7 +119,7 @@ function InputForm() {
           value={gender}
           onChange={handleGenderChange}
           select
-          sx={{ display: "block", margin: "auto" }}
+          sx={{ display: "grid" }}
         >
           {["Male", "Female", "Other"].map((gender, index) => (
             <MenuItem key={index} value={gender}>
@@ -128,33 +129,29 @@ function InputForm() {
         </TextField>
         <TextField
           label="Age"
-          defaultValue="21"
-          sx={{ display: "block", margin: "auto" }}
+          sx={{ display: "grid", margin: "auto" }}
         />
         <TextField
           label="Height"
-          defaultValue="250"
-          sx={{ display: "block", margin: "auto" }}
+          sx={{ display: "grid", margin: "auto" }}
           InputProps={{
             endAdornment: <InputAdornment position="end">cm</InputAdornment>,
           }}
         />
         <TextField
           label="Location"
-          defaultValue="Vatican City"
-          sx={{ display: "block", margin: "auto" }}
+          sx={{ display: "grid", margin: "auto" }}
         />
         <TextField
           label="Ethnicity"
-          defaultValue="Alien"
-          sx={{ display: "block", margin: "auto" }}
+          sx={{ display: "grid", margin: "auto" }}
         />
         <TextField
           label="Alcohol"
           value={alcohol}
           select
           onChange={handleAlcoholChange}
-          sx={{ display: "block", margin: "auto" }}
+          sx={{ display: "grid", margin: "auto" }}
         >
           {["Yes", "No", "Sometimes"].map((pref, index) => (
             <MenuItem key={index} value={pref}>
@@ -187,6 +184,12 @@ export default function EditProfile({ open, handleClose }) {
         <Prompt />
         <Prompt />
         <InputForm />
+        <Button
+          type="submit" 
+          color="secondary" 
+          variant="contained">
+          Submit
+        </Button>
       </Stack>
     </Modal>
   );
