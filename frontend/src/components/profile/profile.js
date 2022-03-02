@@ -5,6 +5,7 @@ import { Container, Box } from '@mui/material';
 import React from 'react';
 
 export default function Profile () {
+    const imgProps = {img: "/images/profile.png"}
     return (
     <Box style={{border: '2px solid black', borderRadius: '10px', marginLeft:'10%', marginRight:'10%', marginTop:'2%', marginBottom:'2%' }}>
         <Box
@@ -21,16 +22,16 @@ export default function Profile () {
         alignItems: 'center',
     }}
     >
-            <Image/>
+            <Image {...imgProps}/>
             <TextCard/>
             <StatsCard/>
-            <Image/>
-            <Image/>
+            <Image {...imgProps}/>
+            <Image {...imgProps}/>
             <TextCard/>
-            <Image/>
+            <Image {...imgProps}/>
             <TextCard/>
-            <Image/>
-            <Image/>
+            <Image {...imgProps}/>
+            <Image {...imgProps}/>
         </Box>
     </Box>
     );

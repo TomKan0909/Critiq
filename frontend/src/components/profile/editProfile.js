@@ -10,45 +10,68 @@ import {
   Select,
   InputAdornment,
   InputLabel,
-  Button
+  Button,
+  IconButton,
+  ImageListItemBar,
+  Grid
 } from "@mui/material";
-import Image from "./image";
+import {AiFillCloseCircle} from 'react-icons/ai'
+import Image, {ImageEdit} from "./image";
 import React from "react";
+import { useTheme } from '@mui/material/styles';
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 600,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+
 
 function ImageComponent() {
+  const theme = useTheme();
+  console.log(theme);
+
+  const [state, setState] = React.useState('');
+  const handleCloseClick = () => {
+    setState('edit');
+
+  }
+
   return (
-    <ImageList cols={3}>
-      <ImageListItem>
-        <Image />
-      </ImageListItem>
-      <ImageListItem>
-        <Image />
-      </ImageListItem>
-      <ImageListItem>
-        <Image />
-      </ImageListItem>
-      <ImageListItem>
-        <Image />
-      </ImageListItem>
-      <ImageListItem>
-        <Image />
-      </ImageListItem>
-      <ImageListItem>
-        <Image />
-      </ImageListItem>
-    </ImageList>
+    <div>
+      <ImageList sx={{ maxWidth: 'auto', maxHeight: 'auto', margin: 'auto' }} cols={3}>
+        <ImageListItem>
+            <ImageEdit/>
+           {/* <ImageListItemBar
+              sx={{
+                backgroundColor:
+                  'transparent',
+                borderRadius: '10px'  
+              }}
+              position="top"
+              actionIcon={
+                <IconButton
+                  onClick={handleCloseClick}
+                  sx={{ color: theme.palette.error.main}}
+                >
+                  <AiFillCloseCircle />
+                </IconButton>
+              }
+              actionPosition="right"
+            /> */}
+        </ImageListItem>
+        <ImageListItem>
+        <ImageEdit/>
+        </ImageListItem>
+        <ImageListItem>
+        <ImageEdit/>
+        </ImageListItem>
+        <ImageListItem>
+        <ImageEdit/>
+        </ImageListItem>
+        <ImageListItem>
+        <ImageEdit/>
+        </ImageListItem>
+        <ImageListItem>
+        <ImageEdit/>
+        </ImageListItem>
+      </ImageList>
+    </div>
   );
 }
 
@@ -67,7 +90,7 @@ function Prompt() {
   ];
 
   return (
-    <Container size="sm">
+    <Container size="sm" sx= {{marginY: '10px'}}>
       <form component="form">
         <TextField
           label="Select Prompt"
@@ -92,7 +115,7 @@ function Prompt() {
           rows={5}
           defaultValue="Enter your Prompt Response"
           variant="filled"
-          sx={{ display: "grid", margin: "auto" }}
+          sx={{ display: "grid" }}
         />
       </form>
     </Container>
@@ -119,7 +142,7 @@ function InputForm() {
           value={gender}
           onChange={handleGenderChange}
           select
-          sx={{ display: "grid" }}
+          sx={{ display: "grid", marginY: '5px' }}
         >
           {["Male", "Female", "Other"].map((gender, index) => (
             <MenuItem key={index} value={gender}>
@@ -129,29 +152,29 @@ function InputForm() {
         </TextField>
         <TextField
           label="Age"
-          sx={{ display: "grid", margin: "auto" }}
+          sx={{ display: "grid", marginY: '5px' }}
         />
         <TextField
           label="Height"
-          sx={{ display: "grid", margin: "auto" }}
+          sx={{ display: "grid", marginY: '5px' }}
           InputProps={{
             endAdornment: <InputAdornment position="end">cm</InputAdornment>,
           }}
         />
         <TextField
           label="Location"
-          sx={{ display: "grid", margin: "auto" }}
+          sx={{ display: "grid", marginY: '5px' }}
         />
         <TextField
           label="Ethnicity"
-          sx={{ display: "grid", margin: "auto" }}
+          sx={{ display: "grid", marginY: '5px' }}
         />
         <TextField
           label="Alcohol"
           value={alcohol}
           select
           onChange={handleAlcoholChange}
-          sx={{ display: "grid", margin: "auto" }}
+          sx={{ display: "grid", marginY: '5px' }}
         >
           {["Yes", "No", "Sometimes"].map((pref, index) => (
             <MenuItem key={index} value={pref}>
@@ -177,19 +200,22 @@ export default function EditProfile({ open, handleClose }) {
       open={open}
       onClose={handleClose}
       BackdropProps={{ style: { backgroundColor: "rgba(255, 255, 255, 0.97)" } }}
+      sx={{paddingY: '2%'}}
     >
       <Box
         // marginLeft='10%'
-        marginY='6px'
-      display="block"
+        marginTop='5%'
+      display="flex-block"
     //   flexDirection="column"
       // justifyContent="flex-end" # DO NOT USE THIS WITH 'scroll'
       height="90vh" // fixed the height
+      width='50%'
       sx={{
-        //   border: "2px solid black",
+          border: "2px solid black",
         // borderRadius: '10px',
         overflowY: "scroll", // added scroll
         alignItems: 'center',
+        margin:'auto'
     }}>
         <ImageComponent />
         <Prompt />
