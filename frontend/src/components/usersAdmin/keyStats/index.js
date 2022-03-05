@@ -5,6 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Plot from "./plot";
 import { Container, Typography } from '@mui/material/';
+import { titleStyle } from '../../styles'
 
 // https://mui.com/components/grid/
 const KeyStats = () => {
@@ -15,9 +16,6 @@ const KeyStats = () => {
         setData(event.target.value);
     };
 
-    const titleTheme = {
-        marginTop: '0.35em'
-    }
 
     const formTheme = {
         marginTop: '2em',
@@ -26,7 +24,7 @@ const KeyStats = () => {
 
     return (
         <Container>
-            <Typography sx={titleTheme} variant="h2" gutterBottom={true}>Key Statistics</Typography>
+            <Typography sx={titleStyle} variant="h2" gutterBottom>Key Statistics</Typography>
             <FormControl fullWidth sx={formTheme}>
                 <InputLabel>Data</InputLabel>
                 <Select value={data} label="Age" onChange={handleChange}>
@@ -36,7 +34,6 @@ const KeyStats = () => {
                 </Select>
             </FormControl> 
             <Plot source={data}></Plot>
-            <Typography sx={titleTheme} variant="h2" gutterBottom={true}>Search for a User</Typography>
         </Container>
     );
 };

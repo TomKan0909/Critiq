@@ -3,7 +3,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import usernames from '../../../data/usernames';
 import UserInfoList from './userInfoList';
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
+import { titleStyle } from '../../styles'
 
 // https://mui.com/components/text-fields/
 const UserViewer = () => {
@@ -29,6 +30,7 @@ const UserViewer = () => {
 
     return (
         <Container component="form">
+            <Typography sx={titleStyle} variant="h2" gutterBottom>Search for a User</Typography>
             <TextField onChange={handleChange} fullWidth sx={formTheme}/>
             <UserInfoList users={users}></UserInfoList>
         </Container>
