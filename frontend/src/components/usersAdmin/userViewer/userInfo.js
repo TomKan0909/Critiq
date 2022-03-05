@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { Container, TableRow } from '@mui/material';
+import { Container, TableCell, TableRow } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import Profile from '../../profile/profile'
 
@@ -25,10 +25,12 @@ export default function UserInfo(props) {
 
   return (
     <TableRow>
-      <Button onClick={handleOpen}>{user}</Button>
-      <Modal open={open} onClose={handleClose}>
-        <Container sx={style}><Profile/></Container>
-      </Modal>
+      <TableCell>
+        <Button fullWidth onClick={handleOpen}>{user}</Button>
+        <Modal open={open} onClose={handleClose}>
+          <Container sx={style}><Profile/></Container>
+        </Modal>
+      </TableCell>
     </TableRow>
   );
 }

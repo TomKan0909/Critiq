@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import usernames from '../../../data/usernames';
 import UserInfoList from './userInfoList';
@@ -14,7 +13,6 @@ const UserViewer = () => {
     const handleChange = (event) => {
         const prefix = event.target.value.toLowerCase()
         const userSubset = getUserSubset(prefix)
-        console.log(userSubset)
         setUsers(userSubset);
     };
 

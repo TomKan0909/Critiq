@@ -7,8 +7,8 @@ const UserInfoList = (props) => {
     return (
         <Table>
             <TableBody>
-                {users.slice(0,10).map(user => (
-                    <UserInfo user={user}>
+                {users.slice(0,5).map(user => (
+                    <UserInfo key={user} user={user}>
                     </UserInfo>
                     ))}
             </TableBody>
