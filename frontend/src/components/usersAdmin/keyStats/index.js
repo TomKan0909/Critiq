@@ -32,9 +32,10 @@ const KeyStats = () => {
                 <Select value={data} label="Age" onChange={handleChange}>
                     <MenuItem value={'None'}>None</MenuItem>
                     <MenuItem value={'ageDistribution'}>Age Distribution</MenuItem>
+                    <MenuItem value={'exercise'}>Exercise</MenuItem>
                 </Select>
             </FormControl> 
-            <Plot data={data}></Plot>
+            <Plot source={data}></Plot>
             <Typography sx={titleTheme} variant="h2" gutterBottom={true}>Search for a User</Typography>
         </Container>
     );

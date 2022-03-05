@@ -1,43 +1,95 @@
-import { CanvasJSChart } from 'canvasjs-react-charts';
 import React from 'react';
+import { Chart as ChartJS } from 'chart.js/auto'
+import { Chart }            from 'react-chartjs-2'
+import { Container, Typography } from '@mui/material';
 
-// https://canvasjs.com/docs/charts/integration/react/
-const stats = {
-	ageDistribution: {
-		title: {
-			text: "Age Distribution",
-			fontFamily: "Helvetica"
-		},
-		data: [{
-			type: "column",
-			dataPoints: [
-				{ label: "18-23",  y: 20 },
-				{ label: "23-28", y: 30 },
-				{ label: "28-33", y: 25 },
-				{ label: "38-43",  y: 10 },
-				{ label: "43-48",  y: 5 },
-				{ label: "48-53",  y: 5 },
-				{ label: "53-over",  y: 5 },
-			]}
-		]
-	}	
+const labels = {
+	ageDistribution: ['18-23','23-28','28-33','38-43','43-48','48-over'],
+	exercise: ['Daily', 'Often', 'Moderate', 'Sometimes', 'Never']
 }
+const distribution = {
+	ageDistribution: [30, 25, 10, 5, 5, 5],
+	exercise: [15, 20, 30, 20, 15]
+}
+
+
+const titles = {
+	ageDistribution: 'Age Distribution',
+	exercise: 'Exercise'
+}
+
+const types = {
+	ageDistribution: 'pie',
+	exercise: 'bar'
+}
+
+const backgroundColor = [
+	'rgba(255, 99, 132, 0.2)',
+	'rgba(54, 162, 235, 0.2)',
+	'rgba(255, 206, 86, 0.2)',
+	'rgba(75, 192, 192, 0.2)',
+	'rgba(153, 102, 255, 0.2)',
+	'rgba(255, 159, 64, 0.2)',
+]
+
+const borderColor = [
+	'rgba(255, 99, 132, 1)',
+	'rgba(54, 162, 235, 1)',
+	'rgba(255, 206, 86, 1)',
+	'rgba(75, 192, 192, 1)',
+	'rgba(153, 102, 255, 1)',
+	'rgba(255, 159, 64, 1)',
+]
+
+const data = {
+	ageDistribution: {
+		labels: labels.ageDistribution,
+		datasets: [{
+			data: distribution.ageDistribution,
+			backgroundColor: backgroundColor,	
+			borderColor: borderColor,
+			borderWidth: 1,
+		}]
+	},
+	exercise: {
+		labels: labels.exercise,
+		datasets: [{
+			data: distribution.exercise,
+			backgroundColor: backgroundColor,	
+			borderColor: borderColor,
+			borderWidth: 1,
+		}]
+	}
+}
+
+const options = {
+	ageDistribution: {},
+	exercise: {
+		plugins: {
+			legend: {
+			  display: false
+			}
+		}
+	}
+}
+
 
 const Plot = (props) => {
 
-	const {data} = props
+	const {source} = props
 
-	if (data !== 'None') {
+	if (source !== 'None') {
 		return (
-			<CanvasJSChart options = {getStats(data)}/>
+			<Container>
+				<Typography variant='h3' gutterBottom>{titles[source]}</Typography>
+				<Chart type={types[source]} data={data[source]} options={options[source]} redraw/>
+			</Container>
 		);
 	} else {
 		return null;
 	}
 };
 
-function getStats(data) {
-	return stats[data]
-}
+
 
 export default Plot;
