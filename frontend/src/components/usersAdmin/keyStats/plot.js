@@ -4,7 +4,7 @@ import { Chart }            from 'react-chartjs-2'
 import { Container, Typography } from '@mui/material';
 
 const labels = {
-	ageDistribution: ['18-23','23-28','28-33','38-43','43-48','48-over'],
+	ageDistribution: ['18-23','23-28','28-33','38-43','43-over',],
 	exercise: ['Daily', 'Often', 'Moderate', 'Sometimes', 'Never']
 }
 const distribution = {
@@ -63,7 +63,9 @@ const data = {
 }
 
 const options = {
-	ageDistribution: {},
+	ageDistribution: {
+		aspectRatio: 1.2
+	},
 	exercise: {
 		plugins: {
 			legend: {
