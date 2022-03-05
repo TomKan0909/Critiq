@@ -15,6 +15,11 @@ export default function LoginForm() {
       setPassword("");
       setError(false);
       navigate("/");
+    } else if (username === "admin" && password === "admin") {
+      setUsername("");
+      setPassword("");
+      setError(false);
+      navigate("/usersAdmin");
     } else {
       setError(true);
     }
