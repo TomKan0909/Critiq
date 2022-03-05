@@ -23,6 +23,7 @@ const types = {
 	exercise: 'bar'
 }
 
+//https://react-chartjs-2.js.org/examples/pie-chart
 const backgroundColor = [
 	'rgba(255, 99, 132, 0.2)',
 	'rgba(54, 162, 235, 0.2)',

@@ -11,7 +11,5 @@ export const containerStyle = {
 }
 
 export const bottomLinkStyle = {
-    margin: 5,
-    position: 'absolute',
-    bottom: '20%'
+    margin: '5em',
 }

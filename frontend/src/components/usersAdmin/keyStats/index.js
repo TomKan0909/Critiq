@@ -6,34 +6,23 @@ import Select from '@mui/material/Select';
 import Plot from "./plot";
 import { Container, Typography } from '@mui/material/';
 import { titleStyle } from '../../styles'
+import DataSelector from './dataSelector';
 
 // https://mui.com/components/grid/
 const KeyStats = () => {
 
-    const [data, setData] = React.useState('None');
+    const [source, setSource] = React.useState('None');
 
     const handleChange = (event) => {
-        setData(event.target.value);
+        setSource(event.target.value);
     };
 
-
-    const formTheme = {
-        marginTop: '2em',
-        marginBottom: '2em'
-    }
 
     return (
         <Container>
             <Typography sx={titleStyle} variant="h2" gutterBottom>Key Statistics</Typography>
-            <FormControl fullWidth sx={formTheme}>
-                <InputLabel>Data</InputLabel>
-                <Select value={data} label="Age" onChange={handleChange}>
-                    <MenuItem value={'None'}>None</MenuItem>
-                    <MenuItem value={'ageDistribution'}>Age Distribution</MenuItem>
-                    <MenuItem value={'exercise'}>Exercise</MenuItem>
-                </Select>
-            </FormControl> 
-            <Plot source={data}></Plot>
+            <DataSelector source={source} onChange={handleChange}/>
+            <Plot source={source}/>
         </Container>
     );
 };
