@@ -1,97 +1,100 @@
-import { List, ListItemText, Tab, Tabs, ListItemIcon } from "@mui/material"
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import { List, ListItemText, ListItemIcon } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import { Box } from "@mui/system";
 import { Divider } from "@mui/material";
-import { ListItem} from "@mui/material"
-import { HiOutlineCake, HiOutlineLocationMarker } from 'react-icons/hi'
-import { CgProfile } from 'react-icons/cg'
-import { FaRulerVertical, FaGraduationCap } from 'react-icons/fa'
-import { RiGlobeLine, RiSuitcaseLine } from 'react-icons/ri'
-import { BiWine } from 'react-icons/bi'
-import './stats.css'
+import { ListItem } from "@mui/material";
+import { HiOutlineCake, HiOutlineLocationMarker } from "react-icons/hi";
+import { CgProfile } from "react-icons/cg";
+import { FaRulerVertical, FaGraduationCap } from "react-icons/fa";
+import { RiGlobeLine, RiSuitcaseLine } from "react-icons/ri";
+import { BiWine } from "react-icons/bi";
+import "./stats.css"; // needed to do this to edit appearance of scroll bar; for some reason MUI sx does not support webkit-scrollbar
+import React from "react";
 
-// scrollbarWidth: 'thin', '&::-webkit-scrollbar': { width: '2px'}, '&::-webkit-scrollbar-track': {backgroundColor: 'orange', 
-//     '&::webkit-scrollbar-thumb': {backgroundColor: 'red', borderRadius: 2}}
+const statsTopItemStyle = { borderRight: "1px solid rgba(0, 0, 0, 0.12)" };
 
-function StatsTop() {
-  return(
-    <Box sx={{ mx: 'auto', my: '3px', width: '380px', bgcolor: 'background.paper'}}>
-       <List sx={{display: 'flex', flexDirection: 'row', width: 'auto', overflowX: 'scroll'}}>
-        <ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
-          <ListItemIcon>
-            <HiOutlineCake/>
-          </ListItemIcon>
-          <ListItemText primary="Age" />
-        </ListItem>
-        <ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
-          <ListItemIcon>
-            <HiOutlineCake/>
-          </ListItemIcon>
-          <ListItemText primary="Age" />
-        </ListItem><ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
-          <ListItemIcon>
-            <HiOutlineCake/>
-          </ListItemIcon>
-          <ListItemText primary="Age" />
-        </ListItem><ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
-          <ListItemIcon>
-            <HiOutlineCake/>
-          </ListItemIcon>
-          <ListItemText primary="Age" />
-        </ListItem><ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
-          <ListItemIcon>
-            <HiOutlineCake/>
-          </ListItemIcon>
-          <ListItemText primary="Age" />
-        </ListItem><ListItem sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)'}}>
-          <ListItemIcon>
-            <HiOutlineCake/>
-          </ListItemIcon>
-          <ListItemText primary="Age" />
-        </ListItem>
-      </List>   
-
-      {/* <Tabs
-        variant="scrollable"
-        scrollButtons="auto"
-        aria-label="scrollable auto tabs example"
-      >
-        <Tab icon={<HiOutlineCake/>} iconPosition='start' label='Age' sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)', paddingTop:'0px', paddingBottom:'0px' }}/>
-        <Tab icon={<CgProfile/>} iconPosition='start' label="Gender" sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)', paddingTop:'0px', paddingBottom:'0px' }}/>
-        <Tab icon={<FaRulerVertical/>} iconPosition='start' label="Height" sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)', paddingTop:'0px', paddingBottom:'0px' }}/>
-        <Tab icon={<HiOutlineLocationMarker/> } iconPosition='start' label="Location" sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)', paddingTop:'0px', paddingBottom:'0px' }}/>
-        <Tab icon={<RiGlobeLine/>} iconPosition='start' label="Ethnicity" sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)', paddingTop:'0px', paddingBottom:'0px' }}/>
-        <Tab icon={<BiWine/>} iconPosition='start' label="Alcohol?" sx={{borderRight: '1px solid rgba(0, 0, 0, 0.12)', paddingTop:'0px', paddingBottom:'0px' }}/>
-      </Tabs> */}
-    </Box>
-    )
+function StatsTopItem({ text, children }) {
+  return (
+    <ListItem sx={statsTopItemStyle}>
+      <ListItemIcon>{children}</ListItemIcon>
+      <ListItemText primary={text} />
+    </ListItem>
+  );
 }
 
-export default function StatsCard(){
-    return (
-        <Card sx={{ maxWidth: 420, marginX:'auto', marginY: '20px'}}>
-          <CardContent>
-          <StatsTop/>
-          <Divider/>
-          <Box sx={{ width: '100%', maxWidth: 420, bgcolor: 'background.paper' }}>
-           <List>
-               <ListItem>
-                   <ListItemIcon>
-                     <RiSuitcaseLine/>
-                   </ListItemIcon>
-                   <ListItemText primary="University of Toronto" />
-               </ListItem>
-               <Divider/>
-               <ListItem>
-                 <ListItemIcon>
-                   <FaGraduationCap/>
-                 </ListItemIcon>
-                   <ListItemText primary="Just a human" />
-               </ListItem>
-           </List>
-           </Box>
-          </CardContent>
-        </Card>
-      );
+const boxStatsTopStyle = { mx: "auto", my: "3px", width: "380px" };
+const listStatsTopStyle = {
+  display: "flex",
+  flexDirection: "row",
+  width: "auto",
+  overflowX: "scroll",
+};
+
+function StatsTop({ age, gender, height, location, ethnicity, alcohol }) {
+  return (
+    <Box sx={boxStatsTopStyle}>
+      <List sx={listStatsTopStyle}>
+        <StatsTopItem text={age} children={<HiOutlineCake />} />
+        <StatsTopItem text={gender} children={<CgProfile />} />
+        <StatsTopItem text={height} children={<FaRulerVertical />} />
+        <StatsTopItem text={location} children={<HiOutlineLocationMarker />} />
+        <StatsTopItem text={ethnicity} children={<RiGlobeLine />} />
+        <StatsTopItem text={alcohol} children={<BiWine />} />
+      </List>
+    </Box>
+  );
+}
+
+const cardStatsCardStyle = { maxWidth: 420, marginX: "auto", marginY: "20px" };
+const boxStatsCardStyle = {
+  width: "100%",
+  maxWidth: 420,
+  bgcolor: "background.paper",
+};
+
+export default function StatsCard({
+  age,
+  gender,
+  height,
+  location,
+  ethnicity,
+  alcohol,
+  occupation,
+  school,
+}) {
+  return (
+    <Card sx={cardStatsCardStyle}>
+      <CardContent>
+        <StatsTop
+          {...{
+            age: age,
+            gender: gender,
+            height: height,
+            location: location,
+            ethnicity: ethnicity,
+            alcohol: alcohol,
+          }}
+        />
+        <Divider />
+        <Box sx={boxStatsCardStyle}>
+          <List>
+            <ListItem>
+              <ListItemIcon>
+                <RiSuitcaseLine />
+              </ListItemIcon>
+              <ListItemText primary={occupation} />
+            </ListItem>
+            <Divider />
+            <ListItem>
+              <ListItemIcon>
+                <FaGraduationCap />
+              </ListItemIcon>
+              <ListItemText primary={school} />
+            </ListItem>
+          </List>
+        </Box>
+      </CardContent>
+    </Card>
+  );
 }
