@@ -22,7 +22,6 @@ export default function Profile () {
         alignItems: 'center',
     }}
     >
-<<<<<<< HEAD
             <Image {...imgProps}/>
             <TextCard/>
             <StatsCard/>
@@ -33,18 +32,6 @@ export default function Profile () {
             <TextCard/>
             <Image {...imgProps}/>
             <Image {...imgProps}/>
-=======
-            <Image/>
-            <TextCard name="Good Student"/>
-            <StatsCard/>
-            <Image/>
-            <Image/>
-            <TextCard name="Good Student"/>
-            <Image/>
-            <TextCard name="Good Student"/>
-            <Image/>
-            <Image/>
->>>>>>> main
         </Box>
     </Box>
     );
