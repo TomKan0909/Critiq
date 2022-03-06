@@ -1,5 +1,4 @@
 import React from "react";
-import Grid from "@mui/material/Grid";
 import { Container, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -20,13 +19,6 @@ export default function NavDebug() {
         }}
       >
         Profile
-      </Button>
-      <Button
-        onClick={() => {
-          navigate("/roastRoom");
-        }}
-      >
-        Roast Room
       </Button>
       <Button
         onClick={() => {

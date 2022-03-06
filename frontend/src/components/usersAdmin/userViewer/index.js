@@ -6,6 +6,7 @@ import usernames from '../../../data/usernames';
 import Modal from '@mui/material/Modal';
 import Profile from '../../profile/profile'
 import users from '../../../data/users';
+import AdminProfile from '../../profile/adminProfile';
 
 // https://mui.com/components/text-fields/
 const UserViewer = () => {
@@ -45,7 +46,7 @@ const UserViewer = () => {
                 onChange={handleOpen}
                 renderInput={(params) => <TextField {...params} label="Users" />}/>
             <Modal open={open} onClose={handleClose}>
-                <Container sx={modalStyle}><Profile {...users[name]}/></Container>
+                <Container sx={modalStyle}><AdminProfile {...users[name]}/></Container>
             </Modal>
         </Container>
     );

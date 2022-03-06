@@ -16,7 +16,7 @@ const exampleUser = {
   ],
   tags: {
     age: "32",
-    gender: "Emily",
+    gender: "F",
     height: "167cm",
     location: "Vancouver",
     ethnicity: "Caucasian",

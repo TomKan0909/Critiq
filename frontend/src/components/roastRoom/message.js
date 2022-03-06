@@ -4,6 +4,17 @@ import { Grid } from '@mui/material';
 import exampleUser from '../../data/exampleUser';
 const Message = (props) => {
 
+
+    const nonViewerAvatarStyle = {
+        marginTop: "0.6em",
+        marginLeft: 3
+    }
+
+    const viewerAvatarStyle = {
+        marginTop: "0.6em",
+        marginRight: 3
+    }
+
     // https://stackoverflow.com/a/17756714
     // https://stackoverflow.com/a/61526114
     const viewerMessageStyle = {
@@ -11,73 +22,73 @@ const Message = (props) => {
         overflowWrap: 'break-word',
         borderRadius: 10,
         padding: 1.2,
+        marginRight: 3,
+        marginY: 1
     }
 
-    const senderMessageStyle = {
+    const nonViewerMessageStyle = {
         overflowX : 'hidden',
         overflowWrap: 'break-word',
         borderRadius: 10,
         padding: 1.2,
+        marginLeft: 3,
+        marginY: 1
     }
 
     const {sender, content} = props 
 
-    let senderColContent = '';
-    let nonSenderColContent = '';
+    let viewerColContent = '';
+    let nonViewerColContent = '';
 
     
     if (sender === exampleUser) {
-        senderColContent = content
+        viewerColContent = content
         viewerMessageStyle['backgroundColor'] = 'pink'
     } else {
-        nonSenderColContent = content
-        senderMessageStyle['backgroundColor'] = '#FBDB65'
+        nonViewerColContent = content
+        nonViewerMessageStyle['backgroundColor'] = '#FBDB65'
     } 
     
-    let nonSenderAvatar, senderAvatar;
+    let nonViewerAvatar, viewerAvatar;
 
-    if (nonSenderColContent === '') {
-        nonSenderAvatar = null
-        senderAvatar = <Avatar marginY={2} src={exampleUser.images[0].img}/>        
+    if (nonViewerColContent === '') {
+        nonViewerAvatar = null
+        viewerAvatar = <Avatar sx={viewerAvatarStyle} src={exampleUser.images[0].img}/>        
     } else {
-        nonSenderAvatar = <Avatar src={sender.images[0].img}/>
-        senderAvatar = null
+        nonViewerAvatar = <Avatar sx={nonViewerAvatarStyle} src={sender.images[0].img}/>
+        viewerAvatar = null
     }
 
-    console.log(sender.images[0])
 
     return (
-        <Grid container>
+        <Grid overflowX={'hidden'} container>
             <Grid item xs={1}
                 justify="center"
                 alignItems="center">
-                    {nonSenderAvatar}
+                    {nonViewerAvatar}
             </Grid>
             <Grid item xs={4}>
                 <Typography 
-                    marginLeft={3}
                     marginY={1} 
                     fontSize={'1.2rem'}
-                    sx={senderMessageStyle}
+                    sx={nonViewerMessageStyle}
                     zeroMinWidth>
-                        {nonSenderColContent}
+                        {nonViewerColContent}
                 </Typography> 
             </Grid>
             <Grid item xs={2}></Grid>
             <Grid item xs={4}>
                 <Typography 
                     variant='body1' 
-                    marginRight={3} 
                     marginY={1} 
                     fontSize={'1.2rem'}
                     sx={viewerMessageStyle}
                     zeroMinWidth> 
-                        {senderColContent}
+                        {viewerColContent}
                 </Typography> 
             </Grid>
-            <Grid item xs={1}
-                marginTop="0.6em">
-                    {senderAvatar}
+            <Grid item xs={1}>
+                    {viewerAvatar}
             </Grid>
         </Grid> 
     )
