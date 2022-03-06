@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import { Container, TableCell, TableRow } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import Profile from '../../profile/profile'
-import exampleUser from '../../../data/exampleUser';
+import users from '../../../data/users';
 
 // https://stackoverflow.com/a/67335455
 const style = {
@@ -29,7 +29,7 @@ export default function UserInfo(props) {
       <TableCell>
         <Button fullWidth onClick={handleOpen}>{user}</Button>
         <Modal open={open} onClose={handleClose}>
-          <Container sx={style}><Profile {...exampleUser}/></Container>
+          <Container sx={style}><Profile {...users[user]}/></Container>
         </Modal>
       </TableCell>
     </TableRow>

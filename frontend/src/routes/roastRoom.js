@@ -3,7 +3,6 @@ import Grid from "@mui/material/Grid";
 import Chat from "../components/roastRoom/chat";
 import { Container } from "@mui/material";
 import Profile from '../components/profile/profile';
-import exampleUser from '../data/exampleUser';
 
 const RoastRoom = ({user}) => {
   return (

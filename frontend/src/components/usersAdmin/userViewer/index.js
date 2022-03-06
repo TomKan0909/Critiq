@@ -1,9 +1,9 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import usernames from '../../../data/usernames';
 import UserInfoList from './userInfoList';
 import { Container, Typography } from '@mui/material';
 import { titleStyle } from '../../styles'
+import usernames from '../../../data/usernames';
 
 // https://mui.com/components/text-fields/
 const UserViewer = () => {
@@ -25,7 +25,7 @@ const UserViewer = () => {
         marginTop: '2em',
         marginBottom: '2em'
     }
-
+    
     return (
         <Container component="form">
             <Typography sx={titleStyle} variant="h2" gutterBottom>Search for a User</Typography>
