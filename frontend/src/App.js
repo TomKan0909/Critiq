@@ -12,6 +12,7 @@ import { Grid, Button, Stack } from "@mui/material";
 import NavDebug from "./components/home/navDebug";
 import SideProfile from "./components/home/sideProfile";
 import RoastList from "./components/home/roastList";
+import exampleUser from './data/exampleUser';
 
 function App() {
   return (
@@ -20,9 +21,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="roastRoom" element={<RoastRoom />} />
-          <Route path="usersAdmin" element={<UsersAdmin />} />
+          <Route path="profile" element={<Profile user={exampleUser} />} />
+          <Route path="roastRoom" element={<RoastRoom user={exampleUser}/>} />
+          <Route path="usersAdmin" element={<UsersAdmin/>} />
         </Routes>
       </div>
     </ThemeProvider>
