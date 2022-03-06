@@ -4,18 +4,17 @@ const ProtectedRoute = ({
   redirectPath = '/notavailable',
   isAdmin = false
 }) => {
-  let siteUser;
-  if (isAdmin) {
-    siteUser = sessionStorage.getItem('admin');
-  }else{
-    siteUser = sessionStorage.getItem('user');
-  }
 
-  if (!siteUser) {
+  if(isAdmin && sessionStorage.getItem('user')){
     return <Navigate to={redirectPath} replace />;
+  }else if (!isAdmin && sessionStorage.getItem('admin')){
+    return <Navigate to={redirectPath} replace />;
+  }else if (!sessionStorage.getItem('user') && !sessionStorage.getItem('admin')){
+    return <Navigate to={'/login'} replace/>
+  }else{
+    return <Outlet/>
   }
 
-  return <Outlet/>;
 };
 
 export default ProtectedRoute;
