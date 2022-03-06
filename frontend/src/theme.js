@@ -30,7 +30,10 @@ export const themeOptions = createTheme({
     },
     highlight: {
       main: green[300],
-    }
+    },
+    chip: {
+      main: '#ffea00',
+    },
   },
   typography: {
     fontFamily: 'Helvetica',

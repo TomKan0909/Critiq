@@ -6,11 +6,11 @@ const random = (range, offset) => {
     return (Math.floor(Math.random() * range) + offset).toString()
 }
 
-const genders = ['M', 'F', 'Other']
-const locations = ['Toronto', 'Waterloo', 'London', 'Ottawa', 'Montreal', 'Vancouver', 'Calgary']
-const ethnicities = ['Asian', 'Arab', 'Black', 'Caucasian', 'Hispanic', 'Pacific Islander', 'Other']
-const alcohols = ['Yes', 'No']
-const schools = ['University of Toronto',
+export const genders = ['M', 'F', 'Other']
+export const locations = ['Toronto', 'Waterloo', 'London', 'Ottawa', 'Montreal', 'Vancouver', 'Calgary']
+export const ethnicities = ['Asian', 'Arab', 'Black', 'Caucasian', 'Hispanic', 'Pacific Islander', 'Other']
+export const alcohols = ['Yes', 'No']
+export const schools = ['University of Toronto',
 'University of Waterloo',
 'Western University',
 'University of Ottawa', 

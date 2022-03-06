@@ -1,4 +1,4 @@
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Container } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +26,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form component="form">
+    <Container component="form">
       <TextField
         label="Username"
         error={error ? true : false}
@@ -58,6 +58,6 @@ export default function LoginForm() {
       >
         Login
       </Button>
-    </form>
+    </Container>
   );
 }

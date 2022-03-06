@@ -1,4 +1,4 @@
-import { Table, TableCell, Container, Grid, Card, styled} from "@mui/material";
+import { Table, Chip, Container, Grid, Card, styled } from "@mui/material";
 
 import { brown } from "@mui/material/colors";
 
@@ -28,4 +28,9 @@ export const StickyProfile = styled(Container)(({ theme }) => ({
   borderColor: theme.palette.secondary.main,
   borderWidth: "3px",
   borderRadius: "20px",
+}));
+
+export const FilterChip = styled(Chip)(({ theme }) => ({
+  align: "left",
+  margin: "10px",
 }));
