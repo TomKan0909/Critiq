@@ -1,6 +1,5 @@
-import { Table, Chip, Container, Grid, Card, styled } from "@mui/material";
+import { Chip, Container, Grid, Card, styled } from "@mui/material";
 
-import { brown } from "@mui/material/colors";
 
 export const RoastCardItem = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,

@@ -1,6 +1,5 @@
 import React from "react";
-import Grid from "@mui/material/Grid";
-import { Container, Button, Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Image from "./../profile/image";
 import TextCard from "./../profile/textCard";

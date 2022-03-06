@@ -1,35 +1,40 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import { CardActionArea, Typography, Modal, Box } from "@mui/material";
+import {
+  CardActionArea,
+  Typography,
+  Modal,
+  Box,
+  CardContent,
+  Card,
+} from "@mui/material";
 import React from "react";
-import MessageList from '../critiqRoom/messageLog';
-import exampleUser from '../../data/exampleUser';
+import MessageList from "../critiqRoom/messageLog";
+import exampleUser from "../../data/exampleUser";
 
 const chatStyle = {
-    border: '2px solid black',
-    borderRadius: '10px',
-    height: '90vh',
-    width: '50%',
-    margin: 'auto',
-    marginTop: '50px',
-    backgroundColor: '#F8F0E3'
-}
+  border: "2px solid black",
+  borderRadius: "10px",
+  height: "90vh",
+  width: "50%",
+  margin: "auto",
+  marginTop: "50px",
+  backgroundColor: "#F8F0E3",
+};
 
 const chatBarStyle = {
-    backgroundColor: 'pink',
-    width: '100%',
-    borderRadius: '10px',
-}
+  backgroundColor: "pink",
+  width: "100%",
+  borderRadius: "10px",
+};
 
-export default function RoastHistoryCard({messages, roomID, date}) {
+export default function RoastHistoryCard({ messages, roomID, date }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
-      setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleClose = () => {
-      setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <React.Fragment>
@@ -48,12 +53,23 @@ export default function RoastHistoryCard({messages, roomID, date}) {
           </CardContent>
         </CardActionArea>
       </Card>
-    <Modal open={open} onClose={handleClose}>
+      <Modal open={open} onClose={handleClose}>
         <Box sx={chatStyle}>
-            <Typography variant="h4" sx={chatBarStyle} align='center' gutterBottom >Roast Room</Typography> 
-            <MessageList messages={messages} viewer={exampleUser} maxHeight='90%'/>
+          <Typography
+            variant="h4"
+            sx={chatBarStyle}
+            align="center"
+            gutterBottom
+          >
+            Roast Room
+          </Typography>
+          <MessageList
+            messages={messages}
+            viewer={exampleUser}
+            maxHeight="90%"
+          />
         </Box>
-    </Modal>
+      </Modal>
     </React.Fragment>
   );
 }
