@@ -5,7 +5,7 @@ import Profile from "../profile/profile";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-const CritiqRoom = ({user, isAdmin}) => {
+const CritiqRoom = ({isAdmin}) => {
 
     const ratingBoxStyle = {
         marginTop: 8
@@ -31,7 +31,9 @@ const CritiqRoom = ({user, isAdmin}) => {
         fontSize: '1.5em',
         marginTop: 8  
       }
-  
+      
+    let user = sessionStorage.getItem('user');
+    user = JSON.parse(user)
     let interaction;
     if (isAdmin) {
         interaction = <Button sx={stopButtonStyle} fullWidth variant="contained">stop room</Button>

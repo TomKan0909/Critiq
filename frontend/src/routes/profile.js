@@ -10,8 +10,13 @@ import exampleUser from "../data/exampleUser";
 import { useLocation } from "react-router-dom";
 
 function ProfileView() {
-  const { state } = useLocation();
-  const { user } = state;
+  // const { state } = useLocation();
+  // console.log(state);
+  // const { user } = state;
+
+  let user = sessionStorage.getItem('user');
+  user = JSON.parse(user)
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={8}>

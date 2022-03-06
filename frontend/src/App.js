@@ -16,19 +16,28 @@ import SideProfile from "./components/home/sideProfile";
 import RoastList from "./components/home/roastList";
 import exampleUser from "./data/exampleUser";
 import TagFilter from "./components/home/tagFilter";
+import ProtectedRoute from "./utils/protectedRoute";
 
 function App() {
   return (
     <ThemeProvider theme={themeOptions}>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
-          <Route path="profile" element={<Profile user={exampleUser} />} />
-          <Route path="profile/roastHistory" element={<RoastHistory />} />
-          <Route path="critiqRoom" element={<CritiqRoom user={exampleUser} />} />
-          <Route path="critiqRoomAdmin" element={<CritiqRoom user={exampleUser, true} />} />
-          <Route path="usersAdmin" element={<UsersAdmin />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="profile" element={<Profile/>} />
+            <Route path="profile/roastHistory" element={<RoastHistory />} />
+            <Route path="/" element={<Home />} />
+            <Route path="critiqRoom" element={<CritiqRoom/>} />
+          </Route>
+
+          {/* <Route path="profile" element={<Profile user={exampleUser} />} />
+          <Route path="profile/roastHistory" element={<RoastHistory />} /> */}
+          {/* <Route path="critiqRoom" element={<CritiqRoom/>} /> */}
+          <Route element={<ProtectedRoute isAdmin={true}/>}>
+            <Route path="critiqRoomAdmin" element={<CritiqRoom user={exampleUser} isAdmin={true} />} />
+            <Route path="usersAdmin" element={<UsersAdmin />} /> 
+          </Route>
         </Routes>
       </div>
     </ThemeProvider>

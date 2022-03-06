@@ -1,6 +1,8 @@
 import { TextField, Button, Container } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import exampleUser from '../../data/exampleUser';
+
 
 export default function LoginForm() {
   const [username, setUsername] = React.useState("");
@@ -14,11 +16,13 @@ export default function LoginForm() {
       setUsername("");
       setPassword("");
       setError(false);
+      sessionStorage.setItem('user', JSON.stringify(exampleUser))
       navigate("/");
     } else if (username === "admin" && password === "admin") {
       setUsername("");
       setPassword("");
       setError(false);
+      sessionStorage.setItem('admin', JSON.stringify({username: "admin", password: "admin", roles: "admin"}))
       navigate("/usersAdmin");
     } else {
       setError(true);
