@@ -4,6 +4,7 @@ import Login from "./routes/login";
 import Profile from "./routes/profile";
 import RoastRoom from "./routes/roastRoom";
 import UsersAdmin from "./routes/usersAdmin";
+import RoastHistory from "./routes/roastHistory"
 import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { themeOptions } from "./theme";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="profile/roastHistory" element={<RoastHistory/>} />
           <Route path="roastRoom" element={<RoastRoom />} />
           <Route path="usersAdmin" element={<UsersAdmin />} />
         </Routes>

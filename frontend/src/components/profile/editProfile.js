@@ -23,15 +23,6 @@ import { useTheme } from '@mui/material/styles';
 
 
 function ImageComponent() {
-  const theme = useTheme();
-  console.log(theme);
-
-  const [state, setState] = React.useState('');
-  const handleCloseClick = () => {
-    setState('edit');
-
-  }
-
   return (
     <div>
       <ImageList sx={{ maxWidth: 'auto', maxHeight: 'auto', margin: 'auto' }} cols={3}>

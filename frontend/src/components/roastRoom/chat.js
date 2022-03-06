@@ -54,7 +54,7 @@ const Chat = () => {
     return (
         <Box sx={chatStyle}>
             <Typography variant="h4" sx={chatBarStyle} align='center' gutterBottom >Roast Room</Typography> 
-            <MessageLog messages={messages} viewer={1}></MessageLog>
+            <MessageLog messages={messages} viewer={1} maxHeight='75%'></MessageLog>
             <TextField 
                 sx={chatFormStyle}
                 onChange={updateMessage} 
