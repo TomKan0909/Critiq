@@ -16,13 +16,13 @@ const exampleHistoryCard = {
   messages: [{sender: exampleUser, content: 'loren ipsum'},
   {sender: exampleUser, content: 'loren ipsum'},
   {sender: exampleUser, content: 'loren ipsum'},{sender: exampleUser, content: 'loren ipsum'},
-  {sender: users[0], content: 'loren ipsum'},{sender: '2', content: 'loren ipsum'},
-  {sender: users[0], content: 'loren ipsum'},
+  {sender: users['Eda'], content: 'loren ipsum'},{sender: users['Eda'], content: 'loren ipsum'},
+  {sender: users['Eda'], content: 'loren ipsum'},
   {sender: exampleUser, content: 'loren ipsum'},
   {sender: exampleUser, content: 'loren ipsum'},
   {sender: exampleUser, content: 'loren ipsum'},{sender: exampleUser, content: 'loren ipsum'},
-  {sender: users[0], content: 'loren ipsum'},{sender: '2', content: 'loren ipsum'},
-  {sender: users[0], content: 'loren ipsum'}],
+  {sender: users['Eda'], content: 'loren ipsum'},{sender: users['Eda'], content: 'loren ipsum'},
+  {sender: users['Eda'], content: 'loren ipsum'}],
   roomID: 340598,
   date: new Date()
 };
