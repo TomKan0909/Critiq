@@ -42,7 +42,7 @@ function App() {
 }
 
 function Home() {
-  const [activeFilters, addActiveFilter] = React.useState([]);
+  const [activeFilters, setActiveFilter] = React.useState([]);
 
   return (
     <Grid container justifyContent="center" spacing={2}>
@@ -55,7 +55,7 @@ function Home() {
       <Grid item xs={12}>
         <TagFilter
           activeFilters={activeFilters}
-          addActiveFilter={addActiveFilter}
+          setActiveFilter={setActiveFilter}
         />
       </Grid>
       <Grid item xs={5}>

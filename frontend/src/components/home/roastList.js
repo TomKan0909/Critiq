@@ -13,14 +13,18 @@ export default function RoastList({ activeFilters }) {
   const [usersList, updateUsers] = React.useState(usernames.slice(0, 30));
 
   const checkFilter = (user) => {
+    if (activeFilters.length == 0) {
+      return true;
+    }
+
     for (const filter of activeFilters) {
       console.log(filter);
       console.log(users[user]);
-      if (Object.values(users[user].tags).includes(filter) == false) {
-        return false;
+      if (Object.values(users[user].tags).includes(filter)) {
+        return true;
       }
     }
-    return true;
+    return false;
   };
 
   return (

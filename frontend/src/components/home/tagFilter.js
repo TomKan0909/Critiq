@@ -10,7 +10,6 @@ import {
   schools,
 } from "../../data/users";
 
-import { FilterChip } from "./styles";
 
 let tags = [];
 tags = tags.concat(genders);
@@ -20,53 +19,24 @@ tags = tags.concat(alcohols);
 tags = tags.concat(schools);
 tags = tags.filter((tag) => tag != "Other");
 
-export default function TagFilter({ activeFilters, addActiveFilter }) {
-  const [filter, setFilter] = React.useState("");
-
-  const handleFilter = () => {
-    if (tags.includes(filter) && activeFilters.includes(filter) == false) {
-      addActiveFilter([...activeFilters, filter]);
-    }
+export default function TagFilter({ activeFilters, setActiveFilter }) {
+  const handleFilter = (value) => {
+    setActiveFilter(value);
   };
-
-  // https://stackoverflow.com/a/62767716
-  const handleDelete = (activeFilter) => {
-    addActiveFilter((activeFilters) =>
-      activeFilters.filter((filter) => filter != activeFilter)
-    );
-  };
-
-  // const handleDelete = (activeFilter) => {
-  //     return;
-  // }
 
   return (
     <Container component="form">
       <Autocomplete
+        multiple
+        limitTags={3}
         options={tags}
-        onChange={(event, value) => setFilter(value)}
+        onChange={(event, value) => {
+          handleFilter(value);
+        }}
         renderInput={(params) => (
           <TextField {...params} label="Search for a tag(s)" />
         )}
       />
-      <Button
-        sx={{ margin: "40px" }}
-        onClick={handleFilter}
-        variant="contained"
-        color="primary"
-        size="large"
-      >
-        Add
-      </Button>
-      <Box justifyContent="left">
-        {activeFilters.map((activeFilter) => (
-          <FilterChip
-            variant="outlined"
-            label={activeFilter}
-            onDelete={() => handleDelete(activeFilter)}
-          />
-        ))}
-      </Box>
     </Container>
   );
 }
