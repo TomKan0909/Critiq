@@ -24,6 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="profile" element={<Profile user={exampleUser} />} />
+          <Route path="profile/roastHistory" element={<RoastHistory/>} />
           <Route path="roastRoom" element={<RoastRoom user={exampleUser}/>} />
           <Route path="usersAdmin" element={<UsersAdmin/>} />
         </Routes>
