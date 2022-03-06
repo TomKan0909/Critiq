@@ -13,7 +13,7 @@ const RoastRoom = ({user}) => {
                 <Profile {...user} />
               </Grid>
               <Grid item xs={6}>
-                <Chat/>
+                <Chat subject={user} />
               </Grid>
           </Grid>
       </Container>

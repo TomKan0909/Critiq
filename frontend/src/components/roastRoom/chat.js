@@ -1,9 +1,10 @@
 import * as React from 'react';
 import MessageLog from './messageLog';
-import { TextField, Container, Typography, Box } from '@mui/material';
-const Chat = () => {
+import { TextField, Typography, Box } from '@mui/material';
+import exampleUser from '../../data/exampleUser';
+const Chat = ({subject}) => {
 
-    const [messages, setMessages] = React.useState([{sender:2, content:'hi'}])
+    const [messages, setMessages] = React.useState([{sender:subject, content:'hi'}])
     const [text, setText] = React.useState('')
 
     const addMessage = (message) => {
@@ -22,7 +23,7 @@ const Chat = () => {
 
     const sendMessage = () => {
         addMessage({
-            sender: 1,
+            sender: exampleUser,
             content: text
         })
         setText('')
@@ -54,7 +55,7 @@ const Chat = () => {
     return (
         <Box sx={chatStyle}>
             <Typography variant="h4" sx={chatBarStyle} align='center' gutterBottom >Roast Room</Typography> 
-            <MessageLog messages={messages} viewer={1} maxHeight='75%'></MessageLog>
+            <MessageLog messages={messages} maxHeight='75%'></MessageLog>
             <TextField 
                 sx={chatFormStyle}
                 onChange={updateMessage} 

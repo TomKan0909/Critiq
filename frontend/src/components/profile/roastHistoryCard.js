@@ -3,6 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import { CardActionArea, Typography, Modal, Box } from "@mui/material";
 import React from "react";
 import MessageList from '../roastRoom/messageLog';
+import exampleUser from '../../data/exampleUser';
 
 const chatStyle = {
     border: '2px solid black',
@@ -50,7 +51,7 @@ export default function RoastHistoryCard({messages, roomID, date}) {
     <Modal open={open} onClose={handleClose}>
         <Box sx={chatStyle}>
             <Typography variant="h4" sx={chatBarStyle} align='center' gutterBottom >Roast Room</Typography> 
-            <MessageList messages={messages} viewer={'1'} maxHeight='90%'/>
+            <MessageList messages={messages} viewer={exampleUser} maxHeight='90%'/>
         </Box>
     </Modal>
     </React.Fragment>
