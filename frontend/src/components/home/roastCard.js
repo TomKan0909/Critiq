@@ -1,39 +1,33 @@
 import React from "react";
-import { TableCell, TableRow, Button, Typography, Grid } from "@mui/material";
+import { Box, TableRow, Button, Typography, Grid, Card } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import Image from "../profile/image";
 import StatsCard from "../profile/stats";
 import TextCard from "../profile/textCard";
+import { RoastCardItem } from "./styles";
 
 export default function RoastCard(props) {
   const [displayName, setDisplayName] = React.useState(props.name);
 
   const navigate = useNavigate();
   return (
-    <TableRow>
-      <TableCell component="th" scope="row">
-        { /* TODO: use props for image and cards */ }
-        <Grid container spacing={4} alignItems="center">
-          <Grid item xs={2}>
+      <RoastCardItem alignItems="center" justifyContent="center">
+        {/* TODO: use props for image and cards */}
             <Image />
-          </Grid>
-          <Grid item xs={8}>
-            <TextCard name={displayName}/>
-          </Grid>
-          <Grid item xs={2}>
+            <TextCard />
+
             <Button
               variant="contained"
-              color="info"
+              color="primary"
               onClick={() => {
                 navigate("/roastRoom");
               }}
+              sx={{marginBottom: "20px"}}
             >
               Join
             </Button>
-          </Grid>
-        </Grid>
-      </TableCell>
-    </TableRow>
+
+      </RoastCardItem>
   );
 }
