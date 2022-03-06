@@ -10,7 +10,6 @@ import {
   schools,
 } from "../../data/users";
 
-
 let tags = [];
 tags = tags.concat(genders);
 tags = tags.concat(locations);
@@ -25,7 +24,7 @@ export default function TagFilter({ activeFilters, setActiveFilter }) {
   };
 
   return (
-    <Container component="form">
+    <Container component="form" sx={{ marginBottom: "50px" }}>
       <Autocomplete
         multiple
         limitTags={3}

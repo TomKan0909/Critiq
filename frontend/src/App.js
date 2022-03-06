@@ -7,10 +7,10 @@ import RoastHistory from "./routes/roastHistory";
 import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { themeOptions } from "./theme";
-import { Grid } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import Logo from "./components/logo";
 
-import NavDebug from "./components/home/navDebug";
+import NavBar from "./components/home/navBar";
 import CritiqRoom from "./components/critiqRoom";
 import SideProfile from "./components/home/sideProfile";
 import RoastList from "./components/home/roastList";
@@ -25,16 +25,19 @@ function App() {
         <Routes>
           <Route path="login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="profile" element={<Profile/>} />
+            <Route path="profile" element={<Profile />} />
             <Route path="profile/roastHistory" element={<RoastHistory />} />
             <Route path="/" element={<Home />} />
-            <Route path="critiqRoom" element={<CritiqRoom/>} />
+            <Route path="critiqRoom" element={<CritiqRoom />} />
           </Route>
-          <Route element={<ProtectedRoute isAdmin={true}/>}>
-            <Route path="critiqRoomAdmin" element={<CritiqRoom user={exampleUser} isAdmin={true} />} />
-            <Route path="usersAdmin" element={<UsersAdmin />} /> 
+          <Route element={<ProtectedRoute isAdmin={true} />}>
+            <Route
+              path="critiqRoomAdmin"
+              element={<CritiqRoom user={exampleUser} isAdmin={true} />}
+            />
+            <Route path="usersAdmin" element={<UsersAdmin />} />
           </Route>
-          <Route path="notavailable" element={<p>Cannot access</p>} /> 
+          <Route path="notavailable" element={<p>Cannot access</p>} />
         </Routes>
       </div>
     </ThemeProvider>
@@ -44,28 +47,31 @@ function App() {
 function Home() {
   const [activeFilters, setActiveFilter] = React.useState([]);
 
+  let user = sessionStorage.getItem("user");
+  user = JSON.parse(user);
+
   return (
-    <Grid container justifyContent="center" spacing={2}>
-      <Grid item xs={12}>
-        <NavDebug />
+    <Box>
+      <NavBar />
+      <Grid container justifyContent="center" spacing={2}>
+        <Grid item xs={12}>
+          <Logo />
+        </Grid>
+        <Grid item xs={12}>
+          <TagFilter
+            activeFilters={activeFilters}
+            setActiveFilter={setActiveFilter}
+          />
+        </Grid>
+        <Grid item xs={5}>
+          <RoastList activeFilters={activeFilters} />
+        </Grid>
+        <Grid xs={1} />
+        <Grid item xs={2}>
+          <SideProfile user={user} />
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Logo />
-      </Grid>
-      <Grid item xs={12}>
-        <TagFilter
-          activeFilters={activeFilters}
-          setActiveFilter={setActiveFilter}
-        />
-      </Grid>
-      <Grid item xs={5}>
-        <RoastList activeFilters={activeFilters} />
-      </Grid>
-      <Grid xs={1} />
-      <Grid item xs={2}>
-        <SideProfile user={exampleUser} />
-      </Grid>
-    </Grid>
+    </Box>
   );
 }
 
