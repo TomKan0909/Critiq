@@ -7,33 +7,42 @@ import TextCard from "./../profile/textCard";
 import StatsCard from "./../profile/stats";
 
 import { StickyProfile } from "./styles";
+import exampleUser from "../../data/exampleUser";
 
-export default function SideProfile() {
+export default function SideProfile({ user }) {
   const navigate = useNavigate();
   return (
     <StickyProfile>
-      <Image />
-      <TextCard name="Good Student"/>
-      <StatsCard />
-      <Stack
-        spacing="40px"
-        sx={{ alignItems: "center", marginTop: "100px", marginBottom: "100px" }}
-      >
+      <Image img={user.images[0].img} />
+      <TextCard title={user.job} content={user.name} />
+      <StatsCard
+        age={user.tags.age}
+        gender={user.tags.gender}
+        height={user.tags.height}
+        location={user.tags.location}
+        ethnicity={user.tags.ethnicity}
+        alcohol={user.tags.alcohol}
+        occupation={user.tags.occupation}
+        school={user.tags.school}
+      />
+      <Stack spacing="40px" sx={{ marginTop: "60px", marginBottom: "20px" }}>
         <Button
+          color="primary"
           variant="contained"
-          size="medium"
+          size="large"
           onClick={() => {
-            navigate("/profile");
+            navigate("/profile", {state: {user : exampleUser}});
           }}
-          sx={{ maxWidth: "200px" }}
         >
           My Profile
         </Button>
         <Button
           variant="contained"
-          color="success"
-          size="medium"
-          sx={{ maxWidth: "200px" }}
+          color="highlight"
+          size="large"
+          onClick={() => {
+            navigate("/roastRoom", {state: {user : exampleUser}});
+          }}
         >
           Go Live
         </Button>

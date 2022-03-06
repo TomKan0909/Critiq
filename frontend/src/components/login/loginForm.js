@@ -54,6 +54,7 @@ export default function LoginForm() {
         onClick={handleLogin}
         variant="contained"
         color="primary"
+        size="large"
       >
         Login
       </Button>

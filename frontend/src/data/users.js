@@ -24,6 +24,7 @@ usernames.forEach(username => {
       const job = jobs[random(jobs.length, 0)]
       users[username] = {
         name: username,
+        job: job,
         images: [ 
               { img: images.pop() },
               { img: images.pop() },

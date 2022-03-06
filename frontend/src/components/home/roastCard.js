@@ -7,27 +7,22 @@ import StatsCard from "../profile/stats";
 import TextCard from "../profile/textCard";
 import { RoastCardItem } from "./styles";
 
-export default function RoastCard(props) {
-  const [displayName, setDisplayName] = React.useState(props.name);
-
+export default function RoastCard({ user }) {
   const navigate = useNavigate();
   return (
-      <RoastCardItem alignItems="center" justifyContent="center">
-        {/* TODO: use props for image and cards */}
-            <Image />
-            <TextCard />
-
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                navigate("/roastRoom");
-              }}
-              sx={{marginBottom: "20px"}}
-            >
-              Join
-            </Button>
-
-      </RoastCardItem>
+    <RoastCardItem>
+      {/* TODO: use props for image and cards */}
+      <Image img={user.images[0].img} />
+      <TextCard title={user.job} content={user.name} />
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          navigate("/roastRoom", { state: { user: user } });
+        }}
+      >
+        Join
+      </Button>
+    </RoastCardItem>
   );
 }

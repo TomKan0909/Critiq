@@ -8,7 +8,7 @@ import RoastHistory from "./routes/roastHistory"
 import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { themeOptions } from "./theme";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import Logo from "./components/logo";
 
 import NavDebug from "./components/home/navDebug";
@@ -42,15 +42,12 @@ function Home() {
         <NavDebug />
       </Grid>
       <Grid item xs={12}><Logo /></Grid>
-      <Grid item xs={12} sx={{ margin: "50px" }}>
-        <Typography variant="h5"> Join a room </Typography>
-      </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={5}>
         <RoastList />
       </Grid>
       <Grid xs={1}/>
       <Grid item xs={2}>
-        <SideProfile />
+        <SideProfile user={exampleUser}/>
       </Grid>
     </Grid>
   );

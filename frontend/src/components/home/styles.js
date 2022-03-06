@@ -1,23 +1,31 @@
-import { Table, TableCell, Container, Grid, Card, styled } from "@mui/material";
+import { Table, TableCell, Container, Grid, Card, styled} from "@mui/material";
+
+import { brown } from "@mui/material/colors";
 
 export const RoastCardItem = styled(Card)(({ theme }) => ({
-  backgroundColor: "#ECEEEE",
-  minWidth: "40vh"
-  // borderRadius: "60px",
-  // marginTop: "500px",
+  backgroundColor: theme.palette.secondary.main,
+  padding: "20px",
+  // border: "solid",
+  borderRadius: "10px",
+  borderWidth: "3px",
+  margin: "20px",
+  maxWidth: "300px"
 }));
 
 export const RoastCardContainer = styled(Grid)(({ theme }) => ({
-  // backgroundColor: "#ECEEEE",
   borderRadius: "20px",
   marginBottom: "100px",
+  // backgroundColor: "#EEECED",
+  border: "solid",
+  borderWidth: "3px",
 }));
 
 export const StickyProfile = styled(Container)(({ theme }) => ({
-  // backgroundColor: "#ECEEEE",
-  // marginTop: "500px",
   position: "sticky",
-  top: "15vh",
+  top: "5vh",
+  backgroundColor: theme.palette.secondary.main,
+  border: "solid",
+  borderColor: theme.palette.secondary.main,
+  borderWidth: "3px",
+  borderRadius: "20px",
 }));
-
-

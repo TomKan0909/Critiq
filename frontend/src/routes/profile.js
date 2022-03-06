@@ -6,9 +6,12 @@ import Profile from "../components/profile/profile";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import ButtonStack from "../components/profile/buttonStack";
-import exampleUser from '../data/exampleUser';
+import exampleUser from "../data/exampleUser";
+import { useLocation } from "react-router-dom";
 
-function ProfileView({user}) {
+function ProfileView() {
+  const { state } = useLocation();
+  const { user } = state;
   return (
     <Grid container spacing={2}>
       <Grid item xs={8}>

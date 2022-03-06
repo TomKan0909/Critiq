@@ -18,4 +18,5 @@ export const bottomLinkStyle = {
 
 export const LogoText = styled(Typography)(({ theme }) => ({
   fontFamily: "Nunito",
+  margin: "50px",
 }));

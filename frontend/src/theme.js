@@ -1,5 +1,7 @@
 import { createTheme } from "@mui/material";
 
+import { green, brown, grey } from "@mui/material/colors";
+
 export const themeOptions = createTheme({
   palette: {
     type: 'light',
@@ -7,7 +9,12 @@ export const themeOptions = createTheme({
       main: '#000000',
     },
     secondary: {
-      main: '#ffffff',
+      // main: '#efebe9',
+      main: grey[200],
+    },
+    secondaryDark: {
+      // main: '#bdb9b7',
+      main: grey[500],
     },
     error: {
       main: '#b00020',
@@ -21,6 +28,9 @@ export const themeOptions = createTheme({
     success: {
       main: '#388e3c',
     },
+    highlight: {
+      main: green[300],
+    }
   },
   typography: {
     fontFamily: 'Helvetica',
