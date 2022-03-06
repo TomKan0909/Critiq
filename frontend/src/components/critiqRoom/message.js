@@ -1,9 +1,6 @@
-
-import { Avatar, Typography } from '@mui/material';
-import { Grid } from '@mui/material';
+import { Avatar, Typography, Grid } from '@mui/material';
 import exampleUser from '../../data/exampleUser';
 const Message = (props) => {
-
 
     const nonViewerAvatarStyle = {
         marginTop: "0.6em",

@@ -1,9 +1,5 @@
-import { List, ListItemText, ListItemIcon } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+import { List, ListItemText, ListItemIcon, Card, CardContent, Divider, ListItem } from "@mui/material";
 import { Box } from "@mui/system";
-import { Divider } from "@mui/material";
-import { ListItem } from "@mui/material";
 import { HiOutlineCake, HiOutlineLocationMarker } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
 import { FaRulerVertical, FaGraduationCap } from "react-icons/fa";

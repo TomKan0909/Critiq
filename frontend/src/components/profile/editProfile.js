@@ -1,65 +1,41 @@
 import {
   Modal,
-  Stack,
   ImageList,
   ImageListItem,
   Box,
   TextField,
   MenuItem,
   Container,
-  Select,
   InputAdornment,
-  InputLabel,
   Button,
-  IconButton,
-  ImageListItemBar,
-  Grid
 } from "@mui/material";
-import {AiFillCloseCircle} from 'react-icons/ai'
-import Image, {ImageEdit} from "./image";
+import { ImageEdit } from "./image";
 import React from "react";
-import { useTheme } from '@mui/material/styles';
-
-
 
 function ImageComponent() {
   return (
     <div>
-      <ImageList sx={{ maxWidth: 'auto', maxHeight: 'auto', margin: 'auto' }} cols={3}>
+      <ImageList
+        sx={{ maxWidth: "auto", maxHeight: "auto", margin: "auto" }}
+        cols={3}
+      >
         <ImageListItem>
-            <ImageEdit/>
-           {/* <ImageListItemBar
-              sx={{
-                backgroundColor:
-                  'transparent',
-                borderRadius: '10px'  
-              }}
-              position="top"
-              actionIcon={
-                <IconButton
-                  onClick={handleCloseClick}
-                  sx={{ color: theme.palette.error.main}}
-                >
-                  <AiFillCloseCircle />
-                </IconButton>
-              }
-              actionPosition="right"
-            /> */}
+          <ImageEdit />
         </ImageListItem>
         <ImageListItem>
-        <ImageEdit/>
+          <ImageEdit />
         </ImageListItem>
         <ImageListItem>
-        <ImageEdit/>
+          <ImageEdit />
         </ImageListItem>
         <ImageListItem>
-        <ImageEdit/>
+          <ImageEdit />
         </ImageListItem>
         <ImageListItem>
-        <ImageEdit/>
+          <ImageEdit />
         </ImageListItem>
         <ImageListItem>
-        <ImageEdit/>
+          <ImageEdit />
         </ImageListItem>
       </ImageList>
     </div>
@@ -81,7 +57,7 @@ function Prompt() {
   ];
 
   return (
-    <Container size="sm" sx= {{marginY: '10px'}}>
+    <Container size="sm" sx={{ marginY: "10px" }}>
       <form component="form">
         <TextField
           label="Select Prompt"
@@ -89,7 +65,7 @@ function Prompt() {
           select
           onChange={handleChange}
           variant="filled"
-          sx={{ display: "grid"}}
+          sx={{ display: "grid" }}
         >
           {prompts.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -133,7 +109,7 @@ function InputForm() {
           value={gender}
           onChange={handleGenderChange}
           select
-          sx={{ display: "grid", marginY: '5px' }}
+          sx={{ display: "grid", marginY: "5px" }}
         >
           {["Male", "Female", "Other"].map((gender, index) => (
             <MenuItem key={index} value={gender}>
@@ -141,31 +117,22 @@ function InputForm() {
             </MenuItem>
           ))}
         </TextField>
-        <TextField
-          label="Age"
-          sx={{ display: "grid", marginY: '5px' }}
-        />
+        <TextField label="Age" sx={{ display: "grid", marginY: "5px" }} />
         <TextField
           label="Height"
-          sx={{ display: "grid", marginY: '5px' }}
+          sx={{ display: "grid", marginY: "5px" }}
           InputProps={{
             endAdornment: <InputAdornment position="end">cm</InputAdornment>,
           }}
         />
-        <TextField
-          label="Location"
-          sx={{ display: "grid", marginY: '5px' }}
-        />
-        <TextField
-          label="Ethnicity"
-          sx={{ display: "grid", marginY: '5px' }}
-        />
+        <TextField label="Location" sx={{ display: "grid", marginY: "5px" }} />
+        <TextField label="Ethnicity" sx={{ display: "grid", marginY: "5px" }} />
         <TextField
           label="Alcohol"
           value={alcohol}
           select
           onChange={handleAlcoholChange}
-          sx={{ display: "grid", marginY: '5px' }}
+          sx={{ display: "grid", marginY: "5px" }}
         >
           {["Yes", "No", "Sometimes"].map((pref, index) => (
             <MenuItem key={index} value={pref}>
@@ -178,54 +145,47 @@ function InputForm() {
   );
 }
 
-// TO IMPLEMENT
-// Image List
-// Cards that allow to edit prompts - wrap previously made cards into modal when clicked should open up input form
-// Form to enter Age (Enter a number), Gender (Dropdown M/F/T), Height (string input ()),
-// Location (string input), Ethnicity (string input), Alcohol preference (Dropdown Yes/no)
-
+const boxEditProfileStyle = {
+  border: "2px solid black",
+  overflowY: "scroll",
+  alignItems: "center",
+  margin: "auto",
+  display: "flex-block",
+  height: "90vh",
+  width: "50%",
+};
 
 export default function EditProfile({ open, handleClose }) {
   return (
     <Modal
       open={open}
       onClose={handleClose}
-      BackdropProps={{ style: { backgroundColor: "rgba(255, 255, 255, 0.97)" } }}
-      sx={{paddingY: '2%'}}
+      BackdropProps={{
+        style: { backgroundColor: "rgba(255, 255, 255, 0.97)" },
+      }}
+      sx={{ paddingY: "2%" }}
     >
-      <Box
-        // marginLeft='10%'
-        marginTop='5%'
-      display="flex-block"
-    //   flexDirection="column"
-      // justifyContent="flex-end" # DO NOT USE THIS WITH 'scroll'
-      height="90vh" // fixed the height
-      width='50%'
-      sx={{
-          border: "2px solid black",
-        // borderRadius: '10px',
-        overflowY: "scroll", // added scroll
-        alignItems: 'center',
-        margin:'auto'
-    }}>
+      <Box marginTop="5%" sx={boxEditProfileStyle}>
         <ImageComponent />
         <Prompt />
         <Prompt />
         <Prompt />
         <InputForm />
         <Button
-          type="submit" 
-          color="success" 
+          type="submit"
+          color="success"
           variant="contained"
-          sx={{margin:'auto', display:'block'}}>
+          sx={{ margin: "auto", display: "block" }}
+        >
           Save
         </Button>
         <Button
-          type="submit" 
-          color="info" 
+          type="submit"
+          color="info"
           variant="contained"
           onClick={handleClose}
-          sx={{margin:'auto', display:'block'}}>
+          sx={{ margin: "auto", display: "block" }}
+        >
           Cancel
         </Button>
       </Box>

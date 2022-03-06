@@ -1,7 +1,6 @@
 import { TextField, Button, Container } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import adminUser from "../../data/adminUser";
 import exampleUser from "../../data/exampleUser";
 
 export default function LoginForm() {
@@ -22,7 +21,10 @@ export default function LoginForm() {
       setUsername("");
       setPassword("");
       setError(false);
-      sessionStorage.setItem("admin", JSON.stringify(adminUser));
+      sessionStorage.setItem(
+        "admin",
+        JSON.stringify({ username: "admin", password: "admin", roles: "admin" })
+      );
       navigate("/usersAdmin");
     } else {
       setError(true);

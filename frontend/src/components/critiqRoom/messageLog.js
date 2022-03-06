@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
 import Message from './message';
+
 const MessageLog = (props) => {
     const {messages, maxHeight} = props
     const chatStyle = {

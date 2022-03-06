@@ -1,7 +1,7 @@
 import Image from "./image";
 import TextCard from "./textCard";
 import StatsCard from "./stats";
-import { Container, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 
 const outerBoxProfileStyle = {
