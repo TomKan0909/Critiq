@@ -31,7 +31,7 @@ export default function SideProfile({ user }) {
           variant="contained"
           size="large"
           onClick={() => {
-            navigate("/profile", {state: {user : exampleUser}});
+            navigate("/profile");
           }}
         >
           My Profile
