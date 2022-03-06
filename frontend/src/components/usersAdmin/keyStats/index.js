@@ -13,7 +13,6 @@ const KeyStats = () => {
         setSource(event.target.value);
     };
 
-
     return (
         <Container>
             <Typography sx={titleStyle} variant="h2" gutterBottom>Key Statistics</Typography>

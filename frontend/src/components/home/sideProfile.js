@@ -6,10 +6,12 @@ import Image from "./../profile/image";
 import TextCard from "./../profile/textCard";
 import StatsCard from "./../profile/stats";
 
+import { StickyProfile } from "./styles";
+
 export default function SideProfile() {
   const navigate = useNavigate();
   return (
-    <Container>
+    <StickyProfile>
       <Image />
       <TextCard name="Good Student"/>
       <StatsCard />
@@ -36,6 +38,6 @@ export default function SideProfile() {
           Go Live
         </Button>
       </Stack>
-    </Container>
+    </StickyProfile>
   );
 }

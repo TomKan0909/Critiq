@@ -29,4 +29,13 @@ export const themeOptions = createTheme({
     fontWeightMedium: 600,
     fontWeightBold: 800,
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "12px",
+        }
+      }
+    }
+  }
 });

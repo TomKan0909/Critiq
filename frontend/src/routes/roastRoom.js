@@ -3,14 +3,15 @@ import Grid from "@mui/material/Grid";
 import Chat from "../components/roastRoom/chat";
 import { Container } from "@mui/material";
 import Profile from '../components/profile/profile';
+import exampleUser from '../data/exampleUser';
 
-const RoastRoom = () => {
+const RoastRoom = ({user}) => {
   return (
     <>
       <Container>
           <Grid container>
               <Grid item xs={6}>
-                <Profile/>
+                <Profile {...user} />
               </Grid>
               <Grid item xs={6}>
                 <Chat/>
