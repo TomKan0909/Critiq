@@ -33,8 +33,8 @@ const Chat = ({subject}) => {
     const chatStyle = {
         border: '2px solid black',
         borderRadius: '10px',
-        marginTop:'2%',
-        height: '91.5vh',
+        marginTop:'5%',
+        height: '70vh',
         width: '100%',
      }
 
@@ -47,14 +47,14 @@ const Chat = ({subject}) => {
 
     const chatFormStyle = {
         position: 'sticky',
-        top: '80%',
+        top: '60%',
         width: '90%',
         placeholder: 'Aa'
     }
 
     return (
         <Box sx={chatStyle}>
-            <Typography variant="h4" sx={chatBarStyle} align='center' gutterBottom >Roast Room</Typography> 
+            <Typography variant="h4" sx={chatBarStyle} align='center' gutterBottom >critiq room</Typography> 
             <MessageLog messages={messages} maxHeight='75%'></MessageLog>
             <TextField 
                 sx={chatFormStyle}

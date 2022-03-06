@@ -2,7 +2,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { CardActionArea, Typography, Modal, Box } from "@mui/material";
 import React from "react";
-import MessageList from '../roastRoom/messageLog';
+import MessageList from '../critiqRoom/messageLog';
 import exampleUser from '../../data/exampleUser';
 
 const chatStyle = {

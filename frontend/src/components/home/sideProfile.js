@@ -41,7 +41,7 @@ export default function SideProfile({ user }) {
           color="highlight"
           size="large"
           onClick={() => {
-            navigate("/roastRoom", {state: {user : exampleUser}});
+            navigate("/critiqRoom", {state: {user : exampleUser}});
           }}
         >
           Go Live

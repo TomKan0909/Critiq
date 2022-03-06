@@ -18,7 +18,7 @@ export default function RoastCard({ user }) {
         variant="contained"
         color="primary"
         onClick={() => {
-          navigate("/roastRoom", { state: { user: user } });
+          navigate("/critiqRoom", { state: { user: user } });
         }}
       >
         Join

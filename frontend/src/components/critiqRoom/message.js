@@ -23,7 +23,8 @@ const Message = (props) => {
         borderRadius: 10,
         padding: 1.2,
         marginRight: 3,
-        marginY: 1
+        marginY: 1,
+        fontSize: '1.2rem'
     }
 
     const nonViewerMessageStyle = {
@@ -32,7 +33,8 @@ const Message = (props) => {
         borderRadius: 10,
         padding: 1.2,
         marginLeft: 3,
-        marginY: 1
+        marginY: 1,
+        fontSize: '1.2rem'
     }
 
     const {sender, content} = props 
@@ -61,29 +63,20 @@ const Message = (props) => {
 
 
     return (
-        <Grid overflowX={'hidden'} container>
+        <Grid container>
             <Grid item xs={1}
                 justify="center"
                 alignItems="center">
                     {nonViewerAvatar}
             </Grid>
             <Grid item xs={4}>
-                <Typography 
-                    marginY={1} 
-                    fontSize={'1.2rem'}
-                    sx={nonViewerMessageStyle}
-                    zeroMinWidth>
+                <Typography sx={nonViewerMessageStyle}>
                         {nonViewerColContent}
                 </Typography> 
             </Grid>
             <Grid item xs={2}></Grid>
             <Grid item xs={4}>
-                <Typography 
-                    variant='body1' 
-                    marginY={1} 
-                    fontSize={'1.2rem'}
-                    sx={viewerMessageStyle}
-                    zeroMinWidth> 
+                <Typography sx={viewerMessageStyle}>
                         {viewerColContent}
                 </Typography> 
             </Grid>
