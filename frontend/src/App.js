@@ -30,14 +30,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="critiqRoom" element={<CritiqRoom/>} />
           </Route>
-
-          {/* <Route path="profile" element={<Profile user={exampleUser} />} />
-          <Route path="profile/roastHistory" element={<RoastHistory />} /> */}
-          {/* <Route path="critiqRoom" element={<CritiqRoom/>} /> */}
           <Route element={<ProtectedRoute isAdmin={true}/>}>
             <Route path="critiqRoomAdmin" element={<CritiqRoom user={exampleUser} isAdmin={true} />} />
             <Route path="usersAdmin" element={<UsersAdmin />} /> 
           </Route>
+          <Route path="notavailable" element={<p>Cannot access</p>} /> 
         </Routes>
       </div>
     </ThemeProvider>
@@ -45,7 +42,6 @@ function App() {
 }
 
 function Home() {
-  const navigate = useNavigate();
   const [activeFilters, addActiveFilter] = React.useState([]);
 
   return (

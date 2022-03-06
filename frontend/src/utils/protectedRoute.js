@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = ({
-  redirectPath = '/login',
+  redirectPath = '/notavailable',
   isAdmin = false
 }) => {
   let siteUser;
