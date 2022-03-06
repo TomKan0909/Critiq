@@ -1,36 +1,52 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import UserInfoList from './userInfoList';
-import { Container, Typography } from '@mui/material';
+import { Autocomplete, Container, Typography } from '@mui/material';
 import { titleStyle } from '../../styles'
 import usernames from '../../../data/usernames';
+import Modal from '@mui/material/Modal';
+import Profile from '../../profile/profile'
+import users from '../../../data/users';
 
 // https://mui.com/components/text-fields/
 const UserViewer = () => {
 
-    const [users, setUsers] = React.useState([]);
-
-    const handleChange = (event) => {
-        const prefix = event.target.value.toLowerCase()
-        const userSubset = getUserSubset(prefix)
-        setUsers(userSubset);
-    };
-
-    const getUserSubset = (prefix) => {
-        if (prefix == '') return []
-        return usernames.filter(username => username.toLowerCase().startsWith(prefix))
+    const [name, setName] = React.useState('');
+    const [open, setOpen] = React.useState(false);
+    
+    const handleOpen = (event) => {
+        setName(event.target.innerText)
+        setOpen(true);
     }
+    const handleClose = () => setOpen(false); 
 
     const formTheme = {
-        marginTop: '2em',
+        marginTop: '3.2em',
         marginBottom: '2em'
     }
-    
+
+    // https://stackoverflow.com/a/67335455
+    const modalStyle = {
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
+    };
+ 
+    // https://mui.com/components/autocomplete/
     return (
         <Container component="form">
             <Typography sx={titleStyle} variant="h2" gutterBottom>Search for a User</Typography>
-            <TextField onChange={handleChange} fullWidth sx={formTheme}/>
-            <UserInfoList users={users}></UserInfoList>
+            <Autocomplete
+                options={usernames.sort()}
+                fullWidth
+                sx={formTheme}
+                onChange={handleOpen}
+                renderInput={(params) => <TextField {...params} label="Users" />}/>
+            <Modal open={open} onClose={handleClose}>
+                <Container sx={modalStyle}><Profile {...users[name]}/></Container>
+            </Modal>
         </Container>
     );
 }
