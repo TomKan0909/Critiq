@@ -9,18 +9,20 @@ import ButtonStack from "../components/profile/buttonStack";
 import { Typography } from "@mui/material";
 import React from "react";
 import RoastHistoryCard from "../components/profile/roastHistoryCard";
+import exampleUser from '../data/exampleUser';
+import users from '../data/users';
 
 const exampleHistoryCard = {
-  messages: [{sender: '1', content: 'loren ipsum'},
-  {sender: '1', content: 'loren ipsum'},
-  {sender: '1', content: 'loren ipsum'},{sender: '1', content: 'loren ipsum'},
-  {sender: '2', content: 'loren ipsum'},{sender: '2', content: 'loren ipsum'},
-  {sender: '2', content: 'loren ipsum'},
-  {sender: '1', content: 'loren ipsum'},
-  {sender: '1', content: 'loren ipsum'},
-  {sender: '1', content: 'loren ipsum'},{sender: '1', content: 'loren ipsum'},
-  {sender: '2', content: 'loren ipsum'},{sender: '2', content: 'loren ipsum'},
-  {sender: '2', content: 'loren ipsum'}],
+  messages: [{sender: exampleUser, content: 'loren ipsum'},
+  {sender: exampleUser, content: 'loren ipsum'},
+  {sender: exampleUser, content: 'loren ipsum'},{sender: exampleUser, content: 'loren ipsum'},
+  {sender: users[0], content: 'loren ipsum'},{sender: '2', content: 'loren ipsum'},
+  {sender: users[0], content: 'loren ipsum'},
+  {sender: exampleUser, content: 'loren ipsum'},
+  {sender: exampleUser, content: 'loren ipsum'},
+  {sender: exampleUser, content: 'loren ipsum'},{sender: exampleUser, content: 'loren ipsum'},
+  {sender: users[0], content: 'loren ipsum'},{sender: '2', content: 'loren ipsum'},
+  {sender: users[0], content: 'loren ipsum'}],
   roomID: 340598,
   date: new Date()
 };
