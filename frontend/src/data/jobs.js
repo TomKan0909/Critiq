@@ -97,7 +97,6 @@ const jobs = ['Accountant',
 // 'Building and Grounds Cleaning and Maintenance Occupation',
 'Bus Driver',
 'Bus Driver',
-'Bu',
 'Truck Mechanic',
 'Diesel Engine Specialist',
 'Business Operations Specialist',
@@ -912,6 +911,7 @@ const jobs = ['Accountant',
 'Writer',
 'Authors ',
 'Zoologist',
-'Wildlife Biologist']
+'Wildlife Biologist',
+'CSC309 TA']
 
 export default jobs
