@@ -5,9 +5,9 @@ As a foreword, we would like to thank Mark and Carlos for the constructive feedb
 From our discussion, we have:
 
 1. Iterated on the appearance of all components.
-2. Added tags to the landing page as a new feature.
+2. Added tags to the landing page as a new feature (in addition to adding images, chat, and .
 3. Rebranded our website to Critiq to promote a positive image and mental health.
-4. Separated a Users Admin page as a T-chart.
+4. Layout the Users Admin page as a T-chart.
 5. Create profiles with selfies and popular names to add realism.
 
 We hope you enjoy our website and are looking forward to Phase 2!
