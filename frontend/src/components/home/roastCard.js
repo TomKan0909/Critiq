@@ -6,6 +6,15 @@ import TextCard from "../profile/textCard";
 import { RoastCardItem } from "./styles";
 
 export default function RoastCard({ user }) {
+
+  const handleClick = () => {
+    if (sessionStorage.getItem('user')) {
+      navigate("/critiqRoom", { state: { user: user } });
+    } else if (sessionStorage.getItem('admin')) {
+      navigate("/critiqRoomAdmin", { state: { user: user } })
+    }
+  }
+
   const navigate = useNavigate();
   return (
     <RoastCardItem>
@@ -14,9 +23,7 @@ export default function RoastCard({ user }) {
       <Button
         variant="contained"
         color="primary"
-        onClick={() => {
-          navigate("/critiqRoom", { state: { user: user } });
-        }}
+        onClick={handleClick}
       >
         Join
       </Button>

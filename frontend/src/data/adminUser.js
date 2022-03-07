@@ -2,7 +2,7 @@ const adminUser = {
   name: "John",
   job: "CritiQ Administrator",
   images: [
-    { img: "/images/profiles/1171643_1413337688928264_1676925615_a.jpg" },
+    { img: "" },
     { img: "/images/profiles/1171643_1424187754501116_598797774_a.jpg" },
     { img: "/images/profiles/1171644_235212489936367_1543527477_a.jpg" },
     { img: "/images/profiles/1171650_1479641595585197_459222667_a.jpg" },

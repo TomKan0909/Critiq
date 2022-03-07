@@ -4,7 +4,6 @@ import CritiqRoom from '../components/critiqRoom/index';
 const CritiqRoomView = () => {
   const { state } = useLocation();
   const { user } = state;
-  console.log(state);
   return (
     <>
       <CritiqRoom user={user}/>

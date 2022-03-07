@@ -11,10 +11,12 @@ import { Grid, Box } from "@mui/material";
 import Logo from "./components/logo";
 
 import NavBar from "./components/home/navBar";
+import HomeAdmin from "./routes/admin";
 import CritiqRoom from "./components/critiqRoom";
 import SideProfile from "./components/home/sideProfile";
 import RoastList from "./components/home/roastList";
 import exampleUser from "./data/exampleUser";
+import adminUser from "./data/adminUser";
 import TagFilter from "./components/home/tagFilter";
 import ProtectedRoute from "./utils/protectedRoute";
 const divStyle = { textAlign: "center" };
@@ -37,6 +39,10 @@ function App() {
               element={<CritiqRoom user={exampleUser} isAdmin={true} />}
             />
             <Route path="usersAdmin" element={<UsersAdmin />} />
+            <Route
+              path="admin"
+              element={<HomeAdmin user={adminUser} isAdmin={true} />}
+            />
           </Route>
           <Route path="notavailable" element={<p>Cannot access</p>} />
         </Routes>
