@@ -8,7 +8,7 @@ From our discussion, we have:
 2. Added tags to the landing page as a new feature.
 3. Rebranded our website to Critiq to promote a positive image and mental health.
 4. Separated a Users Admin page as a T-chart.
-5. Create profiles with selfies and popular names to add the realism.
+5. Create profiles with selfies and popular names to add realism.
 
 We hope you enjoy our website and are looking forward to Phase 2!
 
