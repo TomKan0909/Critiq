@@ -7,7 +7,13 @@ const Chat = ({subject}) => {
     const [messages, setMessages] = React.useState([{sender:subject, content:'hi'}])
     const [text, setText] = React.useState('')
 
+    const getMessages = () => {
+        // call to server
+        return messages
+    }
+
     const addMessage = (message) => {
+        // call to server
         messages.push(message)
     }
 
@@ -55,7 +61,7 @@ const Chat = ({subject}) => {
     return (
         <Box sx={chatStyle}>
             <Typography variant="h4" sx={chatBarStyle} align='center' gutterBottom >critiq room</Typography> 
-            <MessageLog messages={messages} maxHeight='75%'></MessageLog>
+            <MessageLog messages={getMessages()} maxHeight='75%'></MessageLog>
             <TextField 
                 sx={chatFormStyle}
                 onChange={updateMessage} 

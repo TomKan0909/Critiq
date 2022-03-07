@@ -79,6 +79,11 @@ const options = {
   },
 };
 
+const getData = () => {
+	// server call
+	return data
+}
+
 const Plot = (props) => {
   const { source } = props;
 
@@ -90,7 +95,7 @@ const Plot = (props) => {
         </Typography>
         <Chart
           type={types[source]}
-          data={data[source]}
+          data={getData()[source]}
           options={options[source]}
           redraw
         />

@@ -24,35 +24,47 @@ const UserViewer = () => {
     marginBottom: "2em",
   };
 
-  // https://stackoverflow.com/a/67335455
-  const modalStyle = {
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-  };
+    // https://stackoverflow.com/a/67335455
+    const modalStyle = {
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
+    };
+    
+    const getUsernames = () => {
+        // server call
+        return usernames
+    }
 
-  // https://mui.com/components/autocomplete/
-  return (
-    <Container component="form">
-      <Typography sx={titleStyle} variant="h2" gutterBottom>
-        Search for a User
-      </Typography>
-      <Autocomplete
-        options={usernames.sort()}
-        fullWidth
-        sx={formTheme}
-        onChange={handleOpen}
-        renderInput={(params) => <TextField {...params} label="Users" />}
-      />
-      <Modal open={open} onClose={handleClose}>
-        <Container sx={modalStyle}>
-          <AdminProfile {...users[name]} />
+    const getUsers = () => {
+        // server call
+        return users
+    }
+
+    let profile;
+
+    if (name in getUsers()) {
+        profile = 
+            <Modal open={open} onClose={handleClose}>
+                <Container sx={modalStyle}><AdminProfile {...getUsers()[name]}/></Container>
+            </Modal>
+    }
+
+    // https://mui.com/components/autocomplete/
+    return (
+        <Container component="form">
+            <Typography sx={titleStyle} variant="h2" gutterBottom>Search for a User</Typography>
+            <Autocomplete
+                options={getUsernames().sort()}
+                fullWidth
+                sx={formTheme}
+                onChange={handleOpen}
+                renderInput={(params) => <TextField {...params} label="Users" />}/>
+            {profile}
         </Container>
-      </Modal>
-    </Container>
   );
 };
 

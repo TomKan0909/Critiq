@@ -61,9 +61,7 @@ const Message = (props) => {
 
     return (
         <Grid container>
-            <Grid item xs={1}
-                justify="center"
-                alignItems="center">
+            <Grid item xs={1}>
                     {nonViewerAvatar}
             </Grid>
             <Grid item xs={4}>
