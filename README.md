@@ -1,5 +1,17 @@
 # team25
 
+## Acknowledgement
+As a foreword, we would like to thank Mark and Carlos for the constructive feedback in Phase 1.
+From our discussion, we have:
+
+1. Iterated on the appearance of all components.
+2. Added tags to the landing page as a new feature.
+3. Rebranded our website to Critiq to promote a positive image and mental health.
+4. Separated a Users Admin page as a T-chart.
+5. Create profiles with selfies and popular names to add the realism.
+
+We hope you enjoy our website and are looking forward to Phase 2!
+
 ## Setup
 
 1. In the project directory first run to install all project depedencies:
