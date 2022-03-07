@@ -4,9 +4,9 @@ import { green, brown, grey } from "@mui/material/colors";
 
 export const themeOptions = createTheme({
   palette: {
-    type: 'light',
+    type: "light",
     primary: {
-      main: '#000000',
+      main: "#000000",
     },
     secondary: {
       // main: '#efebe9',
@@ -17,26 +17,26 @@ export const themeOptions = createTheme({
       main: grey[500],
     },
     error: {
-      main: '#b00020',
+      main: "#b00020",
     },
     warning: {
-      main: '#ef6c00',
+      main: "#ef6c00",
     },
     info: {
-      main: '#1e88e5',
+      main: "#1e88e5",
     },
     success: {
-      main: '#388e3c',
+      main: "#388e3c",
     },
     highlight: {
       main: green[300],
     },
     chip: {
-      main: '#ffea00',
+      main: "#ffea00",
     },
   },
   typography: {
-    fontFamily: 'Helvetica',
+    fontFamily: "Helvetica",
     fontSize: 14,
     fontWeightRegular: 300,
     fontWeightMedium: 600,
@@ -47,8 +47,8 @@ export const themeOptions = createTheme({
       styleOverrides: {
         root: {
           borderRadius: "12px",
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 });

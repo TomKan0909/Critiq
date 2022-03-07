@@ -55,9 +55,14 @@ export default function ButtonStack() {
         >
           Go Live
         </Button>
-        <Button variant="contained" color="primary" size="large" onClick={() => {
-          navigate("/profile/roastHistory");
-        }}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={() => {
+            navigate("/profile/roastHistory");
+          }}
+        >
           View Roast History
         </Button>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>

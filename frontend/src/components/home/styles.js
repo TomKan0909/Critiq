@@ -1,6 +1,5 @@
 import { Chip, Container, Grid, Card, styled } from "@mui/material";
 
-
 export const RoastCardItem = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
   padding: "20px",
@@ -8,7 +7,7 @@ export const RoastCardItem = styled(Card)(({ theme }) => ({
   borderRadius: "10px",
   borderWidth: "3px",
   margin: "20px",
-  maxWidth: "300px"
+  maxWidth: "300px",
 }));
 
 export const RoastCardContainer = styled(Grid)(({ theme }) => ({

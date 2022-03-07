@@ -1,13 +1,15 @@
-import { Typography } from '@mui/material';
+import { Typography } from "@mui/material";
 
 const chatBarStyle = {
-    borderRadius: 10,
-    border: 5
-}
+  borderRadius: 10,
+  border: 5,
+};
 
 const ChatBar = () => {
-    return (
-           <Typography variant="h4" sx={chatBarStyle} >Roast Room</Typography> 
-    )
-}
-export default ChatBar
+  return (
+    <Typography variant="h4" sx={chatBarStyle}>
+      Roast Room
+    </Typography>
+  );
+};
+export default ChatBar;

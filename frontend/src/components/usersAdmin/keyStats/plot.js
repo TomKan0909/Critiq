@@ -80,9 +80,9 @@ const options = {
 };
 
 const getData = () => {
-	// server call
-	return data
-}
+  // server call
+  return data;
+};
 
 const Plot = (props) => {
   const { source } = props;

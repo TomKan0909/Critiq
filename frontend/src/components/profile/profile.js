@@ -27,7 +27,7 @@ const innerBoxProfileStyle = {
  * @param {tags} an object containing tags of(age, gender, height, location, ethnicity, alcohol)
  * @returns
  */
-export default function Profile({name, images, prompts, tags }) {
+export default function Profile({ name, images, prompts, tags }) {
   return (
     <Box sx={outerBoxProfileStyle}>
       <Box sx={innerBoxProfileStyle}>

@@ -3,7 +3,7 @@ import Image from "../components/profile/image";
 import TextCard from "../components/profile/textCard";
 import StatsCard from "../components/profile/stats";
 import Profile from "../components/profile/profile";
-import { Grid, Box} from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import Container from "@mui/material/Container";
 import ButtonStack from "../components/profile/buttonStack";
 import exampleUser from "../data/exampleUser";
@@ -22,16 +22,16 @@ function ProfileView() {
 
   return (
     <Box>
-<NavBar/>
+      <NavBar />
 
-    <Grid container spacing={2}>
-      <Grid item xs={8}>
-        <Profile {...user} />
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <Profile {...user} />
+        </Grid>
+        <Grid item xs={4}>
+          <ButtonStack />
+        </Grid>
       </Grid>
-      <Grid item xs={4}>
-        <ButtonStack />
-      </Grid>
-    </Grid>
     </Box>
   );
 }

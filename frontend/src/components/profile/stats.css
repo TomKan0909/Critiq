@@ -1,8 +1,8 @@
 ::-webkit-scrollbar {
-    height: 4px;
-    background: #FFFFFF;
+  height: 4px;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.12);
 }

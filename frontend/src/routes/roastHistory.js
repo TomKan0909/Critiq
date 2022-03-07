@@ -9,55 +9,58 @@ import ButtonStack from "../components/profile/buttonStack";
 import { Typography } from "@mui/material";
 import React from "react";
 import RoastHistoryCard from "../components/profile/roastHistoryCard";
-import exampleUser from '../data/exampleUser';
-import users from '../data/users';
+import exampleUser from "../data/exampleUser";
+import users from "../data/users";
 
 const exampleHistoryCard = {
-  messages: [{sender: exampleUser, content: 'loren ipsum'},
-  {sender: exampleUser, content: 'loren ipsum'},
-  {sender: exampleUser, content: 'loren ipsum'},{sender: exampleUser, content: 'loren ipsum'},
-  {sender: users['Eda'], content: 'loren ipsum'},{sender: users['Eda'], content: 'loren ipsum'},
-  {sender: users['Eda'], content: 'loren ipsum'},
-  {sender: exampleUser, content: 'loren ipsum'},
-  {sender: exampleUser, content: 'loren ipsum'},
-  {sender: exampleUser, content: 'loren ipsum'},{sender: exampleUser, content: 'loren ipsum'},
-  {sender: users['Eda'], content: 'loren ipsum'},{sender: users['Eda'], content: 'loren ipsum'},
-  {sender: users['Eda'], content: 'loren ipsum'}],
+  messages: [
+    { sender: exampleUser, content: "loren ipsum" },
+    { sender: exampleUser, content: "loren ipsum" },
+    { sender: exampleUser, content: "loren ipsum" },
+    { sender: exampleUser, content: "loren ipsum" },
+    { sender: users["Eda"], content: "loren ipsum" },
+    { sender: users["Eda"], content: "loren ipsum" },
+    { sender: users["Eda"], content: "loren ipsum" },
+    { sender: exampleUser, content: "loren ipsum" },
+    { sender: exampleUser, content: "loren ipsum" },
+    { sender: exampleUser, content: "loren ipsum" },
+    { sender: exampleUser, content: "loren ipsum" },
+    { sender: users["Eda"], content: "loren ipsum" },
+    { sender: users["Eda"], content: "loren ipsum" },
+    { sender: users["Eda"], content: "loren ipsum" },
+  ],
   roomID: 340598,
-  date: new Date()
+  date: new Date(),
 };
 
 function RoastHistory() {
-
   /* This function will have an useEffect hook to send a authorized GET call to our server to retrieve
      user's roast history messages and pass it down as props to RoastHistoryCard
   **/
-  
+
   return (
     <React.Fragment>
-      <Typography variant="h1">
-        Critique History
-      </Typography>
-    <Grid container spacing={2}>
-      <Grid item xs={4}>
-        <RoastHistoryCard {...exampleHistoryCard}/>
+      <Typography variant="h1">Critique History</Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <RoastHistoryCard {...exampleHistoryCard} />
+        </Grid>
+        <Grid item xs={4}>
+          <RoastHistoryCard {...exampleHistoryCard} />
+        </Grid>
+        <Grid item xs={4}>
+          <RoastHistoryCard {...exampleHistoryCard} />
+        </Grid>
+        <Grid item xs={4}>
+          <RoastHistoryCard {...exampleHistoryCard} />
+        </Grid>
+        <Grid item xs={4}>
+          <RoastHistoryCard {...exampleHistoryCard} />
+        </Grid>
+        <Grid item xs={4}>
+          <RoastHistoryCard {...exampleHistoryCard} />
+        </Grid>
       </Grid>
-      <Grid item xs={4}>
-      <RoastHistoryCard {...exampleHistoryCard}/>
-      </Grid>
-      <Grid item xs={4}>
-      <RoastHistoryCard {...exampleHistoryCard}/>
-      </Grid>
-      <Grid item xs={4}>
-      <RoastHistoryCard {...exampleHistoryCard}/>
-      </Grid>
-      <Grid item xs={4}>
-      <RoastHistoryCard {...exampleHistoryCard}/>
-      </Grid>
-      <Grid item xs={4}>
-      <RoastHistoryCard {...exampleHistoryCard}/>
-      </Grid>
-    </Grid>
     </React.Fragment>
   );
 }

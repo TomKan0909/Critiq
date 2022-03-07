@@ -22,10 +22,7 @@ export default function LoginForm() {
       setUsername("");
       setPassword("");
       setError(false);
-      sessionStorage.setItem(
-        "admin",
-        JSON.stringify(adminUser)
-      );
+      sessionStorage.setItem("admin", JSON.stringify(adminUser));
       navigate("/admin");
     } else {
       setError(true);

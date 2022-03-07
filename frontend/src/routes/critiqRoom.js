@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import CritiqRoom from '../components/critiqRoom/index';
+import CritiqRoom from "../components/critiqRoom/index";
 
 const CritiqRoomView = () => {
   const { state } = useLocation();
   const { user } = state;
   return (
     <>
-      <CritiqRoom user={user}/>
+      <CritiqRoom user={user} />
       <nav>
         <Link to="/">Home</Link>
       </nav>

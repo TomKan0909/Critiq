@@ -6,25 +6,20 @@ import TextCard from "../profile/textCard";
 import { RoastCardItem } from "./styles";
 
 export default function RoastCard({ user }) {
-
   const handleClick = () => {
-    if (sessionStorage.getItem('user')) {
+    if (sessionStorage.getItem("user")) {
       navigate("/critiqRoom", { state: { user: user } });
-    } else if (sessionStorage.getItem('admin')) {
-      navigate("/critiqRoomAdmin", { state: { user: user } })
+    } else if (sessionStorage.getItem("admin")) {
+      navigate("/critiqRoomAdmin", { state: { user: user } });
     }
-  }
+  };
 
   const navigate = useNavigate();
   return (
     <RoastCardItem>
       <Image img={user.images[0].img} />
       <TextCard title={user.job} content={user.name} />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleClick}
-      >
+      <Button variant="contained" color="primary" onClick={handleClick}>
         Join
       </Button>
     </RoastCardItem>
