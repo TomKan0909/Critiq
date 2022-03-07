@@ -53,7 +53,7 @@ const Chat = ({subject}) => {
 
     const chatFormStyle = {
         position: 'sticky',
-        top: '60%',
+        top: '65%',
         width: '90%',
         placeholder: 'Aa'
     }
