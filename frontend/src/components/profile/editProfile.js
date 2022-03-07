@@ -171,7 +171,7 @@ export default function EditProfile({ open, handleClose }) {
         <Prompt />
         <Prompt />
         <InputForm />
-        <Button
+        <Button // When onclick, it will poll all the data that has been filled out on the form and send a POST request to the server to update user profile
           type="submit"
           color="success"
           variant="contained"

@@ -28,6 +28,11 @@ const exampleHistoryCard = {
 };
 
 function RoastHistory() {
+
+  /* This function will have an useEffect hook to send a authorized GET call to our server to retrieve
+     user's roast history messages and pass it down as props to RoastHistoryCard
+  **/
+  
   return (
     <React.Fragment>
       <Typography variant="h1">
