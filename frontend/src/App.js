@@ -1,5 +1,5 @@
-import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+// import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import Login from "./routes/login";
 import Profile from "./routes/profile";
 import UsersAdmin from "./routes/usersAdmin";
@@ -17,11 +17,12 @@ import RoastList from "./components/home/roastList";
 import exampleUser from "./data/exampleUser";
 import TagFilter from "./components/home/tagFilter";
 import ProtectedRoute from "./utils/protectedRoute";
+const divStyle = { textAlign: "center" };
 
 function App() {
   return (
     <ThemeProvider theme={themeOptions}>
-      <div className="App">
+      <div className="App" style={divStyle}>
         <Routes>
           <Route path="login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
