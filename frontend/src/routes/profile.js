@@ -14,8 +14,10 @@ function ProfileView() {
   // console.log(state);
   // const { user } = state;
 
-  let user = sessionStorage.getItem('user');
-  user = JSON.parse(user)
+  let user = sessionStorage.getItem("user");
+  user = JSON.parse(user);
+
+  /** This function will have a GET server call to retrieve information about current user to pass props down into Profile Component */
 
   return (
     <Grid container spacing={2}>
