@@ -126,8 +126,6 @@ function Prompt({ promptTitle, promptContent, setPrompts, index }) {
 function InputForm() {
   const { name, job, tags, setTags, setJob, setName } =
     React.useContext(editProfileContext);
-  // const [gender, setGender] = React.useState('');
-  // const [alcohol, setAlcohol] = React.useState('');
 
   const handleNameChange = (event) => {
     setName(event.target.value);
