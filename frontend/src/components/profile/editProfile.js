@@ -8,81 +8,115 @@ import {
   Container,
   InputAdornment,
   Button,
-} from "@mui/material";
-import { ImageEdit } from "./image";
-import React from "react";
+} from '@mui/material';
+import { ImageEdit } from './image';
+import React from 'react';
+
+const editProfileContext = React.createContext(null);
 
 function ImageComponent() {
+  const { images, setImages } = React.useContext(editProfileContext);
+  const imageProps = images.map((image, index) => ({
+    image: image.img,
+    setImages: setImages,
+    index: index,
+  }));
   return (
     <div>
       <ImageList
-        sx={{ maxWidth: "auto", maxHeight: "auto", margin: "auto" }}
-        cols={3}
-      >
-        <ImageListItem>
-          <ImageEdit />
-        </ImageListItem>
-        <ImageListItem>
-          <ImageEdit />
-        </ImageListItem>
-        <ImageListItem>
-          <ImageEdit />
-        </ImageListItem>
-        <ImageListItem>
-          <ImageEdit />
-        </ImageListItem>
-        <ImageListItem>
-          <ImageEdit />
-        </ImageListItem>
-        <ImageListItem>
-          <ImageEdit />
-        </ImageListItem>
+        sx={{ maxWidth: 'auto', maxHeight: 'auto', margin: 'auto' }}
+        cols={3}>
+        {imageProps.map((imageProp) => (
+          <ImageListItem>
+            <ImageEdit {...imageProp} />
+          </ImageListItem>
+        ))}
       </ImageList>
     </div>
   );
 }
 
-function Prompt() {
-  const [prompt, setPrompt] = React.useState("");
+function PromptComponent() {
+  const { prompts, setPrompts } = React.useContext(editProfileContext);
+  const promptProps = prompts.map((prompt, index) => ({
+    promptTitle: prompt.title,
+    promptContent: prompt.content,
+    setPrompts: setPrompts,
+    index: index,
+  }));
 
-  const handleChange = (event) => {
-    setPrompt(event.target.value);
+  return (
+    <React.Fragment>
+      {promptProps.map((promptProp) => (
+        <Prompt {...promptProp} />
+      ))}
+    </React.Fragment>
+  );
+}
+
+function Prompt({ promptTitle, promptContent, setPrompts, index }) {
+  const setPrompt = (val, isResponse) => {
+    setPrompts((previousPrompts) => {
+      if (isResponse) {
+        return [
+          ...previousPrompts.slice(0, index),
+          { title: previousPrompts[index].title, content: val },
+          ...previousPrompts.slice(index + 1),
+        ];
+      } else {
+        return [
+          ...previousPrompts.slice(0, index),
+          { title: val, content: previousPrompts[index].content },
+          ...previousPrompts.slice(index + 1),
+        ];
+      }
+    });
+  };
+
+  const handleChangePrompt = (event) => {
+    setPrompt(prompts[event.target.value], false); // need to do this because event.target.value is a number in MUI Textfield select component
+  };
+
+  const handleChangeResponse = (event) => {
+    setPrompt(event.target.value, true);
   };
 
   const prompts = [
-    { value: 1, prompt: "Best travel story" },
-    { value: 2, prompt: "A life goal of mine" },
-    { value: 3, prompt: "I take pride in" },
-    { value: 4, prompt: "Biggest risk I've taken" },
+    'Best travel story',
+    'A life goal of mine',
+    'I take pride in',
+    "Biggest risk I've taken",
   ];
 
   return (
-    <Container size="sm" sx={{ marginY: "10px" }}>
-      <form component="form">
+    <Container size='sm' sx={{ marginY: '10px' }}>
+      <form component='form'>
         <TextField
-          label="Select Prompt"
-          value={prompt}
+          label='Select a Prompt'
+          value={prompts.findIndex((e) => e === promptTitle)}
           select
-          onChange={handleChange}
-          variant="filled"
-          sx={{ display: "grid" }}
-        >
-          {prompts.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.prompt}
+          onChange={handleChangePrompt}
+          variant='filled'
+          sx={{ display: 'grid' }}>
+          {prompts.map((option, index) => (
+            <MenuItem key={index} value={index}>
+              {option}
             </MenuItem>
           ))}
         </TextField>
         <TextField
-          id="filled-multiline-static"
-          label="Prompt Response"
+          id='filled-multiline-static'
+          label='Prompt Response'
+          onChange={handleChangeResponse}
           multiline
           Prompt
           Response
           rows={5}
-          defaultValue="Enter your Prompt Response"
-          variant="filled"
-          sx={{ display: "grid" }}
+          defaultValue={
+            promptContent !== '' ? promptContent : 'Enter a prompt response'
+          }
+          variant='filled'
+          sx={{ display: 'grid' }}
         />
       </form>
     </Container>
@@ -90,51 +124,122 @@ function Prompt() {
 }
 
 function InputForm() {
-  const [gender, setGender] = React.useState("");
-  const [alcohol, setAlcohol] = React.useState("");
+  const { name, job, tags, setTags, setJob, setName } =
+    React.useContext(editProfileContext);
+  // const [gender, setGender] = React.useState('');
+  // const [alcohol, setAlcohol] = React.useState('');
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleJobChange = (event) => {
+    setJob(event.target.value);
+  };
 
   const handleGenderChange = (event) => {
-    setGender(event.target.value);
+    setTags((previousTags) => ({
+      ...previousTags,
+      gender: event.target.value,
+    }));
+  };
+
+  const handleAgeChange = (event) => {
+    setTags((previousTags) => ({
+      ...previousTags,
+      age: event.target.value,
+    }));
+  };
+
+  const handleHeightChange = (event) => {
+    setTags((previousTags) => ({
+      ...previousTags,
+      height: event.target.value + 'cm',
+    }));
+  };
+
+  const handleLocationChange = (event) => {
+    setTags((previousTags) => ({
+      ...previousTags,
+      location: event.target.value,
+    }));
+  };
+
+  const handleEthnicityChange = (event) => {
+    setTags((previousTags) => ({
+      ...previousTags,
+      ethnicity: event.target.value,
+    }));
   };
 
   const handleAlcoholChange = (event) => {
-    setAlcohol(event.target.value);
+    setTags((previousTags) => ({
+      ...previousTags,
+      alcohol: event.target.value,
+    }));
   };
 
   return (
-    <Container size="sm">
-      <form component="form">
+    <Container size='sm'>
+      <form component='form'>
         <TextField
-          label="Gender"
-          value={gender}
+          value={name}
+          label='name'
+          sx={{ display: 'grid', marginY: '5px' }}
+          onChange={handleNameChange}
+        />
+        <TextField
+          value={job}
+          label='job'
+          sx={{ display: 'grid', marginY: '5px' }}
+          onChange={handleJobChange}
+        />
+        <TextField
+          label='Gender'
+          value={tags.gender}
           onChange={handleGenderChange}
           select
-          sx={{ display: "grid", marginY: "5px" }}
-        >
-          {["Male", "Female", "Other"].map((gender, index) => (
+          sx={{ display: 'grid', marginY: '5px' }}>
+          {['Male', 'Female', 'Other'].map((gender, index) => (
             <MenuItem key={index} value={gender}>
               {gender}
             </MenuItem>
           ))}
         </TextField>
-        <TextField label="Age" sx={{ display: "grid", marginY: "5px" }} />
         <TextField
-          label="Height"
-          sx={{ display: "grid", marginY: "5px" }}
+          value={tags.age}
+          label='Age'
+          sx={{ display: 'grid', marginY: '5px' }}
+          onChange={handleAgeChange}
+        />
+        <TextField
+          label='Height'
+          value={tags.height.replace('cm', '')}
+          onChange={handleHeightChange}
+          sx={{ display: 'grid', marginY: '5px' }}
           InputProps={{
-            endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+            endAdornment: <InputAdornment position='end'>cm</InputAdornment>,
           }}
         />
-        <TextField label="Location" sx={{ display: "grid", marginY: "5px" }} />
-        <TextField label="Ethnicity" sx={{ display: "grid", marginY: "5px" }} />
         <TextField
-          label="Alcohol"
-          value={alcohol}
+          label='Location'
+          sx={{ display: 'grid', marginY: '5px' }}
+          value={tags.location}
+          onChange={handleLocationChange}
+        />
+        <TextField
+          label='Ethnicity'
+          sx={{ display: 'grid', marginY: '5px' }}
+          value={tags.ethnicity}
+          onChange={handleEthnicityChange}
+        />
+        <TextField
+          label='Alcohol'
+          value={tags.alcohol}
           select
           onChange={handleAlcoholChange}
-          sx={{ display: "grid", marginY: "5px" }}
-        >
-          {["Yes", "No", "Sometimes"].map((pref, index) => (
+          sx={{ display: 'grid', marginY: '5px' }}>
+          {['Yes', 'No', 'Sometimes'].map((pref, index) => (
             <MenuItem key={index} value={pref}>
               {pref}
             </MenuItem>
@@ -146,49 +251,79 @@ function InputForm() {
 }
 
 const boxEditProfileStyle = {
-  border: "2px solid black",
-  overflowY: "scroll",
-  alignItems: "center",
-  margin: "auto",
-  display: "flex-block",
-  height: "90vh",
-  width: "50%",
+  border: '2px solid black',
+  overflowY: 'scroll',
+  alignItems: 'center',
+  margin: 'auto',
+  display: 'flex-block',
+  height: '90vh',
+  width: '50%',
 };
 
 export default function EditProfile({ open, handleClose }) {
+  const [name, setName] = React.useState('');
+  const [job, setJob] = React.useState('');
+  const [images, setImages] = React.useState([]);
+  const [prompts, setPrompts] = React.useState([]);
+  const [tags, setTags] = React.useState({});
+
+  function setProps(user) {
+    setName(user.name);
+    setJob(user.job);
+    setImages((_i) => user.images); // _i means ignore
+    setPrompts((_i) => user.prompts);
+    setTags((_i) => user.tags);
+  }
+
+  React.useEffect(() => {
+    if (open) {
+      const user = JSON.parse(sessionStorage.getItem('user'));
+      setProps(user);
+    }
+  }, [open]);
+
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      BackdropProps={{
-        style: { backgroundColor: "rgba(255, 255, 255, 0.97)" },
-      }}
-      sx={{ paddingY: "2%" }}
-    >
-      <Box marginTop="5%" sx={boxEditProfileStyle}>
-        <ImageComponent />
-        <Prompt />
-        <Prompt />
-        <Prompt />
-        <InputForm />
-        <Button // When onclick, it will poll all the data that has been filled out on the form and send a POST request to the server to update user profile
-          type="submit"
-          color="success"
-          variant="contained"
-          sx={{ margin: "auto", display: "block" }}
-        >
-          Save
-        </Button>
-        <Button
-          type="submit"
-          color="info"
-          variant="contained"
-          onClick={handleClose}
-          sx={{ margin: "auto", display: "block" }}
-        >
-          Cancel
-        </Button>
-      </Box>
-    </Modal>
+    <editProfileContext.Provider
+      value={{
+        name,
+        job,
+        images,
+        prompts,
+        tags,
+        setName,
+        setJob,
+        setImages,
+        setPrompts,
+        setTags,
+      }}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        BackdropProps={{
+          style: { backgroundColor: 'rgba(255, 255, 255, 0.97)' },
+        }}
+        sx={{ paddingY: '2%' }}>
+        <Box marginTop='5%' sx={boxEditProfileStyle}>
+          <ImageComponent />
+          <PromptComponent />
+          <InputForm />
+          <Button // When onclick, it will poll all the data that has been filled out on the form and send a POST request to the server to update user profile
+            type='submit'
+            color='success'
+            variant='contained'
+            sx={{ margin: 'auto', display: 'block' }}>
+            Save
+          </Button>
+          <Button
+            type='submit'
+            color='info'
+            variant='contained'
+            onClick={handleClose}
+            sx={{ margin: 'auto', display: 'block' }}>
+            Cancel
+          </Button>
+        </Box>
+      </Modal>
+    </editProfileContext.Provider>
   );
 }

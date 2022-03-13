@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Card,
   CardContent,
@@ -6,20 +6,20 @@ import {
   CardActionArea,
   CardHeader,
   IconButton,
-} from "@mui/material";
-import { GrAdd } from "react-icons/gr";
-import { IconContext } from "react-icons";
-import { AiFillCloseCircle } from "react-icons/ai";
-import { useTheme } from "@mui/material/styles";
+} from '@mui/material';
+import { GrAdd } from 'react-icons/gr';
+import { IconContext } from 'react-icons';
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { useTheme } from '@mui/material/styles';
 
 const imageStyle = {
   minWidth: 200,
   minHeight: 200,
   maxWidth: 420,
   maxHeight: 420,
-  borderRadius: "10px",
-  marginX: "auto",
-  marginY: "20px",
+  borderRadius: '10px',
+  marginX: 'auto',
+  marginY: '20px',
 };
 /* param 
   img: str or w/e that represents an image in javascript 
@@ -27,25 +27,37 @@ const imageStyle = {
 export default function Image({ img }) {
   return (
     <Card sx={imageStyle}>
-      <CardMedia component="img" height="100%" width="100%" image={img} />
+      <CardMedia component='img' height='100%' width='100%' image={img} />
     </Card>
   );
 }
 
 const imageEditStyle = {
-  width: "200px",
-  height: "200px",
-  borderRadius: "10px",
-  marginX: "auto",
-  marginY: "20px",
+  width: '200px',
+  height: '200px',
+  borderRadius: '10px',
+  marginX: 'auto',
+  marginY: '20px',
 };
 
-export function ImageEdit({ img }) {
+export function ImageEdit({ image, setImages, index }) {
   const theme = useTheme();
-  const [compState, setCompState] = React.useState(
-    img === undefined || img === "" ? "add" : "remove"
-  );
-  const [image, setImage] = React.useState(img);
+  // console.log(image);
+  // const [compState, setCompState] = React.useState(
+  //   img === undefined || img === "" ? "add" : "remove"
+  // );
+  // const [image, setImage] = React.useState(img);
+
+  const setImage = (str) => {
+    setImages((previousImages) => {
+      return [
+        ...previousImages.slice(0, index),
+        { img: str },
+        ...previousImages.slice(index + 1),
+      ];
+    });
+  };
+
   const hiddenFileInput = React.useRef(null);
 
   const handleFileUploadClick = (event) => {
@@ -56,37 +68,33 @@ export function ImageEdit({ img }) {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
       setImage(URL.createObjectURL(img));
-      setCompState("edit");
     }
   };
 
   const handleCloseClick = () => {
-    setCompState("edit");
-    setImage("");
+    setImage('');
   };
 
   return (
     <Card sx={imageEditStyle}>
-      {image === undefined || image === "" ? (
+      {image === undefined || image === '' ? (
         <CardActionArea
           onClick={handleFileUploadClick}
-          sx={{ height: "100%", width: "100%" }}
-        >
+          sx={{ height: '100%', width: '100%' }}>
           <CardHeader
-            title="Image 1"
-            sx={{ margin: "auto", textAlign: "center" }}
+            title='Image 1' // TODO: change this as a passed in prop
+            sx={{ margin: 'auto', textAlign: 'center' }}
           />
-          <CardContent sx={{ alignItems: "center" }}>
+          <CardContent sx={{ alignItems: 'center' }}>
             <IconContext.Provider
-              value={{ style: { margin: "auto", display: "block" } }}
-            >
+              value={{ style: { margin: 'auto', display: 'block' } }}>
               <div>
                 <GrAdd size={50} />
               </div>
             </IconContext.Provider>
           </CardContent>
           <input
-            type="file"
+            type='file'
             ref={hiddenFileInput}
             onChange={handleFileUpload}
             hidden
@@ -98,15 +106,14 @@ export function ImageEdit({ img }) {
             action={
               <IconButton
                 onClick={handleCloseClick}
-                sx={{ color: theme.palette.error.main }}
-              >
+                sx={{ color: theme.palette.error.main }}>
                 <AiFillCloseCircle />
               </IconButton>
             }
-            title="Image 1"
-            sx={{ margin: "auto" }}
+            title='Image 1'
+            sx={{ margin: 'auto' }}
           />
-          <CardMedia component="img" height="100%" width="100%" image={image} />
+          <CardMedia component='img' height='100%' width='100%' image={image} />
         </React.Fragment>
       )}
       )
