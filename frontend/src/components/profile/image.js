@@ -82,7 +82,7 @@ export function ImageEdit({ image, setImages, index }) {
           onClick={handleFileUploadClick}
           sx={{ height: '100%', width: '100%' }}>
           <CardHeader
-            title='Image 1' // TODO: change this as a passed in prop
+            title={'Image ' + (index + 1)}
             sx={{ margin: 'auto', textAlign: 'center' }}
           />
           <CardContent sx={{ alignItems: 'center' }}>
@@ -110,7 +110,7 @@ export function ImageEdit({ image, setImages, index }) {
                 <AiFillCloseCircle />
               </IconButton>
             }
-            title='Image 1'
+            title={'Image ' + (index + 1)}
             sx={{ margin: 'auto' }}
           />
           <CardMedia component='img' height='100%' width='100%' image={image} />
