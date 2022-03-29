@@ -23,7 +23,23 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		minlength: 6
-	}
+	},
+	isAdmin: Boolean,
+	name: String,
+	age: Number,
+	height: Number,
+	school: String,
+	interests: [String],
+	location: String,
+	faith: String,
+	exercise: String,
+	drink: Boolean, 
+	smoke: Boolean,
+	job: String,
+	relationshipGoals: String,
+	kids: Boolean,
+	images: [String],
+	critiqRoomHistory: [mongoose.ObjectId],
 })
 
 // An example of Mongoose middleware.
