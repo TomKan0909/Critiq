@@ -5,9 +5,6 @@ const log = console.log
 const express = require('express');
 const router = express.Router(); // Express Router
 
-// import the student mongoose model
-const { Student } = require('../models/student')
-
 // helpers/middlewares
 const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
 const { authenticate } = require("./helpers/authentication");

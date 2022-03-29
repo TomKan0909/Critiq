@@ -37,7 +37,7 @@ app.use(session({
     cookie: { // the session cookie sent, containing the session id.
         expires: 60000, // 1 minute expiry
         httpOnly: true // important: saves it in only browser's memory - not accessible by javascript (so it can't be stolen/changed by scripts!).
-    }
+    },
 
     // Session saving options
     saveUninitialized: false, // don't save the initial session if the session object is unmodified (for example, we didn't log in).
