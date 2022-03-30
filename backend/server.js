@@ -180,14 +180,10 @@ app.post('/api/users', mongoChecker, async (req, res) => {
 /** CritiqRoom resource routes **/
 // a POST route to *create* a critiqRoom
 app.post('/api/critiqRooms', mongoChecker, authenticate, async (req, res) => {
-    log(`Adding critiqRoom ${req.body.name}, created by user ${req.user._id}`)
-
     // Create a new critiqRoom using the critiqRoom mongoose model
     const critiqRoom = new CritiqRoom({
         creator: req.user._id, // creator id from the authenticate middleware
-        start: ,
     })
-
 
     // Save critiqRoom to the database
     // async-await version:

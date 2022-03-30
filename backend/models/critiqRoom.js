@@ -13,7 +13,6 @@ const CritiqRoomSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: true
 	},
-	start: Date,
 	messages: [MessageSchema]
 	},
 	{
