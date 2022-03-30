@@ -3,6 +3,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import exampleUser from "../../data/exampleUser";
 import adminUser from "../../data/adminUser";
+import {login} from "../../apis"
+import { convertLength } from "@mui/material/styles/cssUtils";
 
 export default function LoginForm() {
   const [username, setUsername] = React.useState("");
@@ -11,22 +13,25 @@ export default function LoginForm() {
 
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (username === "user" && password === "user") {
-      setUsername("");
-      setPassword("");
-      setError(false);
-      sessionStorage.setItem("user", JSON.stringify(exampleUser));
-      navigate("/");
-    } else if (username === "admin" && password === "admin") {
-      setUsername("");
-      setPassword("");
-      setError(false);
-      sessionStorage.setItem("admin", JSON.stringify(adminUser));
-      navigate("/admin");
-    } else {
-      setError(true);
-    }
+  const handleLogin = async () => {
+    const data = await login({username, password});
+    console.log(data)
+
+    // if (username === "user" && password === "user") {
+    //   setUsername("");
+    //   setPassword("");
+    //   setError(false);
+    //   sessionStorage.setItem("user", JSON.stringify(exampleUser));
+    //   navigate("/");
+    // } else if (username === "admin" && password === "admin") {
+    //   setUsername("");
+    //   setPassword("");
+    //   setError(false);
+    //   sessionStorage.setItem("admin", JSON.stringify(adminUser));
+    //   navigate("/admin");
+    // } else {
+    //   setError(true);
+    // }
   };
 
   return (

@@ -103,19 +103,20 @@ app.use(
 
 // A route to login and create a session
 app.post("/users/login", (req, res) => {
-    const email = req.body.email;
+    const username = req.body.username;
     const password = req.body.password;
+    console.log(req.body)
 
     // log(email, password);
     // Use the static method on the User model to find a user
     // by their email and password
-    User.findByEmailPassword(email, password)
+    User.findByUsernamePassword(username, password)
         .then(user => {
             // Add the user's id to the session.
             // We can check later if this exists to ensure we are logged in.
             req.session.user = user._id;
-            req.session.email = user.email; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
-            res.send({ currentUser: user.email });
+            req.session.username = user.username; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
+            res.send({ currentUser: user.username });
         })
         .catch(error => {
             res.status(400).send()
@@ -159,7 +160,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
 
     // Create a new user
     const user = new User({
-        email: req.body.email,
+        username: req.body.username,
         password: req.body.password
     })
 
@@ -220,19 +221,19 @@ app.get('/api/critiqRooms', mongoChecker, authenticate, async (req, res) => {
 
 /*** Webpage routes below **********************************/
 // Serve the build
-app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
     // check for page routes that we expect in the frontend to provide correct status code.
-    const goodPageRoutes = ["/", "/login", "/dashboard"];
-    if (!goodPageRoutes.includes(req.url)) {
-        // if url not in expected page routes, set status to 404.
-        res.status(404);
-    }
+    // const goodPageRoutes = ["/", "/login", "/dashboard"];
+    // if (!goodPageRoutes.includes(req.url)) {
+    //     // if url not in expected page routes, set status to 404.
+    //     res.status(404);
+    // }
 
     // send index.html
-    res.sendFile(path.join(__dirname, "/client/build/index.html"));
+    res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
 /*************************************************/
