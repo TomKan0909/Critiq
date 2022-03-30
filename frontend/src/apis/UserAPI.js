@@ -1,10 +1,14 @@
 import axios from 'axios'
+import ENV from '../config'
+const API_HOST= ENV.api_host;
+axios.defaults.withCredentials = true; // needed for CORS
 
 const login = async ({username, password}) => {
     try {
-        const body = {username, password}
-        const res = await axios.post(`http://localhost:5000/users/login`, body)
-        return res.data
+        const res = await axios.post(`${API_HOST}/api/users/login`, {
+            username: username, password: password
+        })
+        return res
     } catch (err) {
         console.log(err)
     }

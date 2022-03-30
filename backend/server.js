@@ -18,10 +18,26 @@ const path = require('path')
 const express = require("express");
 // starting the express server
 const app = express();
+app.use(express.json());
 
 // enable CORS if in development, for React local development server to connect to the web server.
 const cors = require('cors')
-if (env !== 'production') { app.use(cors()) }
+const corsOptions = {
+    credentials: true,
+    methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
+    origin: 
+        process.env.NODE_ENV === 'production' 
+            ? "https://www.production.xyz"
+            : "http://localhost:3000",
+};
+// if (env !== 'production') { app.use(cors(corsOptions))}
+app.use(cors(corsOptions))
+
+
+app.set("trust proxy", 1)
+const cookieParser = require("cookie-parser")
+app.use(cookieParser())
+
 
 // mongoose and mongo connection
 const { mongoose } = require("./db/mongoose");
@@ -87,6 +103,7 @@ const authenticate = (req, res, next) => {
 // Create a session and session cookie
 app.use(
     session({
+        key: "userID",
         secret: process.env.SESSION_SECRET || "our hardcoded secret", // make a SESSION_SECRET environment variable when deploying (for example, on heroku)
         resave: false,
         saveUninitialized: false,
@@ -101,13 +118,24 @@ app.use(
     })
 );
 
+
+app.use(function(req, res, next) {
+//     // res.header('Content-Type', 'application/json;charset=UTF-8')
+    res.header('Access-Control-Allow-Credentials', true)
+//     // res.header(
+//     //   'Access-Control-Allow-Headers',
+//     //   'Origin, X-Requested-With, Content-Type, Accept'
+//     // )
+    next()
+})
+
+
 // A route to login and create a session
-app.post("/users/login", (req, res) => {
+app.post("/api/users/login", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    console.log(req.body)
 
-    // log(email, password);
+    log(username, password);
     // Use the static method on the User model to find a user
     // by their email and password
     User.findByUsernamePassword(username, password)
@@ -116,6 +144,7 @@ app.post("/users/login", (req, res) => {
             // We can check later if this exists to ensure we are logged in.
             req.session.user = user._id;
             req.session.username = user.username; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
+            log(req.session)
             res.send({ currentUser: user.username });
         })
         .catch(error => {
@@ -124,7 +153,7 @@ app.post("/users/login", (req, res) => {
 });
 
 // A route to logout a user
-app.get("/users/logout", (req, res) => {
+app.get("/api/users/logout", (req, res) => {
     // Remove the session
     req.session.destroy(error => {
         if (error) {
@@ -136,7 +165,7 @@ app.get("/users/logout", (req, res) => {
 });
 
 // A route to check if a user is logged in on the session
-app.get("/users/check-session", (req, res) => {
+app.get("/api/users/check-session", (req, res) => {
     if (env !== 'production' && USE_TEST_USER) { // test user on development environment.
         req.session.user = TEST_USER_ID;
         req.session.email = TEST_USER_EMAIL;
@@ -221,20 +250,20 @@ app.get('/api/critiqRooms', mongoChecker, authenticate, async (req, res) => {
 
 /*** Webpage routes below **********************************/
 // Serve the build
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+// app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-// All routes other than above will go to index.html
-app.get("*", (req, res) => {
-    // check for page routes that we expect in the frontend to provide correct status code.
-    // const goodPageRoutes = ["/", "/login", "/dashboard"];
-    // if (!goodPageRoutes.includes(req.url)) {
-    //     // if url not in expected page routes, set status to 404.
-    //     res.status(404);
-    // }
+// // All routes other than above will go to index.html
+// app.get("*", (req, res) => {
+//     // check for page routes that we expect in the frontend to provide correct status code.
+//     // const goodPageRoutes = ["/", "/login", "/dashboard"];
+//     // if (!goodPageRoutes.includes(req.url)) {
+//     //     // if url not in expected page routes, set status to 404.
+//     //     res.status(404);
+//     // }
 
-    // send index.html
-    res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
-});
+//     // send index.html
+//     res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+// });
 
 /*************************************************/
 // Express server listening...
