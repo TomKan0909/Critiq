@@ -38,8 +38,7 @@ const UserSchema = new mongoose.Schema({
 	job: String,
 	relationshipGoals: String,
 	kids: Boolean,
-	images: [String],
-	critiqRoomHistory: [mongoose.ObjectId],
+	images: [String]
 })
 
 // An example of Mongoose middleware.
