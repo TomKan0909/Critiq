@@ -14,8 +14,11 @@ const CritiqRoomSchema = new mongoose.Schema({
 		required: true
 	},
 	start: Date,
-	messages: [MessageSchema],
-})
+	messages: [MessageSchema]
+	},
+	{
+		timestamps: true
+	})
 
 const CritiqRoom = mongoose.model('CritiqRoom', CritiqRoomSchema);
 
