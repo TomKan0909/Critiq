@@ -9,10 +9,12 @@ const MessageSchema = new mongoose.Schema({
 })
 
 const CritiqRoomSchema = new mongoose.Schema({
-	user: String, // email
-	created: Date,
+	creator: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true
+	},
+	start: Date,
 	messages: [MessageSchema],
-	open: Boolean
 })
 
 const CritiqRoom = mongoose.model('CritiqRoom', CritiqRoomSchema);

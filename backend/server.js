@@ -28,7 +28,8 @@ const { mongoose } = require("./db/mongoose");
 mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
-const { User } = require("./models/user");
+conimport CritiqRoom from '../frontend/src/components/critiqRoom/index';
+st { User } = require("./models/user");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -178,7 +179,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
 
 /** Student resource routes **/
 // a POST route to *create* a student
-app.post('/api/students', mongoChecker, authenticate, async (req, res) => {
+app.post('/api/critiqRooms', mongoChecker, authenticate, async (req, res) => {
     log(`Adding student ${req.body.name}, created by user ${req.user._id}`)
 
     // Create a new student using the Student mongoose model
@@ -205,11 +206,11 @@ app.post('/api/students', mongoChecker, authenticate, async (req, res) => {
 })
 
 // a GET route to get all students
-app.get('/api/students', mongoChecker, authenticate, async (req, res) => {
+app.get('/api/critiqRoom/:id', mongoChecker, authenticate, async (req, res) => {
 
     // Get the students
     try {
-        const students = await Student.find({creator: req.user._id})
+        const students = await CritiqRoom.find({creator: req.user._id})
         // res.send(students) // just the array
         res.send({ students }) // can wrap students in object if want to add more properties
     } catch(error) {
