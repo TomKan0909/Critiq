@@ -29,6 +29,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
 const { User } = require("./models/user");
+const { CritiqRoom } = require("./models/critiqRoom");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -176,23 +177,22 @@ app.post('/api/users', mongoChecker, async (req, res) => {
     }
 })
 
-/** Student resource routes **/
-// a POST route to *create* a student
-app.post('/api/students', mongoChecker, authenticate, async (req, res) => {
-    log(`Adding student ${req.body.name}, created by user ${req.user._id}`)
+/** CritiqRoom resource routes **/
+// a POST route to *create* a critiqRoom
+app.post('/api/critiqRooms', mongoChecker, authenticate, async (req, res) => {
+    log(`Adding critiqRoom ${req.body.name}, created by user ${req.user._id}`)
 
-    // Create a new student using the Student mongoose model
-    const student = new Student({
-        name: req.body.name,
-        year: req.body.year,
-        creator: req.user._id // creator id from the authenticate middleware
+    // Create a new critiqRoom using the critiqRoom mongoose model
+    const critiqRoom = new CritiqRoom({
+        creator: req.user._id, // creator id from the authenticate middleware
+        start: ,
     })
 
 
-    // Save student to the database
+    // Save critiqRoom to the database
     // async-await version:
     try {
-        const result = await student.save() 
+        const result = await critiqRoom.save() 
         res.send(result)
     } catch(error) {
         log(error) // log server error to the console, not to the client.
@@ -205,11 +205,11 @@ app.post('/api/students', mongoChecker, authenticate, async (req, res) => {
 })
 
 // a GET route to get all students
-app.get('/api/students', mongoChecker, authenticate, async (req, res) => {
+app.get('/api/critiqRooms', mongoChecker, authenticate, async (req, res) => {
 
     // Get the students
     try {
-        const students = await Student.find({creator: req.user._id})
+        const students = await CritiqRoom.find({creator: req.user._id})
         // res.send(students) // just the array
         res.send({ students }) // can wrap students in object if want to add more properties
     } catch(error) {
