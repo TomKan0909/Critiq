@@ -31,7 +31,9 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="profile/roastHistory" element={<RoastHistory />} />
             <Route path="/" element={<Home />} />
-            <Route path="critiqRoom" element={<CritiqRoom />} />
+            <Route path="critiqRoom">
+              <Route path=":id" element={<CritiqRoom />} />
+            </Route> 
           </Route>
           <Route element={<ProtectedRoute isAdmin={true} />}>
             <Route
