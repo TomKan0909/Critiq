@@ -37,11 +37,31 @@ router.post('/api/rooms', mongoChecker, async (req, res) => {
 
 // a GET route to get critiqRoom history
 router.get('/api/rooms', mongoChecker, async (req, res) => {
-    // Get the students
     try {
-        const rooms = await Room.find({creator: req.session.user})
-        // res.send(students) // just the array
-        res.send({ rooms }) // can wrap students in object if want to add more properties
+        const rooms = await Room.find({creator: req.body.user})
+        res.send({ rooms }) 
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+// a GET route to get the latest critiqRoom
+router.get('/api/rooms/latest', mongoChecker, async (req, res) => {
+    try {
+        const rooms = await Room.find({creator: req.body.user})
+        res.send({ room: rooms[rooms.length-1] }) 
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+// a GET route to get critiqRoom by id
+router.get('/api/rooms/:id', mongoChecker, async (req, res) => {
+    try {
+        const room = await Room.findById(req.params.id)
+        res.send({ room }) 
     } catch(error) {
         log(error)
         res.status(500).send("Internal Server Error")
