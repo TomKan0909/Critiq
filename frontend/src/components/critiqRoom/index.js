@@ -4,11 +4,11 @@ import { Box, Button, Container, Rating, Typography } from "@mui/material";
 import Profile from "../profile/profile";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useLocation } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
-const CritiqRoom = ({ isAdmin }) => {
-  let { state } = useLocation();
-  let { user } = state;
+const CritiqRoom = () => {
+
+  const user = {}
 
   const ratingBoxStyle = {
     marginTop: 8,
@@ -36,7 +36,10 @@ const CritiqRoom = ({ isAdmin }) => {
   };
 
   let interaction;
-  if (isAdmin) {
+  
+  console.log(useParams())
+
+  if (sessionStorage.getItem('user') === "admin") {
     interaction = (
       <Button sx={stopButtonStyle} fullWidth variant="contained">
         stop room
