@@ -15,8 +15,6 @@ const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
 // a POST route to *create* a critiqRoom
 router.post('/api/rooms', mongoChecker, async (req, res) => {
     // Create a new critiqRoom using the critiqRoom mongoose model
-    log(req.session)
-    log(req.session.user)
     const room = new Room({
         creator: req.session.user, // creator id from the authenticate middleware
     })

@@ -1,2 +1,2 @@
 export * from './UserAPI';
-export * from './CritiqRoomAPI'
+export * from './RoomAPI'
