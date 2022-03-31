@@ -20,21 +20,18 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		minlength: 1
 	},
-	isAdmin: Boolean,
-	name: String,
-	age: Number,
-	height: Number,
-	school: String,
-	interests: [String],
-	location: String,
-	faith: String,
-	exercise: String,
-	drink: Boolean, 
-	smoke: Boolean,
-	job: String,
-	relationshipGoals: String,
-	kids: Boolean,
-	images: [String]
+	isAdmin: {type: Boolean , default: false},
+	name: {type: String, default: 'Name'},
+	images: {type: Array, default: ['', '', '', '', '', '']}, 
+	age: {type: Number, default: 999},
+	gender: {type: String, default: 'Other'},
+	height: {type: String, default: '999cm'},
+	location: {type: String, default: 'Location'},
+	ethnicity: {type: String, default: 'Ethnicity'},
+	alcohol: {type: String, default: 'Yes'},
+	occupation: {type: String, default: 'Occupation'},
+	school: {type: String, default: 'School'},
+
 })
 
 // An example of Mongoose middleware.
