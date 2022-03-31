@@ -1,6 +1,7 @@
 // some helpers for mongo
 
 const mongoose = require('mongoose')
+const log = console.log
 
 module.exports = {
     // middleware for mongo connection error for routes that need it

@@ -5,6 +5,11 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 
+const PromptSchema = new mongoose.Schema({
+	title: {type: String, default: 'A life goal of mine'},
+	content: {type: String, default: 'Loren ipsum'}
+})
+
 // Making a Mongoose model a little differently: a Mongoose Schema
 // Allows us to add additional functionality.
 const UserSchema = new mongoose.Schema({
@@ -23,6 +28,9 @@ const UserSchema = new mongoose.Schema({
 	isAdmin: {type: Boolean , default: false},
 	name: {type: String, default: 'Name'},
 	images: {type: Array, default: ['', '', '', '', '', '']}, 
+	prompts: {type: [PromptSchema], default: [{title: 'A life goal of mine', content: 'Loren ipsum'},
+	{title: 'I take pride in', content: 'Loren ipsum'},
+	{title: 'Best travel story', content: 'Loren ipsum'}]},
 	age: {type: Number, default: 999},
 	gender: {type: String, default: 'Other'},
 	height: {type: String, default: '999cm'},

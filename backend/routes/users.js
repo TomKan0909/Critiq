@@ -10,6 +10,7 @@ const { User } = require('../models/user')
 
 // helpers/middlewares
 const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
+const { authenticate } = require("./helpers/authentication");
 
 /*** User API routes ****************/
 // A route to login and create a session
@@ -88,6 +89,23 @@ router.post('/api/users', mongoChecker, async (req, res) => {
         }
     }
 })
+
+// A route to get current user profile 
+router.get('/api/users', mongoChecker, authenticate, async (req, res) => {
+    try{
+        const user = await User.findById(req.session.user);
+        log(user);
+        res.send(user);
+    } catch (err) {
+        if (isMongoError(err)) { // check for if mongo server suddenly disconnected before this request.
+            res.status(500).send('Internal server error')
+        } else {
+            log(err)
+            res.status(400).send('Bad Request') // bad request for changing the student.
+        }
+    }
+})
+
 
 // A route to update user profile
 // router.post('/api/update_users/')
