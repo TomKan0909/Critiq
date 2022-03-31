@@ -22,4 +22,13 @@ const createAccount = async () => {
     return
 }
 
-export {login, logout, createAccount}
+const getUserById = async (id) => {
+    try {
+        const res = await axios.get(`${API_HOST}/api/users/${id}`)
+        return res
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export {login, logout, createAccount, getUserById}

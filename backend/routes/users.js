@@ -89,6 +89,22 @@ router.post('/api/users', mongoChecker, async (req, res) => {
     }
 })
 
+router.get('/api/users/:id', mongoChecker, async (req, res) => {
+    try {
+        // Save the user
+        const user = await User.findById(req.params.id)
+        res.send(user)
+    } catch (error) {
+        if (isMongoError(error)) { // check for if mongo server suddenly disconnected before this request.
+            res.status(500).send('Internal server error')
+        } else {
+            log(error)
+            res.status(400).send('Bad Request') // bad request for changing the student.
+        }
+    }
+})
+
+
 // A route to update user profile
 // router.post('/api/update_users/')
 
