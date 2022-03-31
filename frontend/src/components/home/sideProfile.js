@@ -7,9 +7,17 @@ import StatsCard from "./../profile/stats";
 
 import { StickyProfile } from "./styles";
 import exampleUser from "../../data/exampleUser";
+import { createRoom } from "../../apis";
 
 export default function SideProfile({ user }) {
   const navigate = useNavigate();
+
+  const handleGoLive = async () => {
+    const res = await createRoom()
+    navigate("/critiqRoom", { state: { room: res._id} });
+  }
+
+
   return (
     <StickyProfile>
       <Image img={user.images[0].img} />
@@ -39,9 +47,7 @@ export default function SideProfile({ user }) {
           variant="contained"
           color="highlight"
           size="large"
-          onClick={() => {
-            navigate("/critiqRoom", { state: { user: exampleUser } });
-          }}
+          onClick={handleGoLive}
         >
           Go Live
         </Button>
