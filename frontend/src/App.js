@@ -4,7 +4,7 @@ import Login from "./routes/login";
 import Profile from "./routes/profile";
 import UsersAdmin from "./routes/usersAdmin";
 import RoastHistory from "./routes/roastHistory";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { themeOptions } from "./theme";
 import { Grid, Box } from "@mui/material";
@@ -54,8 +54,18 @@ function App() {
 function Home() {
   const [activeFilters, setActiveFilter] = React.useState([]);
 
-  let user = sessionStorage.getItem("user");
-  user = JSON.parse(user);
+  // let user = sessionStorage.getItem("user");
+  // user = JSON.parse(user);
+
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    setUser(exampleUser);
+  }, [])
+
+  if (!user){
+    return ('Loading')
+  }
 
   return (
     <Box>

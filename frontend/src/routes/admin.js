@@ -1,16 +1,27 @@
 import { Grid, Box } from "@mui/material";
 import NavBar from "../components/home/navBar";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Logo from "../components/logo";
 import TagFilter from "../components/home/tagFilter";
 import RoastList from "../components/home/roastList";
 import SideProfileAdmin from "../components/home/sideProfileAdmin";
+import adminUser from "../data/adminUser";
 
 export default function HomeAdmin() {
   const [activeFilters, setActiveFilter] = React.useState([]);
 
-  let user = sessionStorage.getItem("admin");
-  user = JSON.parse(user);
+  // let user = sessionStorage.getItem("admin");
+  // user = JSON.parse(user);
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    setUser(adminUser);
+  }, [])
+
+  if (!user){
+    return ('Loading')
+  }
+
 
   return (
     <Box>

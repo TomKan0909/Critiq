@@ -9,14 +9,25 @@ import ButtonStack from "../components/profile/buttonStack";
 import exampleUser from "../data/exampleUser";
 import { useLocation } from "react-router-dom";
 import NavBar from "../components/home/navBar";
+import {useState, useEffect} from 'react';
 
 function ProfileView() {
   // const { state } = useLocation();
   // console.log(state);
   // const { user } = state;
 
-  let user = sessionStorage.getItem("user");
-  user = JSON.parse(user);
+  // let user = sessionStorage.getItem("user");
+  // user = JSON.parse(user);
+
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    setUser(exampleUser);
+  }, [])
+
+  if (!user){
+    return ('Loading')
+  }
 
   /** This function will have a GET server call to retrieve information about current user to pass props down into Profile Component */
 

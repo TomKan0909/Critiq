@@ -10,7 +10,8 @@ import {
   Button,
 } from '@mui/material';
 import { ImageEdit } from './image';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import exampleUser from '../../data/exampleUser';
 
 const editProfileContext = React.createContext(null);
 
@@ -273,12 +274,20 @@ export default function EditProfile({ open, handleClose }) {
     setTags((_i) => user.tags);
   }
 
-  React.useEffect(() => {
+  // React.useEffect(() => {
+  //   if (open) {
+  //     const user = JSON.parse(sessionStorage.getItem('user'));
+  //     setProps(user);
+  //   }
+  // }, [open]);
+
+  useEffect(() => {
     if (open) {
-      const user = JSON.parse(sessionStorage.getItem('user'));
-      setProps(user);
+      // have async call like get user here
+      setProps(exampleUser);
     }
-  }, [open]);
+  }, [open])
+
 
   return (
     <editProfileContext.Provider
