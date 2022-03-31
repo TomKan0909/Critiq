@@ -45,7 +45,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
 const { User } = require("./models/user");
-const { CritiqRoom } = require("./models/critiqRoom");
+const { CritiqRoom } = require("./models/room");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -127,43 +127,8 @@ app.use(function(req, res, next) {
 const usersRouter = require('./routes/users')
 app.use(usersRouter)
 
-/** CritiqRoom resource routes **/
-// a POST route to *create* a critiqRoom
-app.post('/api/critiqRooms', mongoChecker, authenticate, async (req, res) => {
-    // Create a new critiqRoom using the critiqRoom mongoose model
-    const critiqRoom = new CritiqRoom({
-        creator: req.user._id, // creator id from the authenticate middleware
-    })
-
-    // Save critiqRoom to the database
-    // async-await version:
-    try {
-        const result = await critiqRoom.save() 
-        res.send(result)
-    } catch(error) {
-        log(error) // log server error to the console, not to the client.
-        if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
-            res.status(500).send('Internal server error')
-        } else {
-            res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
-        }
-    }
-})
-
-// a GET route to get all students
-app.get('/api/critiqRooms', mongoChecker, authenticate, async (req, res) => {
-
-    // Get the students
-    try {
-        const students = await CritiqRoom.find({creator: req.user._id})
-        // res.send(students) // just the array
-        res.send({ students }) // can wrap students in object if want to add more properties
-    } catch(error) {
-        log(error)
-        res.status(500).send("Internal Server Error")
-    }
-
-})
+const critiqRoomRouter = require('./routes/rooms')
+app.use(critiqRoomRouter)
 
 // other student API routes can go here...
 // ...

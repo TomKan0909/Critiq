@@ -8,7 +8,7 @@ const MessageSchema = new mongoose.Schema({
 
 })
 
-const CritiqRoomSchema = new mongoose.Schema({
+const RoomSchema = new mongoose.Schema({
 	creator: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true
@@ -19,6 +19,6 @@ const CritiqRoomSchema = new mongoose.Schema({
 		timestamps: true
 	})
 
-const CritiqRoom = mongoose.model('CritiqRoom', CritiqRoomSchema);
+const Room = mongoose.model('Room', RoomSchema);
 
-module.exports = { CritiqRoom }
+module.exports = { Room }
