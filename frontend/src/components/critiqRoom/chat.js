@@ -2,38 +2,36 @@ import * as React from "react";
 import MessageLog from "./messageLog";
 import { TextField, Typography, Box } from "@mui/material";
 import exampleUser from "../../data/exampleUser";
+import { saveMessage } from "../../apis/RoomAPI";
+import { useParams } from 'react-router-dom';
 const Chat = () => {
-  const [messages, setMessages] = React.useState([]);
 
-  console.log(messages)
+  const roomId = useParams().id
+  const [messages, setMessages] = React.useState([]);
   const [text, setText] = React.useState("");
+
+
 
   const getMessages = () => {
     // call to server
     return messages;
   };
 
-  const addMessage = (message) => {
-    // call to server
-    messages.push(message);
-  };
 
   const updateMessage = (event) => {
     setText(event.target.value);
   };
 
-  const detectReturn = (event) => {
+  const sendMessage = async (event) => {
     if (event.key === "Enter" && text !== "") {
-      sendMessage();
+      const message = {
+        sender: exampleUser,
+        content: text, 
+      }
+      await saveMessage(roomId, message);
+      messages.push(message)
+      setText("");
     }
-  };
-
-  const sendMessage = () => {
-    addMessage({
-      sender: exampleUser,
-      content: text,
-    });
-    setText("");
   };
 
   const chatStyle = {
@@ -66,7 +64,7 @@ const Chat = () => {
       <TextField
         sx={chatFormStyle}
         onChange={updateMessage}
-        onKeyDown={detectReturn}
+        onKeyDown={sendMessage}
         placeholder={"Aa"}
         value={text}
         inputProps={{ style: { fontSize: "1.2rem" } }}

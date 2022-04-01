@@ -12,13 +12,38 @@ const createRoom = async () => {
     }
 }
 
-const getRoomById = async (id) => {
+const getRoomById = async (roomId) => {
     try {
-        const res = await axios.get(`${API_HOST}/api/rooms/${id}`, {})
+        const res = await axios.get(`${API_HOST}/api/rooms/${roomId}`, {})
         return res
     } catch (err) {
         console.log(err)
     }
 }
 
-export { createRoom, getRoomById }
+
+const getMessages = async (roomId) => {
+    try {
+        const res = await getRoomById(roomId)
+        console.log(res)
+        return res
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const saveMessage = async (roomId, message) => {
+    try {
+        
+        const res = await axios.post(`${API_HOST}/api/rooms/${roomId}/messages`, {roomId, message}) 
+        console.log(res)
+        return res
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
+
+
+export { createRoom, getRoomById, saveMessage }

@@ -2,11 +2,12 @@
 const mongoose = require('mongoose')
 
 const MessageSchema = new mongoose.Schema({
-	user: String, // email
-	msg: String,
-	time: Date
-
-})
+	sender: mongoose.Schema.Types.ObjectId, // email
+	content: String
+	},
+	{
+		timestamps: true
+	})
 
 const RoomSchema = new mongoose.Schema({
 	creator: {

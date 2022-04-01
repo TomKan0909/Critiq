@@ -66,5 +66,29 @@ router.get('/api/rooms/:id', mongoChecker, async (req, res) => {
     }
 })
 
+router.get('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
+    try {
+        const room = await Room.findById(req.params.id)
+        res.send({ room }) 
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+
+router.post('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
+    try {
+        const message = req.body.message
+        message.sender = req.session.user
+        console.log(message)
+        await Room.findOneAndUpdate({_id: req.body.roomId}, {$push: {messages: message}}, {new: true, useFindAndModify: false})
+        res.status(200).send("Message Sent") 
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
 
 module.exports = router
