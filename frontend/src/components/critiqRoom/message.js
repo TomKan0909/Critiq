@@ -41,7 +41,7 @@ const Message = (props) => {
   let nonViewerColContent = "";
 
 
-  if (sender === exampleUser) {
+  if (sender.username === sessionStorage.getItem("user")) {
     viewerColContent = content;
     viewerMessageStyle["backgroundColor"] = "pink";
   } else {
