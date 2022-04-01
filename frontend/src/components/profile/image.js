@@ -24,7 +24,7 @@ const imageStyle = {
 /* param 
   img: str or w/e that represents an image in javascript 
   state: 'default' | 'edit'; default just show image or blank if no image provided, edit shows a plus sign and card is clickable */
-export default function Image({ img }) {
+export default function Image({img}) {
   return (
     <Card sx={imageStyle}>
       <CardMedia component='img' height='100%' width='100%' image={img} />

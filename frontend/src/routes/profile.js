@@ -10,6 +10,7 @@ import exampleUser from "../data/exampleUser";
 import { useLocation } from "react-router-dom";
 import NavBar from "../components/home/navBar";
 import {useState, useEffect} from 'react';
+import {getUserProfile} from '../apis'
 
 function ProfileView() {
   // const { state } = useLocation();
@@ -22,11 +23,16 @@ function ProfileView() {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    setUser(exampleUser);
+    async function getUser (){
+      const res = await getUserProfile();
+      console.log(res);
+      setUser(res);
+    }
+    getUser().catch(console.error)
   }, [])
 
   if (!user){
-    return ('Loading')
+    return ('Loading ...')
   }
 
   /** This function will have a GET server call to retrieve information about current user to pass props down into Profile Component */

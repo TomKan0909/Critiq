@@ -12,6 +12,7 @@ import {
 import { ImageEdit } from './image';
 import React, {useState, useEffect} from 'react';
 import exampleUser from '../../data/exampleUser';
+import {getUserProfile} from '../../apis'
 
 const editProfileContext = React.createContext(null);
 
@@ -262,9 +263,9 @@ const boxEditProfileStyle = {
 export default function EditProfile({ open, handleClose }) {
   const [name, setName] = React.useState('');
   const [job, setJob] = React.useState('');
-  const [images, setImages] = React.useState([]);
-  const [prompts, setPrompts] = React.useState([]);
-  const [tags, setTags] = React.useState({});
+  const [images, setImages] = React.useState();
+  const [prompts, setPrompts] = React.useState();
+  const [tags, setTags] = React.useState();
 
   function setProps(user) {
     setName(user.name);
@@ -274,21 +275,23 @@ export default function EditProfile({ open, handleClose }) {
     setTags((_i) => user.tags);
   }
 
-  // React.useEffect(() => {
-  //   if (open) {
-  //     const user = JSON.parse(sessionStorage.getItem('user'));
-  //     setProps(user);
-  //   }
-  // }, [open]);
-
   useEffect(() => {
-    if (open) {
-      // have async call like get user here
-      setProps(exampleUser);
+    async function getUser (){
+      const res = await getUserProfile();
+      setProps(res);
     }
+    if (open){
+      getUser().catch(console.error) 
+    } 
   }, [open])
 
+  if (!name || !job || !images || !prompts ||!tags){
+    return (<></>)
+  }
 
+  console.log('prompts', prompts);
+  console.log('tags', tags);
+  console.log('images', images);
   return (
     <editProfileContext.Provider
       value={{

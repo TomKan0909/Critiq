@@ -31,16 +31,16 @@ export default function Profile({ name, images, prompts, tags }) {
   return (
     <Box sx={outerBoxProfileStyle}>
       <Box sx={innerBoxProfileStyle}>
-        <Image {...images[0]} />
+        <Image img={images[0]} />
         <TextCard {...prompts[0]} />
         <StatsCard {...tags} />
-        <Image {...images[1]} />
-        <Image {...images[2]} />
+        <Image img={images[1]}/>
+        <Image img={images[2]} />
         <TextCard {...prompts[1]} />
-        <Image {...images[3]} />
+        <Image img={images[3]}/>
         <TextCard {...prompts[2]} />
-        <Image {...images[4]} />
-        <Image {...images[5]} />
+        <Image img={images[4]}/>
+        <Image img={images[5]} />
       </Box>
     </Box>
   );
