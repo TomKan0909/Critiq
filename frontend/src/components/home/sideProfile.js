@@ -14,7 +14,11 @@ export default function SideProfile({ user }) {
 
   const handleGoLive = async () => {
     const res = await createRoom()
-    navigate("/critiqRoom", { state: { room: res._id} });
+    if (res) {
+      navigate(`/critiqRoom/${res.data._id}`)  
+    } else {
+      console.log('error')
+    }
   }
 
 

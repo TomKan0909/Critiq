@@ -12,4 +12,13 @@ const createRoom = async () => {
     }
 }
 
-export {createRoom}
+const getRoomById = async (id) => {
+    try {
+        const res = await axios.get(`${API_HOST}/api/rooms/${id}`, {})
+        return res
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export { createRoom, getRoomById }

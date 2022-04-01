@@ -22,6 +22,16 @@ const createAccount = async () => {
     return
 }
 
+const getUserById = async (id) => {
+    try {
+        const res = await axios.get(`${API_HOST}/api/users/${id}`)
+        return res
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export {login, logout, createAccount, getUserById}
 const getUserProfile = async () => {
     try {
         const res = await axios.get(`${API_HOST}/api/users`)

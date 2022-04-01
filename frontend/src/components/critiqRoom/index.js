@@ -4,11 +4,27 @@ import { Box, Button, Container, Rating, Typography } from "@mui/material";
 import Profile from "../profile/profile";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useLocation } from "react-router-dom";
+import { getRoomById, getUserById } from "../../apis";
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-const CritiqRoom = ({ isAdmin }) => {
-  let { state } = useLocation();
-  let { user } = state;
+const CritiqRoom = () => {
+ 
+  const [creator, setCreator] = useState()
+  const roomId = useParams().id
+
+  useEffect(() => {
+    const getAndSetCreator = async () => {
+      const room = (await getRoomById(roomId)).data.room
+      const creatorId = room.creator 
+      const creator = (await getUserById(creatorId)).data
+      setCreator(creator)
+    }
+
+    getAndSetCreator()
+
+  }, [])
 
   const ratingBoxStyle = {
     marginTop: 8,
@@ -36,7 +52,8 @@ const CritiqRoom = ({ isAdmin }) => {
   };
 
   let interaction;
-  if (isAdmin) {
+  
+  if (sessionStorage.getItem('user') === "admin") {
     interaction = (
       <Button sx={stopButtonStyle} fullWidth variant="contained">
         stop room
@@ -62,7 +79,7 @@ const CritiqRoom = ({ isAdmin }) => {
 
   return (
     <Container>
-      <Grid container>
+      {/* <Grid container>
         <Grid item xs={6}>
           <Profile {...user} />
         </Grid>
@@ -70,7 +87,7 @@ const CritiqRoom = ({ isAdmin }) => {
           <Chat subject={user} />
           {interaction}
         </Grid>
-      </Grid>
+      </Grid> */}
     </Container>
   );
 };
