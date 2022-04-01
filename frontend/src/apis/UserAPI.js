@@ -31,7 +31,6 @@ const getUserById = async (id) => {
     }
 }
 
-export {login, logout, createAccount, getUserById}
 const getUserProfile = async () => {
     try {
         const res = await axios.get(`${API_HOST}/api/users`)
@@ -81,4 +80,4 @@ const updateUserProfile = async (name, job, images, prompts, tags) => {
 
 
 
-export {login, logout, createAccount, getUserProfile, updateUserProfile}
+export {login, logout, createAccount, getUserById, getUserProfile, updateUserProfile}
