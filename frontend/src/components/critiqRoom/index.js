@@ -18,7 +18,8 @@ const CritiqRoom = () => {
     const getAndSetCreator = async () => {
       const room = (await getRoomById(roomId)).data.room
       const creatorId = room.creator 
-      const creator = (await getUserById(creatorId)).data
+      const creator = (await getUserById(creatorId))
+      console.log(creator)
       setCreator(creator)
     }
 
@@ -77,17 +78,21 @@ const CritiqRoom = () => {
     );
   }
 
+  if (!creator){
+    return ('Loading ...')
+  }
+
   return (
     <Container>
-      {/* <Grid container>
+      <Grid container>
         <Grid item xs={6}>
-          <Profile {...user} />
+          <Profile {...creator} />
         </Grid>
-        <Grid item xs={6}>
-          <Chat subject={user} />
+        {/* <Grid item xs={6}>
+          <Chat subject={creator} />
           {interaction}
-        </Grid>
-      </Grid> */}
+        </Grid> */}
+      </Grid>
     </Container>
   );
 };
