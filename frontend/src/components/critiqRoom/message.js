@@ -35,6 +35,8 @@ const Message = (props) => {
 
   const { sender, content } = props;
 
+  console.log(props)
+
   let viewerColContent = "";
   let nonViewerColContent = "";
 
@@ -51,10 +53,10 @@ const Message = (props) => {
 
   if (nonViewerColContent === "") {
     nonViewerAvatar = null;
-    viewerAvatar = <Avatar sx={viewerAvatarStyle} src={sender.images[0].img} />;
+    viewerAvatar = <Avatar sx={viewerAvatarStyle} src={sender.images[0]} />;
   } else {
     nonViewerAvatar = (
-      <Avatar sx={nonViewerAvatarStyle} src={sender.images[0].img} />
+      <Avatar sx={nonViewerAvatarStyle} src={sender.images[0]} />
     );
     viewerAvatar = null;
   }

@@ -6,7 +6,8 @@ const express = require('express');
 const router = express.Router(); // Express Router
 
 // import the user mongoose model
-const { Room } = require('../models/room')
+const { Room } = require('../models/room');
+const { User } = require('../models/user');
 
 // helpers/middlewares
 const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
@@ -79,10 +80,11 @@ router.get('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
 
 router.post('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
     try {
+        const sender = (await User.findById(req.session.user))
         const message = req.body.message
-        message.sender = req.session.user
-        console.log(message)
-        await Room.findOneAndUpdate({_id: req.body.roomId}, {$push: {messages: message}}, {new: true, useFindAndModify: false})
+        message.sender = sender
+        const r = await Room.findOneAndUpdate({_id: req.body.roomId}, {$push: {messages: message}}, {new: true, useFindAndModify: false})
+        console.log(r)
         res.status(200).send("Message Sent") 
     } catch(error) {
         log(error)

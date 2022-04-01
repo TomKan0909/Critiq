@@ -1,12 +1,10 @@
 /* Student mongoose model */
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { UserSchema } = require('./user');
 
 const MessageSchema = new mongoose.Schema({
-	sender: mongoose.Schema.Types.ObjectId, // email
+	sender: UserSchema, 
 	content: String
-	},
-	{
-		timestamps: true
 	})
 
 const RoomSchema = new mongoose.Schema({

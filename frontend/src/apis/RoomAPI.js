@@ -22,11 +22,10 @@ const getRoomById = async (roomId) => {
 }
 
 
-const getMessages = async (roomId) => {
+const fetchMessages = async (roomId) => {
     try {
         const res = await getRoomById(roomId)
-        console.log(res)
-        return res
+        return res.data.room.messages
     } catch (err) {
         console.log(err)
     }
@@ -46,4 +45,4 @@ const saveMessage = async (roomId, message) => {
 
 
 
-export { createRoom, getRoomById, saveMessage }
+export { createRoom, getRoomById, saveMessage, fetchMessages }

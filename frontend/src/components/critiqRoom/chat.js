@@ -1,8 +1,7 @@
 import * as React from "react";
 import MessageLog from "./messageLog";
 import { TextField, Typography, Box } from "@mui/material";
-import exampleUser from "../../data/exampleUser";
-import { saveMessage } from "../../apis/RoomAPI";
+import { fetchMessages, saveMessage } from "../../apis/RoomAPI";
 import { useParams } from 'react-router-dom';
 const Chat = () => {
 
@@ -10,12 +9,14 @@ const Chat = () => {
   const [messages, setMessages] = React.useState([]);
   const [text, setText] = React.useState("");
 
-
-
-  const getMessages = () => {
-    // call to server
-    return messages;
-  };
+  React.useEffect(() => {
+    const getAndSetMessages = async () => {
+      const fetchedMessages = await fetchMessages(roomId)
+      setMessages(fetchedMessages)
+      // console.log(fetchedMessages)
+    }
+    getAndSetMessages()
+  })
 
 
   const updateMessage = (event) => {
@@ -25,7 +26,7 @@ const Chat = () => {
   const sendMessage = async (event) => {
     if (event.key === "Enter" && text !== "") {
       const message = {
-        sender: exampleUser,
+        sender: "",
         content: text, 
       }
       await saveMessage(roomId, message);
@@ -60,7 +61,7 @@ const Chat = () => {
       <Typography variant="h4" sx={chatBarStyle} align="center" gutterBottom>
         critiq room
       </Typography>
-      <MessageLog messages={getMessages()} maxHeight="75%"></MessageLog>
+      <MessageLog messages={messages} maxHeight="75%"></MessageLog>
       <TextField
         sx={chatFormStyle}
         onChange={updateMessage}
