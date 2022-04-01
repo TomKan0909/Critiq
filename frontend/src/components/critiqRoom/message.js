@@ -38,14 +38,6 @@ const Message = (props) => {
   let viewerColContent = "";
   let nonViewerColContent = "";
 
-  let user;
-  if (sessionStorage.getItem("admin")) {
-    user = sessionStorage.getItem("admin");
-  } else if (sessionStorage.getItem("user")) {
-    user = sessionStorage.getItem("user");
-  }
-
-  user = JSON.parse(user);
 
   if (sender === exampleUser) {
     viewerColContent = content;
@@ -59,7 +51,7 @@ const Message = (props) => {
 
   if (nonViewerColContent === "") {
     nonViewerAvatar = null;
-    viewerAvatar = <Avatar sx={viewerAvatarStyle} src={user.images[0].img} />;
+    viewerAvatar = <Avatar sx={viewerAvatarStyle} src={sender.images[0].img} />;
   } else {
     nonViewerAvatar = (
       <Avatar sx={nonViewerAvatarStyle} src={sender.images[0].img} />

@@ -2,10 +2,10 @@ import * as React from "react";
 import MessageLog from "./messageLog";
 import { TextField, Typography, Box } from "@mui/material";
 import exampleUser from "../../data/exampleUser";
-const Chat = ({ subject }) => {
-  const [messages, setMessages] = React.useState([
-    { sender: subject, content: "hi" },
-  ]);
+const Chat = () => {
+  const [messages, setMessages] = React.useState([]);
+
+  console.log(messages)
   const [text, setText] = React.useState("");
 
   const getMessages = () => {

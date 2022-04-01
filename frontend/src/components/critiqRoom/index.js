@@ -88,10 +88,10 @@ const CritiqRoom = () => {
         <Grid item xs={6}>
           <Profile {...creator} />
         </Grid>
-        {/* <Grid item xs={6}>
+        <Grid item xs={6}>
           <Chat subject={creator} />
           {interaction}
-        </Grid> */}
+        </Grid>
       </Grid>
     </Container>
   );
