@@ -21,6 +21,7 @@ function ProfileView() {
   // user = JSON.parse(user);
 
   const [user, setUser] = useState();
+  const [openEditProfile, setOpenEditProfile] = useState(false);
 
   useEffect(() => {
     async function getUser (){
@@ -28,8 +29,9 @@ function ProfileView() {
       console.log(res);
       setUser(res);
     }
+    console.log(openEditProfile);
     getUser().catch(console.error)
-  }, [])
+  }, [openEditProfile])
 
   if (!user){
     return ('Loading ...')
@@ -46,7 +48,7 @@ function ProfileView() {
           <Profile {...user} />
         </Grid>
         <Grid item xs={4}>
-          <ButtonStack />
+          <ButtonStack openEditProfile={openEditProfile} setOpenEditProfile={setOpenEditProfile}/>
         </Grid>
       </Grid>
     </Box>

@@ -13,9 +13,9 @@ const stackButtonStackStyle = {
   display: "grid",
 };
 
-export default function ButtonStack() {
+export default function ButtonStack({openEditProfile, setOpenEditProfile}) {
   const [open, setOpen] = React.useState(false);
-  const [openEditProfile, setOpenEditProfile] = React.useState(false);
+  // const [openEditProfile, setOpenEditProfile] = React.useState(false);
   const handleOpenEditProfile = () => setOpenEditProfile(true);
   const handleCloseEditProfile = () => setOpenEditProfile(false);
   const navigate = useNavigate();

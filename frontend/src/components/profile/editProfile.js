@@ -12,7 +12,7 @@ import {
 import { ImageEdit } from './image';
 import React, {useState, useEffect} from 'react';
 import exampleUser from '../../data/exampleUser';
-import {getUserProfile} from '../../apis'
+import {getUserProfile, updateUserProfile} from '../../apis'
 
 const editProfileContext = React.createContext(null);
 
@@ -289,9 +289,10 @@ export default function EditProfile({ open, handleClose }) {
     return (<></>)
   }
 
-  console.log('prompts', prompts);
-  console.log('tags', tags);
-  console.log('images', images);
+  async function handleSave() {
+    await updateUserProfile(name, job, images, prompts, tags);
+  }
+
   return (
     <editProfileContext.Provider
       value={{
@@ -321,6 +322,7 @@ export default function EditProfile({ open, handleClose }) {
             type='submit'
             color='success'
             variant='contained'
+            onClick={handleSave}
             sx={{ margin: 'auto', display: 'block' }}>
             Save
           </Button>

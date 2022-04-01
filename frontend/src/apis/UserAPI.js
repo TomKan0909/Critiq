@@ -23,7 +23,6 @@ const createAccount = async () => {
 }
 
 const getUserProfile = async () => {
-    // TODO: add prompts
     try {
         const res = await axios.get(`${API_HOST}/api/users`)
         const data = res.data
@@ -49,5 +48,27 @@ const getUserProfile = async () => {
     }
 }
 
+const updateUserProfile = async (name, job, images, prompts, tags) => {
+    
+    try {
+        const res = await axios.patch(`${API_HOST}/api/users`, 
+            {
+                name: name,
+                occupation: job,
+                age: tags.age,
+                gender: tags.gender,
+                height: tags.height,
+                location: tags.location,
+                ethnicity: tags.ethnicity,
+                alcohol: tags.alcohol,
+                images: images,
+                prompts: prompts,
+            });
+    } catch (err) {
+        console.log(err);
+    }
+}
 
-export {login, logout, createAccount, getUserProfile}
+
+
+export {login, logout, createAccount, getUserProfile, updateUserProfile}
