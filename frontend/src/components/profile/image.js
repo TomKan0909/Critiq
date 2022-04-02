@@ -42,21 +42,24 @@ const imageEditStyle = {
 
 export function ImageEdit({ image, setImages, index }) {
   const theme = useTheme();
-  // console.log(image);
-  // const [compState, setCompState] = React.useState(
-  //   img === undefined || img === "" ? "add" : "remove"
-  // );
-  // const [image, setImage] = React.useState(img);
-
-  const setImage = (str) => {
+  const setImage = (file) => {
     setImages((previousImages) => {
       return [
         ...previousImages.slice(0, index),
-        { img: str },
+        file,
         ...previousImages.slice(index + 1),
       ];
     });
   };
+
+  const [compImage, setCompImage] = React.useState('')
+
+  React.useEffect(() => {
+    if(typeof image === 'string') {
+      setCompImage(image)
+    }
+  }, [])
+
 
   const hiddenFileInput = React.useRef(null);
 
@@ -67,17 +70,20 @@ export function ImageEdit({ image, setImages, index }) {
   const handleFileUpload = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
-      setImage(URL.createObjectURL(img));
+      setCompImage(URL.createObjectURL(img))
+      setImage(img);
     }
   };
 
   const handleCloseClick = () => {
-    setImage('');
+    setImage('')
+    setCompImage('')
   };
 
+  console.log(image)
   return (
     <Card sx={imageEditStyle}>
-      {image === undefined || image === '' ? (
+      {compImage === undefined || compImage === '' ? (
         <CardActionArea
           onClick={handleFileUploadClick}
           sx={{ height: '100%', width: '100%' }}>
@@ -113,7 +119,7 @@ export function ImageEdit({ image, setImages, index }) {
             title={'Image ' + (index + 1)}
             sx={{ margin: 'auto' }}
           />
-          <CardMedia component='img' height='100%' width='100%' image={image} />
+          <CardMedia component='img' height='100%' width='100%' image={compImage} />
         </React.Fragment>
       )}
       )

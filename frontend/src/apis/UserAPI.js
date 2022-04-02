@@ -74,7 +74,23 @@ const getUserProfile = async () => {
 }
 
 const updateUserProfile = async (name, job, images, prompts, tags) => {
-    
+
+    // upload images
+    try{
+        const formData = new FormData();
+        images.forEach((image, index) => {
+            formData.append('images ' + index.toString() , image);
+        });
+        const headers = {
+            "Content-Type": "multipart/form-data"
+        }
+        const res = await axios.patch(`${API_HOST}/api/users/images`, formData, {headers: headers})
+        return res.headers
+    } catch (err) {
+        console.log(err);
+    }
+
+    // upload other data 
     try {
         const res = await axios.patch(`${API_HOST}/api/users`, 
             {

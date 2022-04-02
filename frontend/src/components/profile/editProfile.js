@@ -19,10 +19,11 @@ const editProfileContext = React.createContext(null);
 function ImageComponent() {
   const { images, setImages } = React.useContext(editProfileContext);
   const imageProps = images.map((image, index) => ({
-    image: image.img,
+    image: image,
     setImages: setImages,
     index: index,
   }));
+
   return (
     <div>
       <ImageList
@@ -285,14 +286,14 @@ export default function EditProfile({ open, handleClose }) {
     } 
   }, [open])
 
-  if (!name || !job || !images || !prompts ||!tags){
+  if (!name || !job || !images || !prompts || !tags){
     return (<></>)
   }
 
+  console.log(images)
   async function handleSave() {
     await updateUserProfile(name, job, images, prompts, tags);
   }
-
   return (
     <editProfileContext.Provider
       value={{
