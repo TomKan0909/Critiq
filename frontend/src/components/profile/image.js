@@ -12,19 +12,28 @@ import { IconContext } from 'react-icons';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { useTheme } from '@mui/material/styles';
 
-const imageStyle = {
-  minWidth: 200,
-  minHeight: 200,
-  maxWidth: 420,
-  maxHeight: 420,
-  borderRadius: '10px',
-  marginX: 'auto',
-  marginY: '20px',
-};
+
 /* param 
   img: str or w/e that represents an image in javascript 
   state: 'default' | 'edit'; default just show image or blank if no image provided, edit shows a plus sign and card is clickable */
-export default function Image({img}) {
+export default function Image({img, sx}) {
+
+  let imageStyle = {
+    minWidth: 200,
+    minHeight: 200,
+    maxWidth: 420,
+    maxHeight: 420,
+    borderRadius: '10px',
+    marginX: 'auto',
+    marginY: '20px',
+  };
+
+  if (sx) {
+    imageStyle = {...imageStyle, ...sx}
+  };
+
+  console.log(imageStyle)
+
   return (
     <Card sx={imageStyle}>
       <CardMedia component='img' height='100%' width='100%' image={img} />

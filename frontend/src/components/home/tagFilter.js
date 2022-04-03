@@ -24,7 +24,7 @@ export default function TagFilter({ activeFilters, setActiveFilter }) {
   };
 
   return (
-    <Container component="form" sx={{ marginBottom: "50px" }}>
+    <Container component="form" sx={{ marginBottom: "80px" }}>
       <Autocomplete
         multiple
         limitTags={3}
