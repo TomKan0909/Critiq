@@ -14,8 +14,13 @@ const login = async ({username, password}) => {
     }
 }
 
-const logout = () => {
-    return
+const logout = async () => {
+    try{
+        const res = await axios.get(`${API_HOST}/api/users/logout`)
+        sessionStorage.removeItem('user');
+    } catch (err){ 
+        console.log(err);
+    }
 }
 
 const createAccount = async () => {

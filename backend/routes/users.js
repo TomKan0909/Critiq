@@ -51,10 +51,12 @@ router.post("/api/users/login", (req, res) => {
 // A route to logout a user
 router.get("/api/users/logout", (req, res) => {
     // Remove the session
+    console.log(req.session);
     req.session.destroy(error => {
         if (error) {
             res.status(500).send(error);
         } else {
+            res.clearCookie('userID')
             res.send()
         }
     });
