@@ -43,14 +43,7 @@ usernames.slice(0,5).forEach((username) => {
   users[username] = {
     name: username,
     job: job,
-    images: [
-      { img: images.pop() },
-      { img: images.pop() },
-      { img: images.pop() },
-      { img: images.pop() },
-      { img: images.pop() },
-      { img: images.pop() },
-    ],
+    images: [ images.pop(), images.pop(), images.pop(), images.pop(), images.pop(), images.pop()],
     prompts: [
       { title: job, content: username },
       { title: job, content: username },
