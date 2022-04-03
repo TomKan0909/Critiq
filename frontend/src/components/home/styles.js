@@ -11,7 +11,7 @@ export const RoastCardItem = styled(Box)(({ theme }) => ({
 
 export const RoastCardContainer = styled(Grid)(({ theme }) => ({
   borderRadius: "20px",
-  marginBottom: "90px",
+  marginBottom: "30px",
   // paddingRight: "10px",
   backgroundColor: theme.palette.secondary.main,
   // borderRight: "solid",
@@ -21,7 +21,7 @@ export const RoastCardContainer = styled(Grid)(({ theme }) => ({
 
 export const StickyProfile = styled(Container)(({ theme }) => ({
   position: "sticky",
-  top: "5vh",
+  top: "11vh",
   backgroundColor: theme.palette.secondary.main,
   border: "solid",
   borderColor: theme.palette.secondary.main,

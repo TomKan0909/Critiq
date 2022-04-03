@@ -15,8 +15,3 @@ export const containerStyle = {
 export const bottomLinkStyle = {
   margin: "5em",
 };
-
-export const LogoText = styled(Typography)(({ theme }) => ({
-  fontFamily: "Nunito",
-  margin: "50px",
-}));
