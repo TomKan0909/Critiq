@@ -138,8 +138,24 @@ router.get('/api/users/:id', mongoChecker, async (req, res) => {
 
 // A route to update user profile (no images)
 router.patch('/api/users', mongoChecker,  authenticate, multipartMiddleware, async (req, res) => {
+    
     try{
         const result = await User.findByIdAndUpdate(req.session.user, req.body);
+        res.send(result)
+    } catch (err) {
+        if (isMongoError(err)) { // check for if mongo server suddenly disconnected before this request.
+            res.status(500).send('Internal server error')
+        } else {
+            log(err)
+            res.status(400).send('Bad Request') // bad request for changing the student.
+        }
+    }
+})
+
+// A route to update user profile (no images)
+router.patch('/api/users/:id', mongoChecker,  multipartMiddleware, async (req, res) => {
+    try{
+        const result = await User.findByIdAndUpdate(req.params.id, req.body);
         res.send(result)
     } catch (err) {
         if (isMongoError(err)) { // check for if mongo server suddenly disconnected before this request.
@@ -154,10 +170,13 @@ router.patch('/api/users', mongoChecker,  authenticate, multipartMiddleware, asy
 // A route to let update users images
 router.patch('/api/users/images', mongoChecker, authenticate, multipartMiddleware, async (req, res) => {
     try{
+        // console.log(req.files)
         const keys = ['images 0','images 1','images 2','images 3','images 4','images 5']
         keys.forEach(async (key, index) => {
             if (key in req.files){ // Save an image
+                console.log(key, index)
                 const path = req.files[key].path
+                console.log(path)
                 cloudinary.uploader.upload(path, async function(result){
                         const user = await User.findById(req.session.user).exec();
                         user.images.set(index, result.url)
@@ -182,6 +201,35 @@ router.patch('/api/users/images', mongoChecker, authenticate, multipartMiddlewar
     }
 })
 
+router.patch('/api/users/images/:id', mongoChecker, multipartMiddleware, async (req, res) => {
+    try{
+        const keys = ['images 0','images 1','images 2','images 3','images 4','images 5']
+        keys.forEach(async (key, index) => {
+            if (key in req.files){ // Save an image
+                const path = req.files[key].path
+                cloudinary.uploader.upload(path, async function(result){
+                        const user = await User.findById(req.params.id).exec();
+                        user.images.set(index, result.url)
+                        user.save()
+
+                })
+            } else if (req.body[key] === ''){ // Delete an image
+                const user = await User.findById(req.params.id).exec();
+                user.images.set(index, '')
+                user.save()
+            }
+        })
+
+
+    } catch (err) {
+        if (isMongoError(err)) { // check for if mongo server suddenly disconnected before this request.
+            res.status(500).send('Internal server error')
+        } else {
+            log(err)
+            res.status(400).send('Bad Request') // bad request for changing the student.
+        }
+    }
+})
 
 // export the router
 module.exports = router
