@@ -33,7 +33,11 @@ export default function NavBar() {
     transition: "all .4s ease-in",
   };
 
-  let titleStyle = { fontFamily: "Nunito", color: trigger ? "white" : "black" };
+  let titleStyle = {
+    fontFamily: "Nunito",
+    color: trigger ? "white" : "black",
+    transition: "all .4s ease-in",
+  };
 
   const handleLogout = async () => {
     await logout();
@@ -41,7 +45,7 @@ export default function NavBar() {
   };
 
   return (
-    <AppBar elevation={trigger ? 4 : 0} sx={appBarStyle}>
+    <AppBar elevation={trigger ? 10 : 0} sx={appBarStyle}>
       <Toolbar>
         <Typography variant="h4" sx={titleStyle}>
           C R I T I Q
