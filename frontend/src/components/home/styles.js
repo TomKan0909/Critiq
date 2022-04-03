@@ -11,7 +11,7 @@ export const RoastCardItem = styled(Box)(({ theme }) => ({
 
 export const RoastCardContainer = styled(Grid)(({ theme }) => ({
   borderRadius: "20px",
-  marginBottom: "50px",
+  marginBottom: "90px",
   // paddingRight: "10px",
   backgroundColor: theme.palette.secondary.main,
   // borderRight: "solid",
