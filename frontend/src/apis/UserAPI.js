@@ -165,7 +165,6 @@ const updateUserProfile = async (name, job, images, prompts, tags) => {
             "Content-Type": "multipart/form-data"
         }
         const res = await axios.patch(`${API_HOST}/api/users/images`, formData, {headers: headers})
-        return res.headers
     } catch (err) {
         console.log(err);
     }
