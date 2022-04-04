@@ -17,7 +17,7 @@ const login = async ({username, password}) => {
 const logout = async () => {
     try{
         const res = await axios.get(`${API_HOST}/api/users/logout`)
-        sessionStorage.removeItem('user');
+        sessionStorage.clear();
     } catch (err){ 
         console.log(err);
     }
