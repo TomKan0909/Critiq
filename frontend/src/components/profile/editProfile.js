@@ -166,6 +166,13 @@ function InputForm() {
     }));
   };
 
+  const handleSchoolChange = (event) => {
+    setTags((previousTags) => ({
+      ...previousTags,
+      school: event.target.value,
+    }));
+  };
+
   const handleEthnicityChange = (event) => {
     setTags((previousTags) => ({
       ...previousTags,
@@ -227,6 +234,12 @@ function InputForm() {
           sx={{ display: 'grid', marginY: '5px' }}
           value={tags.location}
           onChange={handleLocationChange}
+        />
+        <TextField
+          label='School'
+          sx={{ display: 'grid', marginY: '5px' }}
+          value={tags.school}
+          onChange={handleSchoolChange}
         />
         <TextField
           label='Ethnicity'

@@ -183,6 +183,7 @@ const updateUserProfile = async (name, job, images, prompts, tags) => {
                 alcohol: tags.alcohol,
                 images: images,
                 prompts: prompts,
+                school: tags.school,
             });
     } catch (err) {
         console.log(err);

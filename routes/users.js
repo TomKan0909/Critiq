@@ -202,7 +202,7 @@ router.patch('/api/users/images', mongoChecker, authenticate, multipartMiddlewar
             }
         })
 
-
+        res.send('Images uploaded')
     } catch (err) {
         if (isMongoError(err)) { // check for if mongo server suddenly disconnected before this request.
             res.status(500).send('Internal server error')
