@@ -66,7 +66,12 @@ const CritiqRoom = () => {
 
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
   console.log(currentUser.isAdmin)
+
+  console.log(currentUser)
+  console.log(room)
   
+
+
   if (currentUser.isAdmin || currentUser._id === room.creator._id ) {
     interaction = (
       <Button sx={stopButtonStyle} onClick={handleStop} fullWidth variant="contained">

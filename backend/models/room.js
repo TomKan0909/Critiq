@@ -10,8 +10,8 @@ const MessageSchema = new mongoose.Schema({
 const RoomSchema = new mongoose.Schema({
 	creator: UserSchema,
 	messages: [MessageSchema],
-	active: { type: Boolean, default: true }
-})
+	active: { type: Boolean, default: true }},
+	{timestamps: true})
 
 const Room = mongoose.model('Room', RoomSchema);
 

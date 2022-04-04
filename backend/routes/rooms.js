@@ -18,9 +18,8 @@ const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
 router.post('/api/rooms', mongoChecker, async (req, res) => {
     // Save room to the database
     try {
-        const user = await User.findById(req.session.user)
         const room = new Room({
-            creator: user, 
+            creator: req.body, 
         })
         const result = await room.save() 
         res.send(result)
@@ -113,7 +112,7 @@ router.post('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
 router.patch('/api/rooms/:id/stop', mongoChecker, async (req, res) => {
     try {
         console.log(req.params.id)
-        const room = await Room.findOneAndUpdate({_id: req.params.id}, {$set: {active: false}}, {new: true, useFindAndModify: false})
+        const room = await Room.findOneAndUpdate({_id: req.params.id, active: true}, {$set: {active: false}}, {new: true, useFindAndModify: false})
         console.log(room)
         res.status(200).send("Stopped Room") 
     } catch(error) {

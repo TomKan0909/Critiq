@@ -10,12 +10,12 @@ import { createRoom, getLatestRoom } from "../../apis";
 
 export default function SideProfile({ user }) {
   const navigate = useNavigate();
-
+  console.log(user)
   const handleGoLive = async () => {
     let room = (await getLatestRoom()).data.room
     console.log(room)
     if (room === undefined || !room.active) {
-      room = (await createRoom()).data
+      room = (await createRoom(user)).data
       console.log(room)
       if (room) {
         navigate(`/critiqRoom/${room._id}`)  
@@ -27,9 +27,6 @@ export default function SideProfile({ user }) {
         navigate(`/critiqRoom/${room._id}`)  
     }
   }
-  
-  console.log(user)
-
 
   return (
     <StickyProfile>

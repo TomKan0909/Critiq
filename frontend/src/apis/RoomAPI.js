@@ -21,9 +21,9 @@ const getLatestRoomByUserId = async (userId) => {
     } 
 }
 
-const createRoom = async () => {
+const createRoom = async (user) => {
     try {
-        const res = await axios.post(`${API_HOST}/api/rooms`, {})
+        const res = await axios.post(`${API_HOST}/api/rooms`, user)
         return res
     } catch (err) {
         console.log(err)
