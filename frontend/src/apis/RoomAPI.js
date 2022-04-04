@@ -1,7 +1,16 @@
 import axios from 'axios'
 import ENV from '../config'
-const API_HOST= ENV.api_host;
+const API_HOST = ENV.api_host;
 axios.defaults.withCredentials = true; // needed for CORS
+
+const getLatestRoom = async () => {
+    try {
+        const res = await axios.get(`${API_HOST}/api/rooms/latest`, {})
+        return res
+    } catch (err) {
+        console.log(err)
+    } 
+}
 
 const createRoom = async () => {
     try {
@@ -21,7 +30,6 @@ const getRoomById = async (roomId) => {
     }
 }
 
-
 const fetchMessages = async (roomId) => {
     try {
         const res = await getRoomById(roomId)
@@ -33,8 +41,8 @@ const fetchMessages = async (roomId) => {
 
 const saveMessage = async (roomId, message) => {
     try {
-        
-        const res = await axios.post(`${API_HOST}/api/rooms/${roomId}/messages`, {roomId, message}) 
+
+        const res = await axios.post(`${API_HOST}/api/rooms/${roomId}/messages`, { roomId, message })
         return res
     } catch (err) {
         console.log(err)
@@ -44,4 +52,4 @@ const saveMessage = async (roomId, message) => {
 
 
 
-export { createRoom, getRoomById, saveMessage, fetchMessages }
+export { getLatestRoom, createRoom, getRoomById, saveMessage, fetchMessages }

@@ -7,19 +7,28 @@ import StatsCard from "./../profile/stats";
 
 import { StickyProfile } from "./styles";
 import exampleUser from "../../data/exampleUser";
-import { createRoom } from "../../apis";
+import { createRoom, getLatestRoom } from "../../apis";
 
 export default function SideProfile({ user }) {
   const navigate = useNavigate();
 
   const handleGoLive = async () => {
-    const res = await createRoom()
-    if (res) {
-      navigate(`/critiqRoom/${res.data._id}`)  
-    } else {
-      console.log('error')
+    let room = (await getLatestRoom()).data.room
+    console.log(room)
+    if (room === undefined || !room.active) {
+      room = (await createRoom()).data
+      console.log(room)
+      if (room) {
+        navigate(`/critiqRoom/${room._id}`)  
+      } else {
+        console.log('error')
+      }
+    } else if (room !== undefined && room.active) {
+        console.log(room)
+        navigate(`/critiqRoom/${room._id}`)  
     }
   }
+   
 
 
   return (
