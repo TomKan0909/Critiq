@@ -22,7 +22,7 @@ const DataSelector = (props) => {
       <Select value={source} label="Age" onChange={handleChange}>
         <MenuItem value={"None"}>None</MenuItem>
         <MenuItem value={"ageDistribution"}>Age Distribution</MenuItem>
-        <MenuItem value={"exercise"}>Exercise</MenuItem>
+        <MenuItem value={"ethnicity"}>Ethnicity</MenuItem>
       </Select>
     </FormControl>
   );

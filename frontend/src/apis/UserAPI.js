@@ -112,6 +112,41 @@ const getAllUsers = async () => {
     }
 }
 
+const getAllUsersStats = async () => { // For now gets age distribution and ethnicity distribution
+    try {
+        const userMap = await getAllUsers();
+        let labels = {ageDistribution: [0, 0, 0, 0, 0], ethnicity:{}}
+        // iterate through usermap and add age and ethnicity
+        for (const user of Object.values(userMap)){
+            const age = parseInt(user.tags.age);
+            console.log('age: ', age);
+            const ethnicity = user.tags.ethnicity;
+            if (18 <= age && age <= 23){
+                labels['ageDistribution'][0] += 1
+            } else if (23 < age && age <= 28) {
+                labels['ageDistribution'][1] += 1
+            } else if (28 < age && age <= 33) {
+                labels['ageDistribution'][2] += 1
+            } else if (33 < age && age <= 43) {
+                labels['ageDistribution'][3] += 1
+            } else{
+                labels['ageDistribution'][4] += 1
+            }
+            
+            if (!(ethnicity in labels['ethnicity'])){
+                labels['ethnicity'][ethnicity] = 1
+            } else{
+                labels['ethnicity'][ethnicity] += 1
+            }
+        }
+        return labels
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
 
 const updateUserProfile = async (name, job, images, prompts, tags) => {
 
@@ -162,4 +197,4 @@ const deleteUserByID = async (id) => {
 
 
 
-export {login, logout, createAccount, getUserById, getUserProfile, getAllUsers, updateUserProfile, deleteUserByID}
+export {login, logout, createAccount, getUserById, getUserProfile, getAllUsers, getAllUsersStats, updateUserProfile, deleteUserByID}

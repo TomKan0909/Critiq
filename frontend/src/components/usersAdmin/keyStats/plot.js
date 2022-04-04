@@ -2,27 +2,40 @@ import React from "react";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Chart } from "react-chartjs-2";
 import { Container, Typography } from "@mui/material";
+import { getAllUsersStats } from "../../../apis";
 
-const labels = {
-  ageDistribution: ["18-23", "23-28", "28-33", "38-43", "43-over"],
-  exercise: ["Daily", "Often", "Moderate", "Sometimes", "Never"],
-};
-const distribution = {
-  ageDistribution: [30, 25, 10, 5, 5, 5],
-  exercise: [15, 20, 30, 20, 15],
-};
+//https://react-chartjs-2.js.org/examples/pie-chart
 
-const titles = {
-  ageDistribution: "Age Distribution",
-  exercise: "Exercise",
+const options = {
+  ageDistribution: {
+    aspectRatio: 1.2,
+  },
+  ethnicity: {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  },
 };
 
 const types = {
   ageDistribution: "pie",
-  exercise: "bar",
+  ethnicity: "bar",
 };
 
-//https://react-chartjs-2.js.org/examples/pie-chart
+
+
+const labels = {
+  ageDistribution: ["18-23", "23-28", "28-33", "33-43", "43-over"],
+  ethnicity: ["Daily", "Often", "Moderate", "Sometimes", "Never"],
+};
+
+const titles = {
+  ageDistribution: "Age Distribution",
+  ethnicity: "Ethnicity",
+};
+
 const backgroundColor = [
   "rgba(255, 99, 132, 0.2)",
   "rgba(54, 162, 235, 0.2)",
@@ -41,53 +54,43 @@ const borderColor = [
   "rgba(255, 159, 64, 1)",
 ];
 
-const data = {
-  ageDistribution: {
-    labels: labels.ageDistribution,
-    datasets: [
-      {
-        data: distribution.ageDistribution,
-        backgroundColor: backgroundColor,
-        borderColor: borderColor,
-        borderWidth: 1,
-      },
-    ],
-  },
-  exercise: {
-    labels: labels.exercise,
-    datasets: [
-      {
-        data: distribution.exercise,
-        backgroundColor: backgroundColor,
-        borderColor: borderColor,
-        borderWidth: 1,
-      },
-    ],
-  },
-};
-
-const options = {
-  ageDistribution: {
-    aspectRatio: 1.2,
-  },
-  exercise: {
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-  },
-};
-
-const getData = () => {
-  // server call
-  return data;
-};
 
 const Plot = (props) => {
   const { source } = props;
+  const [data, setData] = React.useState({});
 
-  if (source !== "None") {
+  React.useEffect(() => {
+    async function getUserStats() {
+      const distribution = await getAllUsersStats();
+      setData({
+        ageDistribution: {
+          labels: labels.ageDistribution,
+          datasets: [
+            {
+              data: distribution.ageDistribution,
+              backgroundColor: backgroundColor,
+              borderColor: borderColor,
+              borderWidth: 1,
+            },
+          ],
+        },
+        ethnicity: {
+          labels: Object.keys(distribution.ethnicity),
+          datasets: [
+            {
+              data: Object.values(distribution.ethnicity),
+              backgroundColor: Object.keys(distribution.ethnicity).map((_, i) => backgroundColor[i % 6]),
+              borderColor: Object.keys(distribution.ethnicity).map((_, i) => borderColor[i % 6]),
+              borderWidth: 1,
+            },
+          ],
+        },
+      })
+    }
+    getUserStats()
+  }, [])
+
+  if (source !== "None" && data) {
     return (
       <Container>
         <Typography variant="h3" gutterBottom>
@@ -95,7 +98,7 @@ const Plot = (props) => {
         </Typography>
         <Chart
           type={types[source]}
-          data={getData()[source]}
+          data={data[source]}
           options={options[source]}
           redraw
         />
