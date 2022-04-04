@@ -35,7 +35,6 @@ const saveMessage = async (roomId, message) => {
     try {
         
         const res = await axios.post(`${API_HOST}/api/rooms/${roomId}/messages`, {roomId, message}) 
-        console.log(res)
         return res
     } catch (err) {
         console.log(err)

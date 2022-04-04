@@ -36,7 +36,7 @@ export default function SideProfile({ user }) {
         occupation={user.tags.occupation}
         school={user.tags.school}
       />
-      <Stack spacing="40px" sx={{ marginTop: "60px", marginBottom: "20px" }}>
+      <Stack spacing="20px" sx={{ marginTop: "40px", marginBottom: "20px" }}>
         <Button
           color="primary"
           variant="contained"

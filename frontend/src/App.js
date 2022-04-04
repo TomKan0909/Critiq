@@ -72,21 +72,21 @@ function Home() {
   return (
     <Box>
       <NavBar />
-      <Grid container justifyContent="center" spacing={2}>
-        <Grid item xs={12}>
+      <Grid container justifyContent="center" spacing={2} columns={24}>
+        <Grid item xs={24}>
           <Logo />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={24}>
           <TagFilter
             activeFilters={activeFilters}
             setActiveFilter={setActiveFilter}
           />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={13}>
           <RoastList activeFilters={activeFilters} />
         </Grid>
-        <Grid xs={1} />
-        <Grid item xs={2}>
+        <Grid item xs={2} />
+        <Grid item xs={4}>
           <SideProfile user={user} />
         </Grid>
       </Grid>

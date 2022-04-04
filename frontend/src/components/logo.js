@@ -1,8 +1,7 @@
 import React from "react";
-import { Typography, styled } from "@mui/material";
 import "./fonts.css";
-import { LogoText } from "./styles";
+import { Typography } from "@mui/material";
 
 export default function Logo() {
-  return <LogoText variant="h2">C R I T I Q</LogoText>;
+  return <Typography variant="h1" sx={{fontFamily: "Nunito", marginTop: "150px"}}>C R I T I Q</Typography>;
 }

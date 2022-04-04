@@ -1,8 +1,7 @@
-import { Chip, Container, Grid, Card, styled } from "@mui/material";
+import { Chip, Container, Grid, Card, styled, Box } from "@mui/material";
 
-export const RoastCardItem = styled(Card)(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.main,
-  padding: "20px",
+export const RoastCardItem = styled(Box)(({ theme }) => ({
+  // backgroundColor: theme.palette.secondary.main,
   // border: "solid",
   borderRadius: "10px",
   borderWidth: "3px",
@@ -12,15 +11,17 @@ export const RoastCardItem = styled(Card)(({ theme }) => ({
 
 export const RoastCardContainer = styled(Grid)(({ theme }) => ({
   borderRadius: "20px",
-  marginBottom: "100px",
-  // backgroundColor: "#EEECED",
-  border: "solid",
-  borderWidth: "3px",
+  marginBottom: "30px",
+  // paddingRight: "10px",
+  backgroundColor: theme.palette.secondary.main,
+  // borderRight: "solid",
+  borderColor: "gray",
+  borderWidth: "2px",
 }));
 
 export const StickyProfile = styled(Container)(({ theme }) => ({
   position: "sticky",
-  top: "5vh",
+  top: "11vh",
   backgroundColor: theme.palette.secondary.main,
   border: "solid",
   borderColor: theme.palette.secondary.main,

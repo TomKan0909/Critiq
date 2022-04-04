@@ -29,7 +29,8 @@ export const themeOptions = createTheme({
       main: "#388e3c",
     },
     highlight: {
-      main: green[300],
+      main: "#2e8b57",
+      contrastText: "#ffffff"
     },
     chip: {
       main: "#ffea00",

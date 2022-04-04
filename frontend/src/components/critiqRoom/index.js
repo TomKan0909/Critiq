@@ -17,7 +17,7 @@ const CritiqRoom = () => {
   useEffect(() => {
     const getAndSetCreator = async () => {
       const room = (await getRoomById(roomId)).data.room
-      const creatorId = room.creator 
+      const creatorId = room.creator._id 
       const creator = (await getUserById(creatorId))
       console.log(creator)
       setCreator(creator)
