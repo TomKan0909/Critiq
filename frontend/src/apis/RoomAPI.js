@@ -12,6 +12,15 @@ const getLatestRoom = async () => {
     } 
 }
 
+const getLatestRoomByUserId = async (userId) => {
+    try {
+        const res = await axios.get(`${API_HOST}/api/rooms/latest/${userId}`, {})
+        return res
+    } catch (err) {
+        console.log(err)
+    } 
+}
+
 const createRoom = async () => {
     try {
         const res = await axios.post(`${API_HOST}/api/rooms`, {})
@@ -23,8 +32,8 @@ const createRoom = async () => {
 
 const getAllRooms = async () => {
     try {
-        const res = await axios.get(`${API_HOST}/api/rooms`, {})
-        return res
+        const rooms = (await axios.get(`${API_HOST}/api/rooms`)).data.rooms
+        return rooms
     } catch (err) {
         console.log(err)
     }
@@ -58,4 +67,4 @@ const saveMessage = async (roomId, message) => {
     }
 }
 
-export { getLatestRoom, createRoom, getAllRooms, getRoomById, saveMessage, fetchMessages }
+export { getLatestRoom, getLatestRoomByUserId, createRoom, getAllRooms, getRoomById, saveMessage, fetchMessages }

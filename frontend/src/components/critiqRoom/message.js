@@ -35,8 +35,6 @@ const Message = (props) => {
 
   const { sender, content } = props;
 
-  console.log(props)
-
   let viewerColContent = "";
   let nonViewerColContent = "";
 

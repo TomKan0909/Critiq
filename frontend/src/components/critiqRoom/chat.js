@@ -13,7 +13,6 @@ const Chat = () => {
     const getAndSetMessages = async () => {
       try {
         const fetchedMessages = await fetchMessages(roomId)
-        console.log(fetchedMessages)
         setMessages(fetchedMessages)
       } catch (error) {
         console.log(error)

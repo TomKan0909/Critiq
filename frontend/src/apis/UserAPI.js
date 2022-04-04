@@ -27,6 +27,10 @@ const createAccount = async () => {
     return
 }
 
+const getCurrentUser = async() => {
+    
+}
+
 const getUserById = async (id) => {
     try {
         const res = await axios.get(`${API_HOST}/api/users/${id}`)

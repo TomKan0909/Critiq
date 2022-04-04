@@ -32,7 +32,6 @@ export default function Image({img, sx}) {
     imageStyle = {...imageStyle, ...sx}
   };
 
-  console.log(imageStyle)
 
   return (
     <Card sx={imageStyle}>
