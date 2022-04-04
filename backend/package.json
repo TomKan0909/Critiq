@@ -2,13 +2,17 @@
   "name": "students_server",
   "version": "1.0.0",
   "description": "",
+  "engines" : { 
+    "npm" : ">=7.0.0",
+    "node" : ">=16.0.0"
+  },
   "main": "server.js",
   "scripts": {
-    "setup": "npm install && cd client && npm install && cd ..",
+    "setup": "npm install && cd frontend && npm install && cd ..",
     "dev": "npx nodemon server.js",
     "build-run": "cd ../frontend && npm run build && cd ../backend && node server.js",
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "mongod": "mongod --dbpath db"
   },
