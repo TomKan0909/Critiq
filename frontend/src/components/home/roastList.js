@@ -3,21 +3,21 @@ import React from "react";
 import RoastCard from "./roastCard";
 import { RoastCardContainer } from "./styles";
 
-import users from "../../data/users";
-import usernames from "../../data/usernames";
+export default function RoastList({ activeFilters, rooms }) {
+  let roomsList
+  if (rooms === undefined || rooms === null) {
+      roomsList = []
+  } else {
+    roomsList = rooms
+  }
 
-export default function RoastList({ activeFilters }) {
-  const [usersList, updateUsers] = React.useState(usernames.slice(0, 30));
-
-  const checkFilter = (user) => {
+  const checkFilter = (room) => {
     if (activeFilters.length === 0) {
       return true;
     }
 
     for (const filter of activeFilters) {
-      console.log(filter);
-      console.log(users[user]);
-      if (Object.values(users[user].tags).includes(filter)) {
+      if (Object.values(room.creator).includes(filter)) {
         return true;
       }
     }
@@ -28,10 +28,10 @@ export default function RoastList({ activeFilters }) {
     <RoastCardContainer container justifyContent="space-around">
       {
         // Only get rooms who's host satisfy the tags
-        usersList
-          .filter((user) => checkFilter(user))
-          .map((user) => (
-            <RoastCard user={users[user]} />
+        roomsList
+          .filter((room) => checkFilter(room))
+          .map((room) => (
+            <RoastCard room={room} />
           ))
       }
     </RoastCardContainer>

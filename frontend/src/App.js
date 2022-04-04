@@ -19,6 +19,7 @@ import exampleUser from "./data/exampleUser";
 import adminUser from "./data/adminUser";
 import TagFilter from "./components/home/tagFilter";
 import ProtectedRoute from "./utils/protectedRoute";
+import { getAllRooms } from "./apis";
 const divStyle = { textAlign: "center" };
 
 function App() {
@@ -60,10 +61,23 @@ function Home() {
   // user = JSON.parse(user);
 
   const [user, setUser] = useState();
+  const [rooms, setRooms] = useState([])
 
   useEffect(() => {
     setUser(exampleUser);
   }, [])
+
+  useEffect(() => {
+    const getAndSetRooms = async () => {
+      try {
+        const rooms = (await getAllRooms())
+        setRooms(rooms)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getAndSetRooms()
+  }, [activeFilters])
 
   if (!user){
     return ('Loading')
@@ -83,7 +97,7 @@ function Home() {
           />
         </Grid>
         <Grid item xs={13}>
-          <RoastList activeFilters={activeFilters} />
+          <RoastList activeFilters={activeFilters} rooms={rooms}/>
         </Grid>
         <Grid item xs={2} />
         <Grid item xs={4}>

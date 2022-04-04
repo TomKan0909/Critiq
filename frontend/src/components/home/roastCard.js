@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Image from "../profile/image";
 import TextCard from "../profile/textCard";
 import { RoastCardItem } from "./styles";
+import { getLatestRoomByUserId } from "../../apis";
 
 const imageStyle = {
   marginBottom: "-20px",
@@ -21,20 +22,19 @@ const buttonStyle = {
   marginTop: "-60px"
 }
 
-export default function RoastCard({ user }) {
-  const handleClick = () => {
-    if (sessionStorage.getItem("user")) {
-      navigate("/critiqRoom", { state: { user: user } });
-    } else if (sessionStorage.getItem("admin")) {
-      navigate("/critiqRoomAdmin", { state: { user: user } });
-    }
+export default function RoastCard({ room }) {
+  const handleClick = async() => {
+    const latestRoom = (await getLatestRoomByUserId(room.creator._id))
+    navigate(`/critiqRoom/${room._id}`)  
   };
 
+
   const navigate = useNavigate();
+
   return (
     <RoastCardItem>
-      <Image img={user.images[0].img} sx={imageStyle}/>
-      <TextCard title={user.job} content={user.name} sx={textCardStyle}/>
+      <Image img={room.creator.images[0]} sx={imageStyle}/>
+      <TextCard title={room.creator.job} content={room.creator.name} sx={textCardStyle}/>
       <Button variant="contained" color="primary" onClick={handleClick} sx={buttonStyle}>
         Join
       </Button>
