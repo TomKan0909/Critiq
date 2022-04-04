@@ -6,6 +6,7 @@ const express = require('express');
 const router = express.Router(); // Express Router
 
 // import the user mongoose model
+const mongoose = require('mongoose');
 const { Room } = require('../models/room');
 const { User } = require('../models/user');
 
@@ -15,13 +16,12 @@ const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
 /** CritiqRoom resource routes **/
 // a POST route to *create* a critiqRoom
 router.post('/api/rooms', mongoChecker, async (req, res) => {
-    // Create a new critiqRoom using the critiqRoom mongoose model
-    const room = new Room({
-        creator: req.session.user, // creator id from the authenticate middleware
-    })
-
     // Save room to the database
     try {
+        const user = await User.findById(req.session.user)
+        const room = new Room({
+            creator: user, 
+        })
         const result = await room.save() 
         res.send(result)
     } catch(error) {
@@ -37,7 +37,7 @@ router.post('/api/rooms', mongoChecker, async (req, res) => {
 // a GET route to get critiqRoom history
 router.get('/api/rooms', mongoChecker, async (req, res) => {
     try {
-        const rooms = await Room.find({creator: req.body.user})
+        const rooms = await Room.find({"creator._id": req.session.user})
         res.send({ rooms }) 
     } catch(error) {
         log(error)
@@ -48,7 +48,7 @@ router.get('/api/rooms', mongoChecker, async (req, res) => {
 // a GET route to get the latest critiqRoom
 router.get('/api/rooms/latest', mongoChecker, async (req, res) => {
     try {
-        const rooms = await Room.find({creator: req.body.user})
+        const rooms = await Room.find({"creator._id": req.session.user})
         res.send({ room: rooms[rooms.length-1] }) 
     } catch(error) {
         log(error)
@@ -83,7 +83,7 @@ router.post('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
         const sender = (await User.findById(req.session.user))
         const message = req.body.message
         message.sender = sender
-        const r = await Room.findOneAndUpdate({_id: req.body.roomId}, {$push: {messages: message}}, {new: true, useFindAndModify: false})
+        await Room.findOneAndUpdate({_id: req.body.roomId}, {$push: {messages: message}}, {new: true, useFindAndModify: false})
         res.status(200).send("Message Sent") 
     } catch(error) {
         log(error)
