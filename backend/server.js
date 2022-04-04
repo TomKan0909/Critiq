@@ -137,21 +137,21 @@ app.use(critiqRoomRouter)
 // ...
 
 /*** Webpage routes below **********************************/
-// Serve the build
-// app.use(express.static(path.join(__dirname, "../frontend/build")));
+//Serve the build
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-// // All routes other than above will go to index.html
-// app.get("*", (req, res) => {
-//     // check for page routes that we expect in the frontend to provide correct status code.
-//     // const goodPageRoutes = ["/", "/login", "/dashboard"];
-//     // if (!goodPageRoutes.includes(req.url)) {
-//     //     // if url not in expected page routes, set status to 404.
-//     //     res.status(404);
-//     // }
+// All routes other than above will go to index.html
+app.get("*", (req, res) => {
+    // check for page routes that we expect in the frontend to provide correct status code.
+    // const goodPageRoutes = ["/", "/login", "/dashboard"];
+    // if (!goodPageRoutes.includes(req.url)) {
+    //     // if url not in expected page routes, set status to 404.
+    //     res.status(404);
+    // }
 
-//     // send index.html
-//     res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
-// });
+    // send index.html
+    res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+});
 
 /*************************************************/
 // Express server listening...
