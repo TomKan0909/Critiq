@@ -7,6 +7,7 @@ const Chat = ({room}) => {
 
   const roomId = useParams().id
   const [text, setText] = React.useState("");
+  const [scroll, setScroll] = React.useState(false)
 
   
   const updateMessage = (event) => {
@@ -22,8 +23,18 @@ const Chat = ({room}) => {
       }
       await saveMessage(roomId, message);
       setText("");
+      setScroll(true)
     }
   };
+
+  const getScroll = () => {
+    if (scroll) {
+      setScroll(false)
+      return true
+    } else {
+      return false
+    }
+  }
 
   const chatStyle = {
     border: "2px solid black",
@@ -51,7 +62,7 @@ const Chat = ({room}) => {
       <Typography variant="h4" sx={chatBarStyle} align="center" gutterBottom>
         critiq room
       </Typography>
-      <MessageLog messages={room.messages} maxHeight="75%"></MessageLog>
+      <MessageLog messages={room.messages} maxHeight="75%" scroll={getScroll()}></MessageLog>
       <TextField
         sx={chatFormStyle}
         onChange={updateMessage}
