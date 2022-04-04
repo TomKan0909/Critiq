@@ -23,13 +23,8 @@ const logout = async () => {
     }
 }
 
-const createAccount = async (username, password) => {
-    try {
-        const res = await axios.post(`${API_HOST}/api/users`, {username, password})
-        return res
-    } catch (err) {
-        console.log(err)
-    }
+const createAccount = async () => {
+    return
 }
 
 const getUserById = async (id) => {
