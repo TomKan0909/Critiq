@@ -103,13 +103,25 @@ router.post('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
     try {
         const message = req.body.message
         await Room.findOneAndUpdate({_id: req.body.roomId}, {$push: {messages: message}}, {new: true, useFindAndModify: false})
-        console.log('-----------------------------------');
         res.status(200).send("Message Sent") 
     } catch(error) {
         log(error)
         res.status(500).send("Internal Server Error")
     }
 })
+
+router.patch('/api/rooms/:id/stop', mongoChecker, async (req, res) => {
+    try {
+        console.log(req.params.id)
+        const room = await Room.findOneAndUpdate({_id: req.params.id}, {$set: {active: false}}, {new: true, useFindAndModify: false})
+        console.log(room)
+        res.status(200).send("Stopped Room") 
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
 
 
 module.exports = router

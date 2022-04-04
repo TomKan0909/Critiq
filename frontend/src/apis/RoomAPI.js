@@ -59,7 +59,6 @@ const fetchMessages = async (roomId) => {
 
 const saveMessage = async (roomId, message) => {
     try {
-
         const res = await axios.post(`${API_HOST}/api/rooms/${roomId}/messages`, { roomId, message })
         return res
     } catch (err) {
@@ -67,4 +66,14 @@ const saveMessage = async (roomId, message) => {
     }
 }
 
-export { getLatestRoom, getLatestRoomByUserId, createRoom, getAllRooms, getRoomById, saveMessage, fetchMessages }
+const stopRoom = async(roomId) => {
+    try {
+        console.log(roomId)
+        const res = await axios.patch(`${API_HOST}/api/rooms/${roomId}/stop`, {})
+        return res
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export { getLatestRoom, getLatestRoomByUserId, createRoom, getAllRooms, getRoomById, saveMessage, fetchMessages, stopRoom }
