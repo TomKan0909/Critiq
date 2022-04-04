@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Snackbar, Alert } from "@mui/material";
 import React from "react";
 import { deleteUserByID } from "../../apis";
 import Profile from "./profile";
@@ -13,8 +13,20 @@ const banButtonStyle = {
 };
 
 export default function AdminProfile({ ID, name, images, prompts, tags }) {
+  const [open, setOpen] = React.useState(false);
+  const [userID, setUserID] = React.useState('');
+
   const handleButtonOnClick = async () => {
-    await deleteUserByID(ID)
+    const res = await deleteUserByID(ID);
+    setUserID(res.data._id);
+    setOpen(true);
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false)
   }
   
   return (
@@ -23,6 +35,15 @@ export default function AdminProfile({ ID, name, images, prompts, tags }) {
       <Button fullWidth variant="contained" sx={banButtonStyle} onClick={handleButtonOnClick}>
         Ban User
       </Button>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            User {userID} successfully deleted 
+          </Alert>
+        </Snackbar>
     </Box>
   );
 }

@@ -91,7 +91,6 @@ const UserViewer = () => {
           <AdminProfile {...{ID: ID, ...compUsers[ID]}} />
         </Container>
       </Modal>}
-      
     </Container>
   );
 };
