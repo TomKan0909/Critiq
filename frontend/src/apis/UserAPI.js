@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { Axios } from 'axios'
 import ENV from '../config'
 const API_HOST= ENV.api_host;
 axios.defaults.withCredentials = true; // needed for CORS
@@ -146,6 +146,16 @@ const updateUserProfile = async (name, job, images, prompts, tags) => {
     }
 }
 
+const deleteUserByID = async (id) => {
+    try{
+        const res = await axios.delete(`${API_HOST}/api/users/${id}`)
+        console.log(res);
+        return res
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 
-export {login, logout, createAccount, getUserById, getUserProfile, getAllUsers, updateUserProfile}
+
+export {login, logout, createAccount, getUserById, getUserProfile, getAllUsers, updateUserProfile, deleteUserByID}

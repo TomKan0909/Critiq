@@ -135,6 +135,24 @@ router.get('/api/users/:id', mongoChecker, async (req, res) => {
     }
 })
 
+router.delete('/api/users/:id', mongoChecker, authenticate, async(req, res) => {
+    try{
+        const admin = await User.findById(req.session.user);
+        if (!admin.isAdmin){
+            res.status(400).send('Bad Request')
+        }
+        const result = await User.findByIdAndDelete(req.params.id);
+        res.send(result);
+    } catch( err ){
+        if (isMongoError(error)) { // check for if mongo server suddenly disconnected before this request.
+            res.status(500).send('Internal server error')
+        } else {
+            log(error)
+            res.status(400).send('Bad Request') // bad request for changing the student.
+        }
+    }
+})
+
 // A route to get all users
 router.get('/api/usersAll', mongoChecker,async (req, res) => {
     try{

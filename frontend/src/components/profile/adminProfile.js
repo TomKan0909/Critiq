@@ -1,5 +1,6 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
+import { deleteUserByID } from "../../apis";
 import Profile from "./profile";
 
 const banButtonStyle = {
@@ -11,11 +12,15 @@ const banButtonStyle = {
   transform: "translate(-50%, -50%)",
 };
 
-export default function AdminProfile({ name, images, prompts, tags }) {
+export default function AdminProfile({ ID, name, images, prompts, tags }) {
+  const handleButtonOnClick = async () => {
+    await deleteUserByID(ID)
+  }
+  
   return (
     <Box>
       <Profile {...{ name, images, prompts, tags }} />
-      <Button fullWidth variant="contained" sx={banButtonStyle}>
+      <Button fullWidth variant="contained" sx={banButtonStyle} onClick={handleButtonOnClick}>
         Ban User
       </Button>
     </Box>

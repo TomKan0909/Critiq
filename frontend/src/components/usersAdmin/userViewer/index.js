@@ -17,8 +17,11 @@ const UserViewer = () => {
 
 
   const handleOpen = (event, value) => {
-    console.log(value)
-    setID(value.id);
+    if (!value){
+      setID('')
+    } else{
+      setID(value.id)
+    }
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
@@ -55,7 +58,7 @@ const UserViewer = () => {
       setUsers(res)
     }
     getUsers()
-  }, [])
+  }, [open])
 
   // let profile;
 
@@ -83,11 +86,12 @@ const UserViewer = () => {
         onChange={handleOpen}
         renderInput={(params) => <TextField {...params} label="Users" />}
       />
-      <Modal open={open} onClose={handleClose}>
+      {ID && <Modal open={open} onClose={handleClose}>
         <Container sx={modalStyle}>
-          <AdminProfile {...compUsers[ID]} />
+          <AdminProfile {...{ID: ID, ...compUsers[ID]}} />
         </Container>
-      </Modal>
+      </Modal>}
+      
     </Container>
   );
 };
