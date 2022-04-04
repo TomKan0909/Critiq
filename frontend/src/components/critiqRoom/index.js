@@ -14,7 +14,9 @@ const CritiqRoom = () => {
  
   const [room, setRoom] = useState()
   const roomId = useParams().id
-
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const getAndSetRoom = async () => {
       const room = (await getRoomById(roomId)).data.room
@@ -23,15 +25,18 @@ const CritiqRoom = () => {
 
     getAndSetRoom()
 
-  }, [])
-
-  const navigate = useNavigate();
+  })
 
   const handleStop = async () => {
     const status = await stopRoom(roomId)
     console.log(status)
     navigate('/') 
   }
+
+
+  const handleRate = async () => {
+
+  };
 
   const ratingBoxStyle = {
     marginTop: 8,
@@ -64,12 +69,8 @@ const CritiqRoom = () => {
     return ('Loading')
   }
 
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
-  console.log(currentUser.isAdmin)
-
-  console.log(currentUser)
-  console.log(room)
-  
+  if (!room.active)
+    navigate('/')
 
 
   if (currentUser.isAdmin || currentUser._id === room.creator._id ) {
@@ -96,10 +97,6 @@ const CritiqRoom = () => {
     );
   }
 
-  if (!room){
-    return ('Loading ...')
-  }
-
   return (
     <Container>
       <Grid container>
@@ -107,7 +104,7 @@ const CritiqRoom = () => {
           <Profile {...room.creator} />
         </Grid>
         <Grid item xs={6}>
-          <Chat subject={room.creator} />
+          <Chat room={room} />
           {interaction}
         </Grid>
       </Grid>
