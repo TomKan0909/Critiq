@@ -111,7 +111,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60000,
+            maxAge: 600000,
             httpOnly: true
         },
         // store the sessions on the database in production
