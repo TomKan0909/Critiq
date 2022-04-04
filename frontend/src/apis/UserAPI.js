@@ -202,4 +202,4 @@ const deleteUserByID = async (id) => {
 
 
 
-export {login, logout, createAccount, getUserById, getUserProfile, getAllUsers, getAllUsersStats, updateUserProfile, deleteUserByID}
+export {login, logout, createAccount, getCurrentUser, getUserById, getUserProfile, getAllUsers, getAllUsersStats, updateUserProfile, deleteUserByID}
