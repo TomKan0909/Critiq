@@ -26,7 +26,7 @@ const chatBarStyle = {
   borderRadius: "10px",
 };
 
-export default function RoastHistoryCard({ messages, roomID, date }) {
+export default function RoastHistoryCard({room}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -42,10 +42,10 @@ export default function RoastHistoryCard({ messages, roomID, date }) {
         <CardActionArea onClick={handleOpen}>
           <CardContent>
             <Typography gutterBottom variant="h3">
-              Room #{roomID}
+              Room #{room._id}
             </Typography>
             <Typography variant="body1" color="text.secondary">
-              {date.toLocaleDateString("en-US")}
+              {room.createdAt}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Click to view history
@@ -64,8 +64,7 @@ export default function RoastHistoryCard({ messages, roomID, date }) {
             Roast Room
           </Typography>
           <MessageList
-            messages={messages}
-            viewer={exampleUser}
+            messages={room.messages}
             maxHeight="90%"
           />
         </Box>

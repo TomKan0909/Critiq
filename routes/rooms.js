@@ -45,9 +45,11 @@ router.get('/api/rooms', mongoChecker, async (req, res) => {
 })
 
 // a GET route to get critiqRoom history
-router.get('/api/rooms/history', mongoChecker, async (req, res) => {
+router.get('/api/rooms/:userid/history', mongoChecker, async (req, res) => {
     try {
-        const rooms = await Room.find({"creator._id": req.session.user})
+        console.log(req.params.userid)
+        const rooms = await Room.find({"creator._id": req.params.userid, active: false})
+        console.log(rooms)
         res.send({ rooms }) 
     } catch(error) {
         log(error)
