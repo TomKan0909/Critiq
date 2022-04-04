@@ -91,7 +91,11 @@ router.get('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
 
 router.post('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
     try {
+        console.log('session.user')
+        console.log(req.session.user)
         const sender = (await User.findById(req.session.user))
+        console.log('sender')
+        console.log(sender)
         const message = req.body.message
         message.sender = sender
         await Room.findOneAndUpdate({_id: req.body.roomId}, {$push: {messages: message}}, {new: true, useFindAndModify: false})

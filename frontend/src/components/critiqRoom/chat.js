@@ -11,9 +11,13 @@ const Chat = () => {
 
   React.useEffect(() => {
     const getAndSetMessages = async () => {
-      const fetchedMessages = await fetchMessages(roomId)
-      setMessages(fetchedMessages)
-      // console.log(fetchedMessages)
+      try {
+        const fetchedMessages = await fetchMessages(roomId)
+        console.log(fetchedMessages)
+        setMessages(fetchedMessages)
+      } catch (error) {
+        console.log(error)
+      }
     }
     getAndSetMessages()
   })

@@ -60,6 +60,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // parsing URL-encoded form 
 const session = require("express-session");
 const MongoStore = require('connect-mongo') // to store session information on the database in production
 
+// const queue = require('express-queue');
+// app.use(queue({ activeLimit: 1, queuedLimit: -1 }));
+
 
 function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
     return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
