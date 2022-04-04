@@ -41,7 +41,6 @@ const Message = (props) => {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
   console.log('sender', sender._id)
   console.log('current', currentUser._id)
-  // console.log(JSON.parse(sessionStorage.getItem("currentUser")._id == sender._id))
 
   if (sender._id === currentUser._id) {
     viewerColContent = content;
