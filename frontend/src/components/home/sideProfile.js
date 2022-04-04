@@ -6,7 +6,6 @@ import TextCard from "./../profile/textCard";
 import StatsCard from "./../profile/stats";
 
 import { StickyProfile } from "./styles";
-import exampleUser from "../../data/exampleUser";
 import { createRoom, getLatestRoom } from "../../apis";
 
 export default function SideProfile({ user }) {
@@ -28,12 +27,13 @@ export default function SideProfile({ user }) {
         navigate(`/critiqRoom/${room._id}`)  
     }
   }
-   
+  
+  console.log(user)
 
 
   return (
     <StickyProfile>
-      <Image img={user.images[0].img} />
+      <Image img={user.images[0]} />
       <TextCard title={user.job} content={user.name} />
       <StatsCard
         age={user.tags.age}
