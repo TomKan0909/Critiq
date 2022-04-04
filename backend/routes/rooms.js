@@ -34,8 +34,19 @@ router.post('/api/rooms', mongoChecker, async (req, res) => {
     }
 })
 
-// a GET route to get critiqRoom history
+// a GET route to get all active rooms
 router.get('/api/rooms', mongoChecker, async (req, res) => {
+    try {
+        const rooms = await Room.find({"active": true})
+        res.send({ rooms }) 
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+// a GET route to get critiqRoom history
+router.get('/api/rooms/history', mongoChecker, async (req, res) => {
     try {
         const rooms = await Room.find({"creator._id": req.session.user})
         res.send({ rooms }) 
