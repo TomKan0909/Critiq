@@ -78,6 +78,37 @@ const getUserProfile = async () => {
     }
 }
 
+const getAllUsers = async () => {
+    try{
+        const res = await axios.get(`${API_HOST}/api/usersAll`);
+        const data = res.data;
+        const userMap = {}
+        for (const [userId, user] of Object.entries(data)){
+            const userFormatted = {
+                name: user.name,
+                job: user.occupation,
+                images: user.images,
+                prompts: user.prompts,
+                tags: {
+                    age: user.age,
+                    gender: user.gender,
+                    height: user.height,
+                    location: user.location,
+                    ethnicity: user.ethnicity,
+                    alcohol: user.alcohol,
+                    occupation: user.occupation,
+                    school: user.school
+                }}
+            userMap[userId] = userFormatted
+        }
+        console.log(userMap);
+        return userMap
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
 const updateUserProfile = async (name, job, images, prompts, tags) => {
 
     // upload images
@@ -117,4 +148,4 @@ const updateUserProfile = async (name, job, images, prompts, tags) => {
 
 
 
-export {login, logout, createAccount, getUserById, getUserProfile, updateUserProfile}
+export {login, logout, createAccount, getUserById, getUserProfile, getAllUsers, updateUserProfile}

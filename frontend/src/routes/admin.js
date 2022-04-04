@@ -6,6 +6,7 @@ import TagFilter from "../components/home/tagFilter";
 import RoastList from "../components/home/roastList";
 import SideProfileAdmin from "../components/home/sideProfileAdmin";
 import adminUser from "../data/adminUser";
+import { getUserProfile } from "../apis";
 
 export default function HomeAdmin() {
   const [activeFilters, setActiveFilter] = React.useState([]);
@@ -15,7 +16,11 @@ export default function HomeAdmin() {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    setUser(adminUser);
+    async function getAdmin (){
+      const res = await getUserProfile();
+      setUser(res);
+    }
+    getAdmin().catch(console.error)
   }, [])
 
   if (!user){

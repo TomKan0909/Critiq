@@ -7,14 +7,18 @@ import Modal from "@mui/material/Modal";
 import Profile from "../../profile/profile";
 import users from "../../../data/users";
 import AdminProfile from "../../profile/adminProfile";
+import { getAllUsers } from "../../../apis";
 
 // https://mui.com/components/text-fields/
 const UserViewer = () => {
-  const [name, setName] = React.useState("");
+  const [ID, setID] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const [compUsers, setUsers] = React.useState({});
 
-  const handleOpen = (event) => {
-    setName(event.target.innerText);
+
+  const handleOpen = (event, value) => {
+    console.log(value)
+    setID(value.id);
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
@@ -36,25 +40,34 @@ const UserViewer = () => {
 
   const getUsernames = () => {
     // server call
-    return usernames;
+    let options = []
+  
+    for (const key in compUsers) {
+      options.push({label: compUsers[key].name, id: key})
+    }
+    
+    return options
   };
 
-  const getUsers = () => {
-    // server call
-    return users;
-  };
+  React.useEffect(() => {
+    async function getUsers () {
+      const res = await getAllUsers();
+      setUsers(res)
+    }
+    getUsers()
+  }, [])
 
-  let profile;
+  // let profile;
 
-  if (name in getUsers()) {
-    profile = (
-      <Modal open={open} onClose={handleClose}>
-        <Container sx={modalStyle}>
-          <AdminProfile {...getUsers()[name]} />
-        </Container>
-      </Modal>
-    );
-  }
+  // if (name in compUsers) {
+  //   profile = (
+  //     <Modal open={open} onClose={handleClose}>
+  //       <Container sx={modalStyle}>
+  //         <AdminProfile {...compUsers[name]} />
+  //       </Container>
+  //     </Modal>
+  //   );
+  // }
 
   // https://mui.com/components/autocomplete/
   return (
@@ -63,13 +76,18 @@ const UserViewer = () => {
         Search for a User
       </Typography>
       <Autocomplete
-        options={getUsernames().sort()}
+        options={getUsernames()}
+        getOptionLabel={option=> option.label}
         fullWidth
         sx={formTheme}
         onChange={handleOpen}
         renderInput={(params) => <TextField {...params} label="Users" />}
       />
-      {profile}
+      <Modal open={open} onClose={handleClose}>
+        <Container sx={modalStyle}>
+          <AdminProfile {...compUsers[ID]} />
+        </Container>
+      </Modal>
     </Container>
   );
 };

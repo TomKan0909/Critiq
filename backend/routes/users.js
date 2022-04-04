@@ -135,6 +135,19 @@ router.get('/api/users/:id', mongoChecker, async (req, res) => {
     }
 })
 
+// A route to get all users
+router.get('/api/usersAll', mongoChecker,async (req, res) => {
+    try{
+        const users = await User.find({isAdmin: false});
+        let userMap = {};
+        users.forEach(user => userMap[user._id] = user)
+        res.send(userMap);
+    } catch (err) {
+        log(error)
+        res.status(400).send('Bad Request');
+    }
+}) 
+
 
 // A route to update user profile (no images)
 router.patch('/api/users', mongoChecker,  authenticate, multipartMiddleware, async (req, res) => {
