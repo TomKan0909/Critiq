@@ -43,7 +43,11 @@ const CritiqRoom = () => {
   const handleStop = async () => {
     const status = await stopRoom(roomId)
     console.log(status)
-    navigate('/') 
+    if (currentUser.isAdmin){
+      navigate('/admin')
+    }else{
+      navigate('/')
+    }
   }
 
   const ratingBoxStyle = {

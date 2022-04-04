@@ -32,21 +32,17 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="profile/roastHistory" element={<RoastHistory />} />
             <Route path="/" element={<Home />} />
-            <Route path="critiqRoom">
-              <Route path=":id" element={<CritiqRoom />} />
-            </Route> 
           </Route>
           <Route element={<ProtectedRoute isAdmin={true} />}>
-            <Route
-              path="critiqRoomAdmin"
-              element={<CritiqRoom user={exampleUser} isAdmin={true} />}
-            />
             <Route path="usersAdmin" element={<UsersAdmin />} />
             <Route
               path="admin"
               element={<HomeAdmin user={adminUser} isAdmin={true} />}
             />
           </Route>
+          <Route path="critiqRoom">
+              <Route path=":id" element={<CritiqRoom />} />
+          </Route> 
           <Route path="notavailable" element={<p>Cannot access</p>} />
         </Routes>
       </div>

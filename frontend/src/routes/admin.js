@@ -6,7 +6,7 @@ import TagFilter from "../components/home/tagFilter";
 import RoastList from "../components/home/roastList";
 import SideProfileAdmin from "../components/home/sideProfileAdmin";
 import adminUser from "../data/adminUser";
-import { getUserProfile } from "../apis";
+import { getUserProfile, getAllRooms } from "../apis";
 
 export default function HomeAdmin() {
   const [activeFilters, setActiveFilter] = React.useState([]);
@@ -14,19 +14,32 @@ export default function HomeAdmin() {
   // let user = sessionStorage.getItem("admin");
   // user = JSON.parse(user);
   const [user, setUser] = useState();
+  const [rooms, setRooms] = useState([])
 
   useEffect(() => {
     async function getAdmin (){
       const res = await getUserProfile();
       setUser(res);
+      sessionStorage.setItem("currentUser", JSON.stringify({isAdmin: true, ...res}))
     }
     getAdmin().catch(console.error)
   }, [])
 
+  useEffect(() => {
+    const getAndSetRooms = async () => {
+      try {
+        const rooms = (await getAllRooms())
+        setRooms(rooms)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getAndSetRooms()
+  }, [activeFilters])
+
   if (!user){
     return ('Loading')
   }
-
 
   return (
     <Box>
@@ -42,7 +55,7 @@ export default function HomeAdmin() {
           />
         </Grid>
         <Grid item xs={5}>
-          <RoastList activeFilters={activeFilters} />
+          <RoastList activeFilters={activeFilters} rooms={rooms}/>
         </Grid>
         <Grid xs={1} />
         <Grid item xs={2}>
