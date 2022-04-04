@@ -14,15 +14,17 @@ export default function LoginForm() {
 
   const handleLogin = async () => {
     
-    const res = await login({username, password});
-    if (res.data.currentUser === "admin"){
-      sessionStorage.setItem('admin', 'admin')
-      navigate("/admin");
-    } else if (res.data.currentUser) {
-      sessionStorage.setItem('user', 'user')
-      navigate("/")
-    }else {
-      setError(true)
+    try {
+      const res = await login({username, password});
+      if (res.data.currentUser === "admin"){
+        sessionStorage.setItem('admin', 'admin')
+        navigate("/admin");
+      } else if (res.data.currentUser) {
+        sessionStorage.setItem('user', 'user')
+        navigate("/")
+      };
+    } catch {
+      setError(true);
     }
 
   };
