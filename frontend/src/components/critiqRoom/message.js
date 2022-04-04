@@ -38,8 +38,12 @@ const Message = (props) => {
   let viewerColContent = "";
   let nonViewerColContent = "";
 
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
+  console.log('sender', sender._id)
+  console.log('current', currentUser._id)
+  // console.log(JSON.parse(sessionStorage.getItem("currentUser")._id == sender._id))
 
-  if (sender.username === sessionStorage.getItem("user")) {
+  if (sender._id === currentUser._id) {
     viewerColContent = content;
     viewerMessageStyle["backgroundColor"] = "pink";
   } else {

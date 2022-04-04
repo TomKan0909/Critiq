@@ -19,7 +19,7 @@ import exampleUser from "./data/exampleUser";
 import adminUser from "./data/adminUser";
 import TagFilter from "./components/home/tagFilter";
 import ProtectedRoute from "./utils/protectedRoute";
-import { getAllRooms, getUserProfile } from "./apis";
+import { getAllRooms, getCurrentUser } from "./apis";
 const divStyle = { textAlign: "center" };
 
 function App() {
@@ -66,8 +66,9 @@ function Home() {
   useEffect(() => {
     const getAndSetUser = async () => {
       try {
-        const currentUser = await getUserProfile()
+        const currentUser = (await getCurrentUser()).data
         setUser(currentUser)
+        sessionStorage.setItem("currentUser", JSON.stringify(currentUser))
       } catch (error) {
         console.log(error)
       }

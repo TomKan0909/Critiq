@@ -36,14 +36,14 @@ export default function SideProfile({ user }) {
       <Image img={user.images[0]} />
       <TextCard title={user.job} content={user.name} />
       <StatsCard
-        age={user.tags.age}
-        gender={user.tags.gender}
-        height={user.tags.height}
-        location={user.tags.location}
-        ethnicity={user.tags.ethnicity}
-        alcohol={user.tags.alcohol}
-        occupation={user.tags.occupation}
-        school={user.tags.school}
+        age={user.age}
+        gender={user.gender}
+        height={user.height}
+        location={user.location}
+        ethnicity={user.ethnicity}
+        alcohol={user.alcohol}
+        occupation={user.occupation}
+        school={user.school}
       />
       <Stack spacing="20px" sx={{ marginTop: "40px", marginBottom: "20px" }}>
         <Button

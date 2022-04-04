@@ -28,7 +28,12 @@ const createAccount = async () => {
 }
 
 const getCurrentUser = async() => {
-    
+    try{
+        const res = await axios.get(`${API_HOST}/api/users`)
+        return res
+    } catch (err){ 
+        console.log(err);
+    }
 }
 
 const getUserById = async (id) => {
@@ -162,4 +167,4 @@ const deleteUserByID = async (id) => {
 
 
 
-export {login, logout, createAccount, getUserById, getUserProfile, getAllUsers, updateUserProfile, deleteUserByID}
+export {login, logout, createAccount, getCurrentUser, getUserById, getUserProfile, getAllUsers, updateUserProfile, deleteUserByID}
