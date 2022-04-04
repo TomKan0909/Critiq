@@ -4,7 +4,7 @@ import { Box, Button, Container, Rating, Typography } from "@mui/material";
 import Profile from "../profile/profile";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { getRoomById, stopRoom } from "../../apis";
+import { getRoomById, saveMessage, stopRoom } from "../../apis";
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -27,16 +27,24 @@ const CritiqRoom = () => {
 
   })
 
+  const handleRate = async (value) => {
+    if (value !== null && value !== undefined) {
+      const sendRating = async() => {
+        const message = {
+          sender: currentUser,
+          content: `${currentUser.name} rates: ${value} / 5`, 
+        }
+        await saveMessage(roomId, message)
+      }
+      sendRating()
+    }    
+  }
+
   const handleStop = async () => {
     const status = await stopRoom(roomId)
     console.log(status)
     navigate('/') 
   }
-
-
-  const handleRate = async () => {
-
-  };
 
   const ratingBoxStyle = {
     marginTop: 8,
@@ -85,6 +93,9 @@ const CritiqRoom = () => {
         <Typography variant="h4">leave a rating</Typography>
         <Rating
           sx={ratingStyle}
+          onChange={(event, value) => {
+            handleRate(value);
+          }}
           icon={<FavoriteIcon sx={iconStyle}></FavoriteIcon>}
           emptyIcon={
             <FavoriteBorderIcon sx={emptyIconStyle}></FavoriteBorderIcon>
