@@ -53,7 +53,11 @@ export default function NavBar() {
         <Box sx={{ flexGrow: 1 }} />
         <IconButton
           onClick={() => {
-            navigate("/");
+            if (sessionStorage.getItem('admin')){
+              navigate("/admin")
+            } else {
+              navigate("/");
+            }
           }}
           sx={iconButtonStyle}
         >
@@ -61,7 +65,11 @@ export default function NavBar() {
         </IconButton>
         <IconButton
           onClick={() => {
-            navigate("/profile");
+            if (sessionStorage.getItem('admin')){
+              navigate('/usersAdmin')
+            } else {
+             navigate("/profile"); 
+            }
           }}
           sx={iconButtonStyle}
         >
