@@ -4,28 +4,34 @@ import { Box, Button, Container, Rating, Typography } from "@mui/material";
 import Profile from "../profile/profile";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { getRoomById, getUserById } from "../../apis";
+import { getRoomById, stopRoom } from "../../apis";
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CritiqRoom = () => {
  
-  const [creator, setCreator] = useState()
+  const [room, setRoom] = useState()
   const roomId = useParams().id
 
   useEffect(() => {
-    const getAndSetCreator = async () => {
+    const getAndSetRoom = async () => {
       const room = (await getRoomById(roomId)).data.room
-      const creatorId = room.creator._id 
-      const creator = (await getUserById(creatorId))
-      console.log(creator)
-      setCreator(creator)
+      setRoom(room)
     }
 
-    getAndSetCreator()
+    getAndSetRoom()
 
   }, [])
+
+  const navigate = useNavigate();
+
+  const handleStop = async () => {
+    const status = await stopRoom(roomId)
+    console.log(status)
+    navigate('/') 
+  }
 
   const ratingBoxStyle = {
     marginTop: 8,
@@ -53,10 +59,22 @@ const CritiqRoom = () => {
   };
 
   let interaction;
+
+  if (!room) {
+    return ('Loading')
+  }
+
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
+  console.log(currentUser.isAdmin)
+
+  console.log(currentUser)
+  console.log(room)
   
-  if (sessionStorage.getItem('user') === "admin") {
+
+
+  if (currentUser.isAdmin || currentUser._id === room.creator._id ) {
     interaction = (
-      <Button sx={stopButtonStyle} fullWidth variant="contained">
+      <Button sx={stopButtonStyle} onClick={handleStop} fullWidth variant="contained">
         stop room
       </Button>
     );
@@ -78,7 +96,7 @@ const CritiqRoom = () => {
     );
   }
 
-  if (!creator){
+  if (!room){
     return ('Loading ...')
   }
 
@@ -86,10 +104,10 @@ const CritiqRoom = () => {
     <Container>
       <Grid container>
         <Grid item xs={6}>
-          <Profile {...creator} />
+          <Profile {...room.creator} />
         </Grid>
         <Grid item xs={6}>
-          <Chat subject={creator} />
+          <Chat subject={room.creator} />
           {interaction}
         </Grid>
       </Grid>

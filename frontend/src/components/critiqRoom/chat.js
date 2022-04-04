@@ -28,8 +28,9 @@ const Chat = () => {
 
   const sendMessage = async (event) => {
     if (event.key === "Enter" && text !== "") {
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
       const message = {
-        sender: "",
+        sender: currentUser,
         content: text, 
       }
       await saveMessage(roomId, message);

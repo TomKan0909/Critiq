@@ -18,9 +18,8 @@ const { mongoChecker, isMongoError } = require("./helpers/mongo_helpers");
 router.post('/api/rooms', mongoChecker, async (req, res) => {
     // Save room to the database
     try {
-        const user = await User.findById(req.session.user)
         const room = new Room({
-            creator: user, 
+            creator: req.body, 
         })
         const result = await room.save() 
         res.send(result)
@@ -101,17 +100,27 @@ router.get('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
 
 router.post('/api/rooms/:id/messages', mongoChecker, async (req, res) => {
     try {
-        const sender = (await User.findById(req.session.user))
         const message = req.body.message
-        message.sender = sender
         await Room.findOneAndUpdate({_id: req.body.roomId}, {$push: {messages: message}}, {new: true, useFindAndModify: false})
-        console.log('-----------------------------------');
         res.status(200).send("Message Sent") 
     } catch(error) {
         log(error)
         res.status(500).send("Internal Server Error")
     }
 })
+
+router.patch('/api/rooms/:id/stop', mongoChecker, async (req, res) => {
+    try {
+        console.log(req.params.id)
+        const room = await Room.findOneAndUpdate({_id: req.params.id, active: true}, {$set: {active: false}}, {new: true, useFindAndModify: false})
+        console.log(room)
+        res.status(200).send("Stopped Room") 
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
 
 
 module.exports = router

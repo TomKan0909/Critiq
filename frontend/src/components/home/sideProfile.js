@@ -10,12 +10,12 @@ import { createRoom, getLatestRoom } from "../../apis";
 
 export default function SideProfile({ user }) {
   const navigate = useNavigate();
-
+  console.log(user)
   const handleGoLive = async () => {
     let room = (await getLatestRoom()).data.room
     console.log(room)
     if (room === undefined || !room.active) {
-      room = (await createRoom()).data
+      room = (await createRoom(user)).data
       console.log(room)
       if (room) {
         navigate(`/critiqRoom/${room._id}`)  
@@ -27,23 +27,20 @@ export default function SideProfile({ user }) {
         navigate(`/critiqRoom/${room._id}`)  
     }
   }
-  
-  console.log(user)
-
 
   return (
     <StickyProfile>
       <Image img={user.images[0]} />
       <TextCard title={user.job} content={user.name} />
       <StatsCard
-        age={user.tags.age}
-        gender={user.tags.gender}
-        height={user.tags.height}
-        location={user.tags.location}
-        ethnicity={user.tags.ethnicity}
-        alcohol={user.tags.alcohol}
-        occupation={user.tags.occupation}
-        school={user.tags.school}
+        age={user.age}
+        gender={user.gender}
+        height={user.height}
+        location={user.location}
+        ethnicity={user.ethnicity}
+        alcohol={user.alcohol}
+        occupation={user.occupation}
+        school={user.school}
       />
       <Stack spacing="20px" sx={{ marginTop: "40px", marginBottom: "20px" }}>
         <Button
