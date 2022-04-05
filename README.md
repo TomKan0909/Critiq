@@ -26,7 +26,7 @@ We hope you enjoy our website and are looking forward to Phase 2!
 3. Open [http://localhost:3000](http://localhost:3000) to view the project in your browser.
 
 ---
-## User Features
+## User Features 
 Login with username: user, password: user to access the user's features
 
 | Routes | Description |
@@ -35,7 +35,7 @@ Login with username: user, password: user to access the user's features
 |  [http://localhost:3000](http://localhost:3000) | User can scroll down to look at all available Critiq rooms and click the join button. User profile will be displayed on the right hand side. There are two buttons one to view their profile and go live to create a Critiq room. At the top of a page there's a search bar where users can filter Critiq room by relevant tags. Users can logout by pressing the logout button located at the top left of the page.|
 | [http://localhost:3000/critiqRoom](http://localhost:3000/critiqRoom) | User can chat in the Critiq room and leave a rating for the host of the room |
 | [http://localhost:3000/profile](http://localhost:3000/profile) | On the right hand side the user can see how their profile will look like in a Critiq room. On the right there are three buttons. Edit Profile opens a modal where a user can change their pictures, prompts and tags. Go live creates a new Critiq room with the user. View Critiq history opens to a new tab | 
-| [http://localhost:3000/profile/roastHistory](http://localhost:3000/profile/roastHistory) | User can click on the critiq Cards to see a modal of previous comments of the Critiq room which they went live |  
+| [http://localhost:3000/profile/critiqHistory](http://localhost:3000/profile/critiqHistory) | User can click on the critiq Cards to see a modal of previous comments of the Critiq room which they went live |  
 
 ## Admin Features
 Login with username: admin, password: admin to access the admin's features
