@@ -2,6 +2,7 @@ import { Box, Button, Snackbar, Alert } from "@mui/material";
 import React from "react";
 import { deleteUserByID } from "../../apis";
 import Profile from "./profile";
+import { grey } from "@mui/material/colors";
 
 const banButtonStyle = {
   minHeight: 80,
@@ -15,6 +16,8 @@ const banButtonStyle = {
 export default function AdminProfile({ ID, name, images, prompts, tags }) {
   const [open, setOpen] = React.useState(false);
   const [userID, setUserID] = React.useState("");
+
+
 
   const handleButtonOnClick = async () => {
     const res = await deleteUserByID(ID);
