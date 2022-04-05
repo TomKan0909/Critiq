@@ -103,7 +103,7 @@ function Home() {
             />
           </Grid>
         </Grow>
-        <Slide in={inProp} direction="right" timeout={300}>
+        <Slide in={inProp} direction="up" timeout={300}>
           <Grid item xs={13}>
             <RoastList
               activeFilters={activeFilters}
