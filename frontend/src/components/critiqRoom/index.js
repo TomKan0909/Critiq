@@ -133,7 +133,7 @@ const CritiqRoom = () => {
         <Grid item xs={2} />
         <Slide in={inProp} direction="up" timeout={300}>
           <Grid item xs={4}>
-            <CritiqProfile {...room.creator} />
+            <CritiqProfile user={room.creator} />
           </Grid>
         </Slide>
         <Grid item xs={0} />

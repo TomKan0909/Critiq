@@ -41,21 +41,30 @@ const innerBoxProfileStyle = {
  * @param {tags} an object containing tags of(age, gender, height, location, ethnicity, alcohol)
  * @returns
  */
-export default function CritiqProfile({ job, name, images, prompts, tags }) {
+export default function CritiqProfile({ user }) {
   return (
     <Box sx={outerBoxProfileStyle}>
       <Box sx={innerBoxProfileStyle}>
-        <Image img={images[0]} />
-        <TextCard title={job} content={name} />
-        <StatsCard {...tags} />
-        <TextCard {...prompts[0]} />
-        <TextCard {...prompts[1]} />
-        <TextCard {...prompts[2]} />
-        <Image img={images[1]} />
-        <Image img={images[2]} />
-        <Image img={images[3]} />
-        <Image img={images[4]} />
-        <Image img={images[5]} />
+        <Image img={user.images[0]} />
+        <TextCard title={user.job} content={user.name} />
+        <StatsCard
+          age={user.age}
+          gender={user.gender}
+          height={user.height}
+          location={user.location}
+          ethnicity={user.ethnicity}
+          alcohol={user.alcohol}
+          occupation={user.occupation}
+          school={user.school}
+        />
+        <TextCard {...user.prompts[0]} />
+        <TextCard {...user.prompts[1]} />
+        <TextCard {...user.prompts[2]} />
+        <Image img={user.images[1]} />
+        <Image img={user.images[2]} />
+        <Image img={user.images[3]} />
+        <Image img={user.images[4]} />
+        <Image img={user.images[5]} />
       </Box>
     </Box>
   );
