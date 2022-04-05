@@ -26,9 +26,9 @@ export default function Profile({ name, images, prompts, tags }) {
         <TextCard {...prompts[0]} />
         <TextCard {...prompts[1]} />
         <TextCard {...prompts[2]} />
-        <Image img={images[1]} />
       </Grid>
       <Grid item xs={6}>
+        <Image img={images[1]} />
         <Image img={images[2]} />
         <Image img={images[3]} />
         <Image img={images[4]} />
