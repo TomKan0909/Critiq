@@ -30,12 +30,25 @@ export default function SideProfile({ user, inProp, setInProp }) {
     }
   };
 
-  console.log(user);
+  const imageStyle = {
+    marginBottom: "-20px",
+    borderBottomLeftRadius: "0px",
+    borderBottomRightRadius: "0px",
+  };
+
+  const textCardStyle = {
+    borderTopLeftRadius: "0px",
+    borderTopRightRadius: "0px",
+  };
 
   return (
     <StickyProfile>
-      <Image img={user.images[0]} />
-      <TextCard title={user.occupation} content={user.name} />
+      <Image img={user.images[0]} sx={imageStyle} />
+      <TextCard
+        title={user.occupation}
+        content={user.name}
+        sx={textCardStyle}
+      />
       {/*<StatsCard
         age={user.age}
         gender={user.gender}

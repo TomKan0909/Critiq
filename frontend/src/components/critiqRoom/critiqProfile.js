@@ -46,7 +46,7 @@ export default function CritiqProfile({ user }) {
     <Box sx={outerBoxProfileStyle}>
       <Box sx={innerBoxProfileStyle}>
         <Image img={user.images[0]} />
-        <TextCard title={user.job} content={user.name} />
+        <TextCard title={user.occupation} content={user.name} />
         <StatsCard
           age={user.age}
           gender={user.gender}

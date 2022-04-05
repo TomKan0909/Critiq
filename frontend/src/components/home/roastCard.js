@@ -35,7 +35,7 @@ export default function RoastCard({ room, inProp, setInProp }) {
     <RoastCardItem>
       <Image img={room.creator.images[0]} sx={imageStyle} />
       <TextCard
-        title={room.creator.job}
+        title={room.creator.occupation}
         content={room.creator.name}
         sx={textCardStyle}
       />
