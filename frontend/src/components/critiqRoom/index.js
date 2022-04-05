@@ -95,59 +95,65 @@ const CritiqRoom = () => {
     setTimeout(() => navigate("/"), 1000);
   }
 
-  if (currentUser.isAdmin || currentUser._id === room.creator._id) {
-    interaction = (
-      <Button
-        sx={stopButtonStyle}
-        onClick={handleStop}
-        fullWidth
-        variant="contained"
-      >
-        STOP ROOM
-      </Button>
-    );
-  } else {
-    interaction = (
-      <Box sx={ratingBoxStyle}>
-        <Typography variant="h4">leave a rating</Typography>
-        <Rating
-          sx={ratingStyle}
-          onChange={(event, value) => {
-            handleRate(value);
-          }}
-          icon={<FavoriteIcon sx={iconStyle}></FavoriteIcon>}
-          emptyIcon={
-            <FavoriteBorderIcon sx={emptyIconStyle}></FavoriteBorderIcon>
-          }
-          name="size-large"
-          defaultValue={0}
-          size="large"
-        />
-      </Box>
-    );
+  if (currentUser) {
+    if (currentUser.isAdmin || currentUser._id === room.creator._id) {
+      interaction = (
+        <Button
+          sx={stopButtonStyle}
+          onClick={handleStop}
+          fullWidth
+          variant="contained"
+        >
+          STOP ROOM
+        </Button>
+      );
+    } else {
+      interaction = (
+        <Box sx={ratingBoxStyle}>
+          <Typography variant="h4">leave a rating</Typography>
+          <Rating
+            sx={ratingStyle}
+            onChange={(event, value) => {
+              handleRate(value);
+            }}
+            icon={<FavoriteIcon sx={iconStyle}></FavoriteIcon>}
+            emptyIcon={
+              <FavoriteBorderIcon sx={emptyIconStyle}></FavoriteBorderIcon>
+            }
+            name="size-large"
+            defaultValue={0}
+            size="large"
+          />
+        </Box>
+      );
+    }
   }
 
-  return (
-    <Grid>
-      <NavBar inProp={inProp} setInProp={setInProp} />
-      <Grid container sx={{ marginTop: "100px" }} columns={12}>
-        <Grid item xs={2} />
-        <Slide in={inProp} direction="up" timeout={300}>
-          <Grid item xs={4}>
-            <CritiqProfile user={room.creator} />
-          </Grid>
-        </Slide>
-        <Grid item xs={0} />
-        <Fade in={inProp} timeout={800}>
-          <Grid item xs={4}>
-            <Chat room={room} />
-            {interaction}
-          </Grid>
-        </Fade>
-        <Grid item xs={1} />
+  if (currentUser) {
+    return (
+      <Grid>
+        <NavBar inProp={inProp} setInProp={setInProp} />
+        <Grid container sx={{ marginTop: "100px" }} columns={12}>
+          <Grid item xs={2} />
+          <Slide in={inProp} direction="up" timeout={300}>
+            <Grid item xs={4}>
+              <CritiqProfile user={room.creator} />
+            </Grid>
+          </Slide>
+          <Grid item xs={0} />
+          <Fade in={inProp} timeout={800}>
+            <Grid item xs={4}>
+              <Chat room={room} />
+              {interaction}
+            </Grid>
+          </Fade>
+          <Grid item xs={1} />
+        </Grid>
       </Grid>
-    </Grid>
-  );
+    );
+  } else {
+    return null;
+  }
 };
 
 export default CritiqRoom;

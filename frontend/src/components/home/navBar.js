@@ -46,10 +46,9 @@ export default function NavBar({ inProp, setInProp }) {
     transition: "all .3s ease-in",
   };
 
-  const handleLogout = async () => {
-    await logout();
+  const handleLogout = () => {
     setInProp(false);
-    setTimeout(() => navigate("/login"), 1000);
+    setTimeout(async () => { await logout() ; navigate("/login")}, 1000);
   };
 
   const handleHome = () => {
