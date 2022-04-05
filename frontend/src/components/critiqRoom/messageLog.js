@@ -7,12 +7,20 @@ const MessageLog = (props) => {
   const { messages, height, scroll, setScroll } = props;
   const messagesEndRef = React.useRef(null);
 
-  const [numMessages, setNumMessages] = React.useState(0)
   const [numMessagesPlusOne, setNumMessagesPlusOne] = React.useState(0)
+  const [firstScroll, setFirstScroll] = React.useState(false)
 
  React.useEffect(() => {
     if (scroll) {
-      setScroll(false)
+      if (!firstScroll) {
+        setFirstScroll(true)
+        setNumMessagesPlusOne(messages.length + 1)
+      } else {
+        if (messages.length >= numMessagesPlusOne) {
+          setScroll(false)
+          setFirstScroll(false)
+        }
+      }
       messagesEndRef.current?.scrollIntoView({behavior: 'auto'});
     }
   })
