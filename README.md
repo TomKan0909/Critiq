@@ -13,17 +13,35 @@ From our discussion, we have:
 We hope you enjoy our website!
 
 ---
-## Run locally  
+## Run locally 
 
-1. In the project directory first run to install all project depedencies:
+1. In the root of the project directory first run to install all project depedencies:
 
 `npm install`
 
-2. Run this command to run the app on localhost:
+2. Run this command to start the local mongo instance (make sure `mongod` is installed):
+
+`npm run mongod`
+
+3. In a new terminal, start the server
+
+`npm run start`
+
+4. In a new terminal, navigate to the `frontend` directory and install dependencies
+
+`cd ./frontend/`
+
+`npm install`
+
+5. Start the React application from the `frontend` directory
 
 `npm start`
 
-3. Open [http://localhost:3000](http://localhost:3000) to view the project in your browser.
+6. In a new terminal, run this command to run the app on localhost:
+
+`npm start`
+
+7. Open [http://localhost:3000](http://localhost:3000) to view the project in your browser.
 
 ---
 ## User Features 
