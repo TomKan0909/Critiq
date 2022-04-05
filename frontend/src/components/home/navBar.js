@@ -72,8 +72,9 @@ export default function NavBar({ inProp, setInProp }) {
   };
 
   return (
-    <Fade in={inProp} timeout={800}>
+
       <AppBar elevation={trigger ? 10 : 0} sx={appBarStyle}>
+        <Fade in={inProp} timeout={800}>
         <Toolbar>
           <Typography variant="h4" sx={titleStyle}>
             C R I T I Q
@@ -89,7 +90,8 @@ export default function NavBar({ inProp, setInProp }) {
             LOG OUT
           </IconButton>
         </Toolbar>
+        </Fade>
       </AppBar>
-    </Fade>
+
   );
 }
