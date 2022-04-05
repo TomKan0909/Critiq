@@ -3,7 +3,6 @@ import Image from "../components/profile/image";
 import TextCard from "../components/profile/textCard";
 import StatsCard from "../components/profile/stats";
 import Profile from "../components/profile/profile";
-import Grid from "@mui/material/Grid";
 import ButtonStack from "../components/profile/buttonStack";
 import { Typography } from "@mui/material";
 import React from "react";
@@ -12,6 +11,8 @@ import exampleUser from "../data/exampleUser";
 import users from "../data/users";
 import { getHistory } from "../apis";
 import NavBar from "../components/home/navBar";
+
+import { Slide, Fade, Grid } from "@mui/material";
 
 const exampleHistoryCard = {
   messages: [
@@ -41,7 +42,7 @@ function CritiqHistory() {
 
   // const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   const [rooms, setRooms] = React.useState([]);
-  const [inProp, setInProp] = React.useState(true);
+  const [inProp, setInProp] = React.useState(false);
 
   React.useEffect(() => {
     const getAndSetRooms = async () => {
@@ -49,6 +50,7 @@ function CritiqHistory() {
         const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
         const roomsHistory = (await getHistory(currentUser._id)).data.rooms;
         setRooms(roomsHistory);
+        setInProp(true);
       } catch (error) {
         console.log(error);
       }
@@ -56,20 +58,26 @@ function CritiqHistory() {
     getAndSetRooms();
   }, []);
 
+
   return (
     <React.Fragment>
-      <NavBar inProp={inProp} setInProp={setInProp} /> 
-      <Typography variant="h1" marginTop={'200px'}>Critique History</Typography>
-      <Grid container spacing={2}>
-        {
-          // Only get rooms who's host satisfy the tags
-          rooms.map((room) => (
-            <Grid item xs={4}>
-              <CritiqHistoryCard room={room} />
-            </Grid>
-          ))
-        }
-      </Grid>
+      <NavBar inProp={inProp} setInProp={setInProp} />
+      <Fade in={inProp} timeout={800}>
+        <Typography variant="h2" marginTop={"200px"}>
+          Critique History
+        </Typography>
+      </Fade>
+      <Slide direction="up" in={inProp} timeout={300}>
+        <Grid container spacing={2}>
+          {
+            rooms.map((room) => (
+              <Grid item xs={4}>
+                <CritiqHistoryCard room={room} />
+              </Grid>
+            ))
+          }
+        </Grid>
+      </Slide>
     </React.Fragment>
   );
 }
