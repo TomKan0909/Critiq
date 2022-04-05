@@ -337,16 +337,16 @@ export default function EditProfile({ open, handleClose }) {
             color='success'
             variant='contained'
             onClick={handleSave}
-            sx={{ margin: 'auto', display: 'block' }}>
+            sx={{ margin: 'auto', display: 'block', marginTop: "30px" }}>
             Save
           </Button>
           <Button
             type='submit'
-            color='info'
+            color='primary'
             variant='contained'
             onClick={handleClose}
-            sx={{ margin: 'auto', display: 'block' }}>
-            Cancel
+            sx={{ margin: 'auto', display: 'block', marginTop: "30px", marginBottom: "30px"  }}>
+            Close
           </Button>
         </Box>
       </Modal>

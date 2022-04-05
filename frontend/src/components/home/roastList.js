@@ -26,8 +26,6 @@ export default function RoastList({ activeFilters, rooms, inProp, setInProp }) {
     return false;
   };
 
-
-
   return (
     <RoastCardContainer container justifyContent="space-around">
       {/*

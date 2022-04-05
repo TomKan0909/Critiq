@@ -11,7 +11,6 @@ import { createRoom, getLatestRoom } from "../../apis";
 export default function SideProfile({ user, inProp, setInProp}) {
 
   const navigate = useNavigate();
-  console.log(user)
 
   const handleGoLive = async () => {
     let room = (await getLatestRoom()).data.room
