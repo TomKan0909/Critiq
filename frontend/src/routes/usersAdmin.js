@@ -4,23 +4,22 @@ import { Link } from "react-router-dom";
 import KeyStats from "../components/usersAdmin/keyStats";
 import UserViewer from "../components/usersAdmin/userViewer";
 import NavBar from "../components/home/navBar";
-import { Grid } from "@mui/material";
+import { Grid, Fade, Grow } from "@mui/material";
 import { bottomLinkStyle, containerStyle } from "../components/styles";
 
 const UsersAdmin = () => {
-
   const [inProp, setInProp] = React.useState(true);
 
   return (
     <Box>
-      <NavBar inProp={inProp} setInProp={setInProp}/>
+      <NavBar inProp={inProp} setInProp={setInProp} />
       <Container sx={containerStyle}>
         <Grid container>
           <Grid item xs={6}>
-            <KeyStats></KeyStats>
+            <KeyStats inProp={inProp}></KeyStats>
           </Grid>
           <Grid item xs={6}>
-            <UserViewer></UserViewer>
+            <UserViewer inProp={inProp}></UserViewer>
           </Grid>
         </Grid>
       </Container>

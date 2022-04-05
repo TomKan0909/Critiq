@@ -1,6 +1,14 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
-import { Autocomplete, Container, Typography, Grid } from "@mui/material";
+import {
+  Autocomplete,
+  Container,
+  Typography,
+  Grid,
+  Fade,
+  Grow,
+  Box,
+} from "@mui/material";
 import { titleStyle } from "../../styles";
 import usernames from "../../../data/usernames";
 import Modal from "@mui/material/Modal";
@@ -11,11 +19,10 @@ import { getAllUsers } from "../../../apis";
 import { grey } from "@mui/material/colors";
 
 // https://mui.com/components/text-fields/
-const UserViewer = () => {
+const UserViewer = ({ inProp }) => {
   const [ID, setID] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [compUsers, setUsers] = React.useState({});
-  const [inProp, setInProp] = React.useState(true);
 
   const handleOpen = (event, value) => {
     if (!value) {
@@ -56,6 +63,13 @@ const UserViewer = () => {
     },
   };
 
+  const modalWrapperStyle = {
+    width: "1600px",
+    float: "left",
+    position: "relative",
+    left: "240px",
+  };
+
   const getUsernames = () => {
     // server call
     let options = [];
@@ -90,19 +104,30 @@ const UserViewer = () => {
   // https://mui.com/components/autocomplete/
   return (
     <Container component="form">
-      <Typography sx={titleStyle} variant="h3" gutterBottom>
-        Search for a User
-      </Typography>
-      <Autocomplete
-        options={getUsernames()}
-        getOptionLabel={(option) => option.label}
-        fullWidth
-        sx={formTheme}
-        onChange={handleOpen}
-        renderInput={(params) => <TextField {...params} label="Users" />}
-      />
+      <Fade in={inProp} timeout={800}>
+        <Typography sx={titleStyle} variant="h3" gutterBottom>
+          Search for a User
+        </Typography>
+      </Fade>
+      <Grow in={inProp} timeout={500}>
+        <Box>
+          <Autocomplete
+            options={getUsernames()}
+            getOptionLabel={(option) => option.label}
+            fullWidth
+            sx={formTheme}
+            onChange={handleOpen}
+            renderInput={(params) => <TextField {...params} label="Users" />}
+          />
+        </Box>
+      </Grow>
       {ID && (
-        <Modal open={open} onClose={handleClose} justifyContent="center">
+        <Modal
+          open={open}
+          onClose={handleClose}
+          justifyContent="center"
+          sx={modalWrapperStyle}
+        >
           <Grid container justifyContent="center">
             <Grid item sx={modalStyle}>
               <AdminProfile inProp={inProp} {...{ ID: ID, ...compUsers[ID] }} />
