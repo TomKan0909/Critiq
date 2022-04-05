@@ -7,7 +7,7 @@ From our discussion, we have:
 1. We have added more cards per row on the main page
 2. Removed the horizontal scroll bar
 3. Improved visuals overall
-4. Fixed backend bugs
+4. Added navigation bar for users to easily access home and profile, as well as create a chat room.
 5. Completed backend
 
 We hope you enjoy our website!
