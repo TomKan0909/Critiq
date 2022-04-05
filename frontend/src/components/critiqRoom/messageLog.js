@@ -4,7 +4,7 @@ import Message from "./message";
 import { grey } from "@mui/material/colors";
 
 const MessageLog = (props) => {
-  const { messages, height, scroll, setScroll } = props;
+  const { messages, height, scroll, setScroll, sx } = props;
   const messagesEndRef = React.useRef(null);
 
   const [numMessagesPlusOne, setNumMessagesPlusOne] = React.useState(0)
@@ -25,9 +25,7 @@ const MessageLog = (props) => {
     }
   })
 
-
-
-  const chatStyle = {
+  let chatStyle = {
     overflowY: "scroll",
     borderBottom: "solid 3px " + grey[600],
     backgroundColor: grey[200],
@@ -45,6 +43,8 @@ const MessageLog = (props) => {
       borderRadius: "20px",
     },
   };
+
+  chatStyle = {...chatStyle, ...sx}
 
   return (
     <Box sx={chatStyle} height={height}>
