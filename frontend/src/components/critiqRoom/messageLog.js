@@ -5,7 +5,6 @@ import { grey } from "@mui/material/colors";
 
 const MessageLog = (props) => {
   const { messages, height, scroll } = props;
-  console.log(scroll);
   const messagesEndRef = React.useRef(null);
 
   const scrollToBottom = () => {

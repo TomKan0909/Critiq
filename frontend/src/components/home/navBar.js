@@ -54,7 +54,7 @@ export default function NavBar({ inProp, setInProp }) {
 
   const handleHome = () => {
     // Only navigate to home if not already there
-    if (location.pathname != "/") {
+    if (location.pathname != "/" && location.pathname != "/admin") {
       setInProp(false);
       if (sessionStorage.getItem("admin")) {
         setTimeout(() => navigate("/admin"), 1000);
@@ -73,6 +73,14 @@ export default function NavBar({ inProp, setInProp }) {
       } else {
         setTimeout(() => navigate("/profile"), 1000);
       }
+    }
+  };
+
+  const handleSiteStats = () => {
+    // admin only
+    if (location.pathname != "/usersAdmin") {
+      setInProp(false);
+      setTimeout(() => navigate("/usersAdmin"), 1000);
     }
   };
 
@@ -98,34 +106,59 @@ export default function NavBar({ inProp, setInProp }) {
     }
   };
 
-  return (
-    <AppBar elevation={trigger && inProp ? 10 : 0} sx={appBarStyle}>
-      <Fade in={inProp} timeout={800}>
-        <Toolbar>
-          <Typography variant="h4" sx={titleStyle}>
-            C R I T I Q
-          </Typography>
-          <Box sx={{ flexGrow: 1 }} />
-          <Button
-            variant="contained"
-            color="highlight"
-            onClick={handleGoLive}
-            sx={{ ...iconButtonStyle, ...{ color: "white" } }}
-            disabled={location.pathname.includes("critiqRoom")}
-          >
-            GO LIVE
-          </Button>
-          <IconButton onClick={handleHome} sx={iconButtonStyle}>
-            HOME
-          </IconButton>
-          <IconButton onClick={handleProfile} sx={iconButtonStyle}>
-            MY PROFILE
-          </IconButton>
-          <IconButton onClick={handleLogout} sx={iconButtonStyle}>
-            LOG OUT
-          </IconButton>
-        </Toolbar>
-      </Fade>
-    </AppBar>
-  );
+  // Separate Navbar for user and admin
+  if (sessionStorage.getItem("admin")) {
+    return (
+      <AppBar elevation={trigger && inProp ? 10 : 0} sx={appBarStyle}>
+        <Fade in={inProp} timeout={800}>
+          <Toolbar>
+            <Typography variant="h4" sx={titleStyle}>
+              C R I T I Q
+            </Typography>
+            <Box sx={{ flexGrow: 1 }} />
+            <IconButton onClick={handleHome} sx={iconButtonStyle}>
+              HOME
+            </IconButton>
+            <IconButton onClick={handleSiteStats} sx={iconButtonStyle}>
+              VIEW SITE STATS
+            </IconButton>
+            <IconButton onClick={handleLogout} sx={iconButtonStyle}>
+              LOG OUT
+            </IconButton>
+          </Toolbar>
+        </Fade>
+      </AppBar>
+    );
+  } else {
+    return (
+      <AppBar elevation={trigger && inProp ? 10 : 0} sx={appBarStyle}>
+        <Fade in={inProp} timeout={800}>
+          <Toolbar>
+            <Typography variant="h4" sx={titleStyle}>
+              C R I T I Q
+            </Typography>
+            <Box sx={{ flexGrow: 1 }} />
+            <Button
+              variant="contained"
+              color="highlight"
+              onClick={handleGoLive}
+              sx={{ ...iconButtonStyle, ...{ color: "white" } }}
+              disabled={location.pathname.includes("critiqRoom")}
+            >
+              GO LIVE
+            </Button>
+            <IconButton onClick={handleHome} sx={iconButtonStyle}>
+              HOME
+            </IconButton>
+            <IconButton onClick={handleProfile} sx={iconButtonStyle}>
+              MY PROFILE
+            </IconButton>
+            <IconButton onClick={handleLogout} sx={iconButtonStyle}>
+              LOG OUT
+            </IconButton>
+          </Toolbar>
+        </Fade>
+      </AppBar>
+    );
+  }
 }

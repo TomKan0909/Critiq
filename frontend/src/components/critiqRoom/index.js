@@ -53,11 +53,10 @@ const CritiqRoom = () => {
     //const status = await stopRoom(roomId);
     setTimeout(() => stopRoom(roomId), 1000);
     setInProp(false);
-    console.log("HERE");
     if (currentUser.isAdmin) {
-      setTimeout(() => navigate("/admin"), 3000);
+      setTimeout(() => navigate("/admin"), 1000);
     } else {
-      setTimeout(() => navigate("/"), 3000);
+      setTimeout(() => navigate("/"), 1000);
     }
   };
 
@@ -92,7 +91,9 @@ const CritiqRoom = () => {
     return "";
   }
 
-  if (!room.active) navigate("/");
+  if (!room.active) {
+    setTimeout(() => navigate("/"), 1000);
+  }
 
   if (currentUser.isAdmin || currentUser._id === room.creator._id) {
     interaction = (

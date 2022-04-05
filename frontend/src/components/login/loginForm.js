@@ -15,11 +15,11 @@ export default function LoginForm({ inProp, setInProp }) {
       const res = await login({ username, password });
       if (res.data.currentUser === "admin") {
         sessionStorage.setItem("admin", "admin");
+        setInProp(false);
         setTimeout(() => navigate("/admin"), 1000);
       } else if (res.data.currentUser) {
         sessionStorage.setItem("user", "user");
         setInProp(false);
-        console.log("HERE");
         setTimeout(() => navigate("/"), 1000);
       } else {
         setError(true);
