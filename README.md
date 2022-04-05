@@ -695,6 +695,9 @@ Example response
 - Chart.js
 - React-icons
 - React-router-dom
+- Cloudinary
+- MongoDB
+- Prettier
 
 
 
