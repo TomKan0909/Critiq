@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./routes/login";
 import Profile from "./routes/profile";
 import UsersAdmin from "./routes/usersAdmin";
-import RoastHistory from "./routes/roastHistory";
+import CritiqHistory from "./routes/critiqHistory";
 import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { themeOptions } from "./theme";
@@ -30,7 +30,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
             <Route path="profile" element={<Profile />} />
-            <Route path="profile/roastHistory" element={<RoastHistory />} />
+            <Route path="profile/critiqhistory" element={<CritiqHistory/>} />
             <Route path="/" element={<Home />} />
           </Route>
           <Route element={<ProtectedRoute isAdmin={true} />}>

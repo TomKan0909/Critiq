@@ -34,7 +34,7 @@ const exampleHistoryCard = {
   date: new Date(),
 };
 
-function RoastHistory() {
+function CritiqHistory() {
   /* This function will have an useEffect hook to send a authorized GET call to our server to retrieve
      user's roast history messages and pass it down as props to RoastHistoryCard
   **/
@@ -58,7 +58,8 @@ function RoastHistory() {
 
   return (
     <React.Fragment>
-      <NavBar inProp={inProp} setInProp={setInProp} />
+      <NavBar inProp={inProp} setInProp={setInProp} /> 
+      <React.Fragment></React.Fragment>
       <Typography variant="h1">Critique History</Typography>
       <Grid container spacing={2}>
         {
@@ -74,4 +75,4 @@ function RoastHistory() {
   );
 }
 
-export default RoastHistory;
+export default CritiqHistory;

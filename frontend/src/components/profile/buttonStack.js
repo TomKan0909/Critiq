@@ -52,7 +52,7 @@ export default function ButtonStack({
         size="large"
         onClick={() => {
           setInProp(false);
-          setTimeout(() => navigate("/profile/roastHistory"), 1000);
+          setTimeout(() => navigate("/profile/critiqhistory"), 1000);
         }}
       >
         View Critique History
