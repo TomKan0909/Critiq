@@ -45,8 +45,8 @@ function ProfileView() {
     borderRadius: "10px",
     backgroundColor: grey[200],
     marginBottom: "2%",
-    maxHeight: "800px",
-    marginTop: "100px",
+    maxHeight: "700px",
+    marginTop: "70px",
     overflowY: "scroll",
     "&::-webkit-scrollbar": {
       width: "0.4em",
@@ -77,10 +77,9 @@ function ProfileView() {
   return (
     <Box>
       <NavBar inProp={inProp} setInProp={setInProp} />
-      <Grid container spacing={2} sx={{ marginTop: "50px" }}>
-        <Grid item xs={2} />
+      <Grid container spacing={2} sx={{ marginTop: "50px"}} justifyContent="center">
         <Slide in={inProp} timeout={300} direction="up">
-          <Grid item xs={8} sx={profileStyle}>
+          <Grid item xs={9} sx={profileStyle}>
             <Grid container>
               <Grid item xs={4} justifyContent="center">
                 <Grid container justifyContent="center">
@@ -109,7 +108,6 @@ function ProfileView() {
             </Grid>
           </Grid>
         </Slide>
-        <Grid item xs={2} />
       </Grid>
     </Box>
   );

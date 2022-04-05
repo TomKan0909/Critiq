@@ -67,7 +67,7 @@ const UserViewer = ({ inProp }) => {
     width: "1600px",
     float: "left",
     position: "relative",
-    left: "240px",
+    left: "160px",
   };
 
   const getUsernames = () => {

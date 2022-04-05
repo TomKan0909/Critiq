@@ -31,7 +31,7 @@ const Chat = ({ room }) => {
     backgroundColor: grey[400],
     borderRadius: "10px",
     marginTop: "5%",
-    height: "65vh",
+    height: "620px",
     width: "100%",
     position: "relative",
   };
@@ -57,7 +57,7 @@ const Chat = ({ room }) => {
     <Box sx={chatStyle}>
       <MessageLog
         messages={room.messages}
-        height="530px"
+        height="500px"
         scroll={scroll}
         setScroll = {setScroll}
       />
