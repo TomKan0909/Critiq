@@ -12,6 +12,7 @@ From our discussion, we have:
 
 We hope you enjoy our website and are looking forward to Phase 2!
 
+---
 ## Run locally  
 
 1. In the project directory first run to install all project depedencies:
@@ -24,6 +25,7 @@ We hope you enjoy our website and are looking forward to Phase 2!
 
 3. Open [http://localhost:3000](http://localhost:3000) to view the project in your browser.
 
+---
 ## User Features
 Login with username: user, password: user to access the user's features
 
@@ -45,11 +47,27 @@ Login with username: admin, password: admin to access the admin's features
 | [http://localhost:3000/critiqRoomAdmin](http://localhost:3000/critiqRoomAdmin) | Admin can see the Critiq room and all live chat logs. Admin can moderate the room by click stop room if the comments get too toxic |
 | [http://localhost:3000/usersAdmin](http://localhost:3000/usersAdmin) | Admin can view the relevant statistic of all users  in the left dropdown of site. On the right side of page, admin can search up users by name and click on them to have a user modal popup. Admin can they decide whether they want to ban the user or not.
 
-## Express Routes
+---
+## **Express Routes**
 ## **User Routes**
 
 ### Login
 `post /api/users/login`
+
+Example body
+```
+{
+    username: "user",
+    password: "user"
+}
+```
+
+Example response
+```
+{
+    currentUser: "user",
+}
+```
 
 ---
 
