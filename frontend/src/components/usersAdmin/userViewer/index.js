@@ -8,6 +8,7 @@ import Profile from "../../profile/profile";
 import users from "../../../data/users";
 import AdminProfile from "../../profile/adminProfile";
 import { getAllUsers } from "../../../apis";
+import { grey } from "@mui/material/colors";
 
 // https://mui.com/components/text-fields/
 const UserViewer = () => {
@@ -32,12 +33,25 @@ const UserViewer = () => {
 
   // https://stackoverflow.com/a/67335455
   const modalStyle = {
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
+    border: "solid " + grey[400],
+    borderRadius: "10px",
+    backgroundColor: grey[200],
+    marginBottom: "2%",
+    maxHeight: "800px",
+    marginTop: "100px",
+    overflowY: "scroll",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
+      color: "black",
+    },
+    "::-webkit-scrollbar-thumb:vertical": {
+      backgroundColor: grey[600],
+      borderRadius: "20px",
+    },
+    "::-webkit-scrollbar-track": {
+      backgroundColor: grey[400],
+      borderRadius: "20px",
+    },
   };
 
   const getUsernames = () => {
@@ -74,7 +88,7 @@ const UserViewer = () => {
   // https://mui.com/components/autocomplete/
   return (
     <Container component="form">
-      <Typography sx={titleStyle} variant="h2" gutterBottom>
+      <Typography sx={titleStyle} variant="h3" gutterBottom>
         Search for a User
       </Typography>
       <Autocomplete

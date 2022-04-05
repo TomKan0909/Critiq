@@ -14,7 +14,7 @@ const KeyStats = () => {
 
   return (
     <Container>
-      <Typography sx={titleStyle} variant="h2" gutterBottom>
+      <Typography sx={titleStyle} variant="h3" gutterBottom>
         Key Statistics
       </Typography>
       <DataSelector source={source} onChange={handleChange} />

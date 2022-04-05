@@ -10,6 +10,7 @@ export const linkStyle = {
 
 export const containerStyle = {
   height: "85vh",
+  marginTop: "100px",
 };
 
 export const bottomLinkStyle = {

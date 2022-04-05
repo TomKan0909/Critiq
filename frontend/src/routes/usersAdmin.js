@@ -8,9 +8,12 @@ import { Grid } from "@mui/material";
 import { bottomLinkStyle, containerStyle } from "../components/styles";
 
 const UsersAdmin = () => {
+
+  const [inProp, setInProp] = React.useState(true);
+
   return (
     <Box>
-      <NavBar />
+      <NavBar inProp={inProp} setInProp={setInProp}/>
       <Container sx={containerStyle}>
         <Grid container>
           <Grid item xs={6}>
