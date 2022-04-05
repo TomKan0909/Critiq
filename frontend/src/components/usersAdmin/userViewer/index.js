@@ -1,6 +1,6 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
-import { Autocomplete, Container, Typography } from "@mui/material";
+import { Autocomplete, Container, Typography, Grid } from "@mui/material";
 import { titleStyle } from "../../styles";
 import usernames from "../../../data/usernames";
 import Modal from "@mui/material/Modal";
@@ -15,6 +15,7 @@ const UserViewer = () => {
   const [ID, setID] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [compUsers, setUsers] = React.useState({});
+  const [inProp, setInProp] = React.useState(true);
 
   const handleOpen = (event, value) => {
     if (!value) {
@@ -40,6 +41,7 @@ const UserViewer = () => {
     maxHeight: "800px",
     marginTop: "100px",
     overflowY: "scroll",
+    width: "1600px",
     "&::-webkit-scrollbar": {
       width: "0.4em",
       color: "black",
@@ -100,10 +102,12 @@ const UserViewer = () => {
         renderInput={(params) => <TextField {...params} label="Users" />}
       />
       {ID && (
-        <Modal open={open} onClose={handleClose}>
-          <Container sx={modalStyle}>
-            <AdminProfile {...{ ID: ID, ...compUsers[ID] }} />
-          </Container>
+        <Modal open={open} onClose={handleClose} justifyContent="center">
+          <Grid container justifyContent="center">
+            <Grid item sx={modalStyle}>
+              <AdminProfile inProp={inProp} {...{ ID: ID, ...compUsers[ID] }} />
+            </Grid>
+          </Grid>
         </Modal>
       )}
     </Container>
