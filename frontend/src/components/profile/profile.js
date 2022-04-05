@@ -23,7 +23,6 @@ export default function Profile({ name, images, prompts, tags }) {
       <Grid item xs={6}>
         <StatsCard {...tags} />
         <TextCard {...prompts[0]} />
-        <TextCard {...prompts[0]} />
         <TextCard {...prompts[1]} />
         <TextCard {...prompts[2]} />
       </Grid>
