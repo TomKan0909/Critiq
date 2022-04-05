@@ -11,6 +11,7 @@ function LoginView() {
   React.useEffect(() => {
     let isAuth = sessionStorage.getItem("user");
     console.log(isAuth);
+    document.title = "Critiq";
     if (isAuth && isAuth !== "undefined") {
       navigate("/");
     }
