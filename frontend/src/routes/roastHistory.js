@@ -11,6 +11,7 @@ import RoastHistoryCard from "../components/profile/roastHistoryCard";
 import exampleUser from "../data/exampleUser";
 import users from "../data/users";
 import { getHistory } from "../apis";
+import NavBar from "../components/home/navBar";
 
 const exampleHistoryCard = {
   messages: [
@@ -38,8 +39,9 @@ function RoastHistory() {
      user's roast history messages and pass it down as props to RoastHistoryCard
   **/
 
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  // const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   const [rooms, setRooms] = React.useState([]);
+  const [inProp, setInProp] = React.useState(true);
 
   React.useEffect(() => {
     const getAndSetRooms = async () => {
@@ -56,6 +58,7 @@ function RoastHistory() {
 
   return (
     <React.Fragment>
+      <NavBar inProp={inProp} setInProp={setInProp} />
       <Typography variant="h1">Critique History</Typography>
       <Grid container spacing={2}>
         {
