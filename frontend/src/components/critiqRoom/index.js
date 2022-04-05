@@ -9,7 +9,7 @@ import {
   Fade,
   Slide,
 } from "@mui/material";
-import Profile from "../profile/profile";
+import CritiqProfile from "./critiqProfile"
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { getRoomById, saveMessage, stopRoom } from "../../apis";
@@ -133,7 +133,7 @@ const CritiqRoom = () => {
         <Grid item xs={2} />
         <Slide in={inProp} direction="up" timeout={300}>
           <Grid item xs={4}>
-            <Profile {...room.creator} />
+            <CritiqProfile {...room.creator} />
           </Grid>
         </Slide>
         <Grid item xs={0} />

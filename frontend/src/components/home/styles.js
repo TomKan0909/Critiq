@@ -22,7 +22,7 @@ export const RoastCardContainer = styled(Grid)(({ theme }) => ({
 
 export const StickyProfile = styled(Container)(({ theme }) => ({
   position: "sticky",
-  top: "11vh",
+  top: "250px",
   backgroundColor: theme.palette.secondary.main,
   border: "solid",
   borderColor: theme.palette.secondary.main,

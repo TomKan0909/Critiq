@@ -32,7 +32,7 @@ const listStatsTopStyle = {
   display: "flex",
   flexDirection: "row",
   width: "auto",
-  overflowX: "scroll",
+  direction: "row",
 };
 
 function StatsTop({ age, gender, height, location, ethnicity, alcohol }) {
@@ -49,6 +49,17 @@ function StatsTop({ age, gender, height, location, ethnicity, alcohol }) {
     </Box>
   );
 }
+
+const ListItemWrapper = ({ text, icon }) => {
+  return (
+    <ListItem>
+    <ListItemIcon>
+      {icon}
+    </ListItemIcon>
+    <ListItemText primary={text} />
+  </ListItem>
+  );
+};
 
 const cardStatsCardStyle = { maxWidth: 420, marginX: "auto", marginY: "20px" };
 const boxStatsCardStyle = {
@@ -70,32 +81,21 @@ export default function StatsCard({
   return (
     <Card sx={cardStatsCardStyle}>
       <CardContent>
-        <StatsTop
-          {...{
-            age: age,
-            gender: gender,
-            height: height,
-            location: location,
-            ethnicity: ethnicity,
-            alcohol: alcohol,
-          }}
-        />
-        <Divider />
         <Box sx={boxStatsCardStyle}>
           <List>
-            <ListItem>
-              <ListItemIcon>
-                <RiSuitcaseLine />
-              </ListItemIcon>
-              <ListItemText primary={occupation} />
-            </ListItem>
+            <ListItemWrapper text={occupation} icon={<RiSuitcaseLine />}/>
             <Divider />
-            <ListItem>
-              <ListItemIcon>
-                <FaGraduationCap />
-              </ListItemIcon>
-              <ListItemText primary={school} />
-            </ListItem>
+            <ListItemWrapper text={school} icon={<FaGraduationCap />}/>
+            <Divider />
+            <ListItemWrapper text={age} icon={<HiOutlineCake />}/>
+            <Divider />
+            <ListItemWrapper text={height} icon={<CgProfile />}/>
+            <Divider />
+            <ListItemWrapper text={location} icon={<HiOutlineLocationMarker />}/>
+            <Divider />
+            <ListItemWrapper text={ethnicity} icon={<RiGlobeLine />}/>
+            <Divider />
+            <ListItemWrapper text={alcohol} icon={<BiWine />}/>
           </List>
         </Box>
       </CardContent>

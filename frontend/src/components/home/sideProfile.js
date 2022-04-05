@@ -36,7 +36,7 @@ export default function SideProfile({ user, inProp, setInProp}) {
     <StickyProfile>
       <Image img={user.images[0]} />
       <TextCard title={user.job} content={user.name} />
-      <StatsCard
+      {/*<StatsCard
         age={user.age}
         gender={user.gender}
         height={user.height}
@@ -45,14 +45,15 @@ export default function SideProfile({ user, inProp, setInProp}) {
         alcohol={user.alcohol}
         occupation={user.occupation}
         school={user.school}
-      />
+      />*/}
       <Stack spacing="20px" sx={{ marginTop: "40px", marginBottom: "20px" }}>
         <Button
           color="primary"
           variant="contained"
           size="large"
           onClick={() => {
-            navigate("/profile");
+            setInProp(false);
+            setTimeout(() => navigate("/profile"), 1000);
           }}
         >
           My Profile
