@@ -54,6 +54,7 @@ Login with username: admin, password: admin to access the admin's features
 ### Login
 `post /api/users/login`
 
+user is logged in and session is stored on server and cookie is stored on client
 Example body
 ```
 {
@@ -63,6 +64,7 @@ Example body
 ```
 
 Example response
+
 ```
 {
     currentUser: "user",
@@ -74,38 +76,402 @@ Example response
 ### Logout
 `get /api/users/logout`
 
+Destroys session stored on express server for current user. No body required make sure client 
+sends with a cookie
+
 ---
 
 ### Create a user
 `post /api/users`
+
+Creates a user if username not taken. Default values are given for rest of user
+
+Example body
+```
+{
+    username: 'user1',
+    password: 'user1'
+}
+```
+
+Example response
+```
+{
+    "isAdmin": false,
+    "name": "Name",
+    "images": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "age": 999,
+    "gender": "Other",
+    "height": "999cm",
+    "location": "Location",
+    "ethnicity": "Ethnicity",
+    "alcohol": "Yes",
+    "occupation": "Occupation",
+    "school": "School",
+    "_id": "624cbd9b4226ed2a4abdc44e",
+    "username": "user1",
+    "password": "$2a$10$3DI8WcVvaPe01O869bLhaeBQIo8jHpZ5C7M46RQZPM6BQAYeaHJ2u",
+    "prompts": [
+        {
+            "title": "A life goal of mine",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc44f"
+        },
+        {
+            "title": "I take pride in",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc450"
+        },
+        {
+            "title": "Best travel story",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc451"
+        }
+    ],
+    "__v": 0
+}
+```
+
 
 ---
 
 ### Get current user profile
 `get /api/users`
 
+No body required make sure client has cookie.
+
+Example response
+```
+{
+    "isAdmin": false,
+    "name": "Name",
+    "images": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "age": 999,
+    "gender": "Other",
+    "height": "999cm",
+    "location": "Location",
+    "ethnicity": "Ethnicity",
+    "alcohol": "Yes",
+    "occupation": "Occupation",
+    "school": "School",
+    "_id": "624cbd9b4226ed2a4abdc44e",
+    "username": "user1",
+    "password": "$2a$10$3DI8WcVvaPe01O869bLhaeBQIo8jHpZ5C7M46RQZPM6BQAYeaHJ2u",
+    "prompts": [
+        {
+            "title": "A life goal of mine",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc44f"
+        },
+        {
+            "title": "I take pride in",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc450"
+        },
+        {
+            "title": "Best travel story",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc451"
+        }
+    ],
+    "__v": 0
+}
+```
+
 ---
 
 ### Get user profile by id
 `get /api/users/:id`
 
+No body required. Make sure id in route is a valid userid created from a `post /api/users`.
+
+Example Response
+```
+{
+    "isAdmin": false,
+    "name": "Name",
+    "images": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "age": 999,
+    "gender": "Other",
+    "height": "999cm",
+    "location": "Location",
+    "ethnicity": "Ethnicity",
+    "alcohol": "Yes",
+    "occupation": "Occupation",
+    "school": "School",
+    "_id": "624cbd9b4226ed2a4abdc44e",
+    "username": "user1",
+    "password": "$2a$10$3DI8WcVvaPe01O869bLhaeBQIo8jHpZ5C7M46RQZPM6BQAYeaHJ2u",
+    "prompts": [
+        {
+            "title": "A life goal of mine",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc44f"
+        },
+        {
+            "title": "I take pride in",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc450"
+        },
+        {
+            "title": "Best travel story",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc451"
+        }
+    ],
+    "__v": 0
+}
+```
 ---
 
 ### Delete user profile by id
 `delete /api/users/:id`
+
+No body is required. Make sure client cookie corresponds to admin user
+
+Example Response
+```
+{
+    {
+    "isAdmin": false,
+    "name": "Name",
+    "images": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "age": 999,
+    "gender": "Other",
+    "height": "999cm",
+    "location": "Location",
+    "ethnicity": "Ethnicity",
+    "alcohol": "Yes",
+    "occupation": "Occupation",
+    "school": "School",
+    "_id": "624cbd9b4226ed2a4abdc44e",
+    "username": "user1",
+    "password": "$2a$10$3DI8WcVvaPe01O869bLhaeBQIo8jHpZ5C7M46RQZPM6BQAYeaHJ2u",
+    "prompts": [
+        {
+            "title": "A life goal of mine",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc44f"
+        },
+        {
+            "title": "I take pride in",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc450"
+        },
+        {
+            "title": "Best travel story",
+            "content": "Loren ipsum",
+            "_id": "624cbd9b4226ed2a4abdc451"
+        }
+    ],
+    "__v": 0
+}
+}
+```
 
 ---
 
 ### Get all users
 `get /api/usersAll`
 
+no body is needed.
+
+Example response
+```
+{
+    "624b74865dcb054a254ac132": {
+        "isAdmin": false,
+        "name": "Name",
+        "images": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "age": 999,
+        "gender": "Other",
+        "height": "999cm",
+        "location": "Location",
+        "ethnicity": "Ethnicity",
+        "alcohol": "Yes",
+        "occupation": "Occupation",
+        "school": "School",
+        "_id": "624b74865dcb054a254ac132",
+        "username": "3",
+        "password": "$2a$10$nyX522HvbPvASiTI2FSSDO3WmiQDmHU9LTm36qiXdtfl.67ujQTyO",
+        "prompts": [
+            {
+                "title": "A life goal of mine",
+                "content": "Loren ipsum",
+                "_id": "624b74865dcb054a254ac133"
+            },
+            {
+                "title": "I take pride in",
+                "content": "Loren ipsum",
+                "_id": "624b74865dcb054a254ac134"
+            },
+            {
+                "title": "Best travel story",
+                "content": "Loren ipsum",
+                "_id": "624b74865dcb054a254ac135"
+            }
+        ],
+        "__v": 0
+    },
+    "624b749d5dcb054a254ac13f": {
+        "isAdmin": false,
+        "name": "John",
+        "images": [
+            "http://res.cloudinary.com/dewbgfbqz/image/upload/v1649128335/jvpqes4re3a8hun353ew.jpg",
+            "http://res.cloudinary.com/dewbgfbqz/image/upload/v1649151639/gptbszif6m8kdveqseyr.jpg",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "age": 999,
+        "gender": "Male",
+        "height": "999cm",
+        "location": "Location",
+        "ethnicity": "Ethnicity",
+        "alcohol": "Yes",
+        "occupation": "Student",
+        "school": "School",
+        "_id": "624b749d5dcb054a254ac13f",
+        "username": "user",
+        "password": "$2a$10$BTjJcKBygCsIZKkMLqu.CuHVHRKiGpbYoaW9Y461mYtwij13VxW9e",
+        "prompts": [
+            {
+                "title": "A life goal of mine",
+                "content": "Loren ipsum",
+                "_id": "624b749d5dcb054a254ac140"
+            },
+            {
+                "title": "I take pride in",
+                "content": "Loren ipsum",
+                "_id": "624b749d5dcb054a254ac141"
+            },
+            {
+                "title": "Best travel story",
+                "content": "Loren ipsum",
+                "_id": "624b749d5dcb054a254ac142"
+            }
+        ],
+        "__v": 0
+    }
+}
+```
+
 ---
 ### Update user profile (non-images)
 `patch /api/users`
 
+Make sure client has cookie corresponding to user they want to update
+
+Example Body
+```
+{
+    "name": "bob",
+    "age": 23,
+    "ethnicity": "caucassian",
+    "school": "University of Toronto"
+}
+```
+
+Example Response
+```
+{
+    "isAdmin": false,
+    "name": "John",
+    "images": [
+        "http://res.cloudinary.com/dewbgfbqz/image/upload/v1649128335/jvpqes4re3a8hun353ew.jpg",
+        "http://res.cloudinary.com/dewbgfbqz/image/upload/v1649151639/gptbszif6m8kdveqseyr.jpg",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "age": 999,
+    "gender": "Male",
+    "height": "999cm",
+    "location": "Location",
+    "ethnicity": "Ethnicity",
+    "alcohol": "Yes",
+    "occupation": "Student",
+    "school": "School",
+    "_id": "624b749d5dcb054a254ac13f",
+    "username": "user",
+    "password": "$2a$10$BTjJcKBygCsIZKkMLqu.CuHVHRKiGpbYoaW9Y461mYtwij13VxW9e",
+    "prompts": [
+        {
+            "title": "A life goal of mine",
+            "content": "Loren ipsum",
+            "_id": "624b749d5dcb054a254ac140"
+        },
+        {
+            "title": "I take pride in",
+            "content": "Loren ipsum",
+            "_id": "624b749d5dcb054a254ac141"
+        },
+        {
+            "title": "Best travel story",
+            "content": "Loren ipsum",
+            "_id": "624b749d5dcb054a254ac142"
+        }
+    ],
+    "__v": 0
+}
+```
+
 ---
 ### Update user profile (images)
 `patch /api/users/images`
+
+Make sure client has cookie corresponding to user they want to update. Set header for request to `Content-Type: multipart/form-data`
+
+Example Body
+```
+form-data({
+    images 0: javascript image file object,
+    images 1: javascript image file object,
+    images 5: javascript image file object 
+})
+```
+
+Example Response
+```
+Images uploaded
+```
 
 ---
 
@@ -115,7 +481,7 @@ Example response
 `post /api/rooms`
 Example body
 ```
-{
+{   // instance of UserSchema
     creator: {
     isAdmin: false,
     name: 'John',
@@ -139,7 +505,7 @@ Example body
 
 Example response
 ```
-{
+{ // instance of RoomSchema
     creator: {
     isAdmin: false,
     name: 'John',
@@ -162,37 +528,147 @@ Example response
   createdAt: ...,
   updatedAt: ...,
   __v: 0
+  
 }
 ```
 
 ---
 ## Get all active critiqRoom
 `get /api/rooms`
+Example body
+```
+{   
+    // empty
+}
+```
+
+Example response
+```
+{ 
+    // Array of RoomSchema instances
+    [Room1, Room2, Room3]
+}
+```
 
 ---
 ## Get critiqRoom history filtered by userid
 `get /api/rooms/:userid/history`
+Example body
+```
+{   
+    // empty
+}
+```
+
+Example body
+```
+{  
+    userid: ObjectId of user
+}
+```
+
+Example response
+```
+{ 
+    // Array of RoomSchema instances, more specifically array of rooms that are inactive
+    [Room1, Room2, Room3]
+}
+```
+
+
 
 
 ---
-## Get the latest critiqRoom 
+## Get the latest critiqRoom for current logged in user (used in go live to check if active room exists)
 `get /api/rooms/latest`
+Example body
+```
+{   
+    // empty
+}
+```
+
+Example session
+```
+{   
+    user: ObjectId of user 
+}
+```
+
+Example response
+```
+{ 
+    instance of RoomSchema latest room that is active
+}
+```
 
 ---
-## Get the latest critiqRoom filtered by userid
+## Get the latest critiqRoom filtered by userid (used in join rooms)
 `get /api/rooms/latest/:userid`
+Example params
+```
+{    
+    userid: ObjectId of user 
+}
+```
+
+Example response
+```
+{ 
+    instance of RoomSchema latest room that is active for that user
+}
+```
 
 ---
 ## Get a critiqRoom by id
 `get /api/rooms/:id`
+Example params
+```
+}    
+    id: ObjectId of critiqRoom
+}
+```
+
+Example response
+```
+{ 
+    instance of RoomSchema latest room that is active for that user
+}
+```
 
 ---
-## Post a new message to a critiqRoom filtered by id
+## Post a new message to a critiqRoom filtered by id (adds new message to room)
 `post /api/rooms/:id/messages`
+Example params
+```
+{    
+    id: ObjectId of critiqRoom
+}
+```
+
+Example response
+```
+{ 
+    "Message sent"
+}
+```
 
 ---
 ## Update a critiqRoom to set it's status to stop
 `patch /api/rooms/:id/stop`
+Example params
+```
+{    
+    id: ObjectId of critiqRoom
+}
+```
+
+Example response
+```
+{ 
+    "Stopped room"
+}
+```
 
 
 ## List of Libraries Used 
