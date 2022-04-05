@@ -3,8 +3,10 @@ import React from "react";
 import RoastCard from "./roastCard";
 import { RoastCardContainer } from "./styles";
 
+import { Grow, Box, Slide } from "@mui/material";
+
 export default function RoastList({ activeFilters, rooms, inProp, setInProp }) {
-  let roomsList
+  let roomsList;
   if (rooms === undefined || rooms === null) {
       roomsList = []
   } else {
@@ -17,7 +19,6 @@ export default function RoastList({ activeFilters, rooms, inProp, setInProp }) {
     }
 
     for (const filter of activeFilters) {
-      console.log(Object.values(room.creator))
       if (Object.values(room.creator).includes(filter)) {
         return true;
       }
@@ -25,15 +26,27 @@ export default function RoastList({ activeFilters, rooms, inProp, setInProp }) {
     return false;
   };
 
+
+
   return (
     <RoastCardContainer container justifyContent="space-around">
-      {
+      {/*
         // Only get rooms who's host satisfy the tags
         roomsList
           .filter((room) => checkFilter(room))
           .map((room) => (
             <RoastCard room={room} inProp={inProp} setInProp={setInProp} />
           ))
+      */}
+      {
+        // Only get rooms who's host satisfy the tags
+        roomsList.map((room) => (
+          <Grow in={checkFilter(room)} mountOnEnter unmountOnExit timeout={300}>
+            <Box>
+              <RoastCard room={room} inProp={inProp} setInProp={setInProp} />      
+            </Box>
+          </Grow>
+        ))
       }
     </RoastCardContainer>
   );

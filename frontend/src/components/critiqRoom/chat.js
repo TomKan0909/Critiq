@@ -3,6 +3,7 @@ import MessageLog from "./messageLog";
 import { TextField, Typography, Box, Grid } from "@mui/material";
 import { saveMessage } from "../../apis/RoomAPI";
 import { useParams } from 'react-router-dom';
+import { grey } from "@mui/material/colors";
 const Chat = ({room}) => {
 
   const roomId = useParams().id
@@ -37,7 +38,7 @@ const Chat = ({room}) => {
   }
 
   const chatStyle = {
-    border: "4px solid black",
+    backgroundColor: grey[400],
     borderRadius: "10px",
     marginTop: "5%",
     height: "65vh",
@@ -57,12 +58,14 @@ const Chat = ({room}) => {
     left: "29px",
     width: "90%",
     placeholder: "Aa",
-    margin: "0px"
+    margin: "0px",
+    backgroundColor: "white",
+    borderRadius: "5px"
   };
 
   return (
     <Box sx={chatStyle}>
-      <MessageLog messages={room.messages} maxHeight="600px" scroll={getScroll()} />
+      <MessageLog messages={room.messages} height="530px" scroll={getScroll()} />
       <TextField
         sx={chatFormStyle}
         onChange={updateMessage}
