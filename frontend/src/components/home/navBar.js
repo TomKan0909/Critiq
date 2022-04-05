@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   useScrollTrigger,
   Box,
@@ -7,11 +7,26 @@ import {
   Toolbar,
   Typography,
   Fade,
+  Button,
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { logout } from "../../apis";
+import { createRoom, getLatestRoom } from "../../apis";
+import { getCurrentUser } from "../../apis";
 
 export default function NavBar({ inProp, setInProp }) {
+  const [user, setUser] = useState();
+  const getAndSetUser = async () => {
+    try {
+      const currentUser = (await getCurrentUser()).data;
+      setUser(currentUser);
+      sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  getAndSetUser();
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -71,15 +86,41 @@ export default function NavBar({ inProp, setInProp }) {
     }
   };
 
-  return (
+  const handleGoLive = async () => {
+    let room = (await getLatestRoom()).data.room;
+    console.log(room);
+    if (room === undefined || !room.active) {
+      room = (await createRoom(user)).data;
+      console.log(room);
+      if (room) {
+        setInProp(false);
+        setTimeout(() => navigate(`/critiqRoom/${room._id}`), 1000);
+      } else {
+        console.log("error");
+      }
+    } else if (room !== undefined && room.active) {
+      console.log(room);
+      setInProp(false);
+      setTimeout(() => navigate(`/critiqRoom/${room._id}`), 1000);
+    }
+  };
 
-      <AppBar elevation={trigger ? 10 : 0} sx={appBarStyle}>
-        <Fade in={inProp} timeout={800}>
+  return (
+    <AppBar elevation={trigger ? 10 : 0} sx={appBarStyle}>
+      <Fade in={inProp} timeout={800}>
         <Toolbar>
           <Typography variant="h4" sx={titleStyle}>
             C R I T I Q
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
+          <Button
+            variant="contained"
+            color="highlight"
+            onClick={handleGoLive}
+            sx={{ ...iconButtonStyle, ...{ color: "white" } }}
+          >
+            GO LIVE
+          </Button>
           <IconButton onClick={handleHome} sx={iconButtonStyle}>
             HOME
           </IconButton>
@@ -90,8 +131,7 @@ export default function NavBar({ inProp, setInProp }) {
             LOG OUT
           </IconButton>
         </Toolbar>
-        </Fade>
-      </AppBar>
-
+      </Fade>
+    </AppBar>
   );
 }
