@@ -24,8 +24,6 @@ const types = {
   ethnicity: "bar",
 };
 
-
-
 const labels = {
   ageDistribution: ["18-23", "23-28", "28-33", "33-43", "43-over"],
   ethnicity: ["Daily", "Often", "Moderate", "Sometimes", "Never"],
@@ -54,7 +52,6 @@ const borderColor = [
   "rgba(255, 159, 64, 1)",
 ];
 
-
 const Plot = (props) => {
   const { source } = props;
   const [data, setData] = React.useState({});
@@ -79,16 +76,20 @@ const Plot = (props) => {
           datasets: [
             {
               data: Object.values(distribution.ethnicity),
-              backgroundColor: Object.keys(distribution.ethnicity).map((_, i) => backgroundColor[i % 6]),
-              borderColor: Object.keys(distribution.ethnicity).map((_, i) => borderColor[i % 6]),
+              backgroundColor: Object.keys(distribution.ethnicity).map(
+                (_, i) => backgroundColor[i % 6]
+              ),
+              borderColor: Object.keys(distribution.ethnicity).map(
+                (_, i) => borderColor[i % 6]
+              ),
               borderWidth: 1,
             },
           ],
         },
-      })
+      });
     }
-    getUserStats()
-  }, [])
+    getUserStats();
+  }, []);
 
   if (source !== "None" && data) {
     return (

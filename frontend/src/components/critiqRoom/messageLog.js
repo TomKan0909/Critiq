@@ -4,16 +4,16 @@ import Message from "./message";
 import { grey } from "@mui/material/colors";
 
 const MessageLog = (props) => {
-  const { messages, height, scroll} = props;
-  console.log(scroll)
-  const messagesEndRef = React.useRef(null)
+  const { messages, height, scroll } = props;
+  console.log(scroll);
+  const messagesEndRef = React.useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
-  }
+    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
+  };
 
   if (scroll) {
-    scrollToBottom()
+    scrollToBottom();
   }
 
   const chatStyle = {
@@ -27,12 +27,12 @@ const MessageLog = (props) => {
     },
     "::-webkit-scrollbar-thumb:vertical": {
       backgroundColor: grey[600],
-      borderRadius: "20px"
+      borderRadius: "20px",
     },
     "::-webkit-scrollbar-track": {
       backgroundColor: grey[400],
-      borderRadius: "20px"
-    }
+      borderRadius: "20px",
+    },
   };
 
   return (

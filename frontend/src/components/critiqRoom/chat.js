@@ -2,40 +2,38 @@ import * as React from "react";
 import MessageLog from "./messageLog";
 import { TextField, Typography, Box, Grid } from "@mui/material";
 import { saveMessage } from "../../apis/RoomAPI";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { grey } from "@mui/material/colors";
-const Chat = ({room}) => {
-
-  const roomId = useParams().id
+const Chat = ({ room }) => {
+  const roomId = useParams().id;
   const [text, setText] = React.useState("");
-  const [scroll, setScroll] = React.useState(false)
+  const [scroll, setScroll] = React.useState(false);
 
-  
   const updateMessage = (event) => {
     setText(event.target.value);
   };
 
   const sendMessage = async (event) => {
     if (event.key === "Enter" && text !== "") {
-      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
       const message = {
         sender: currentUser,
-        content: text, 
-      }
+        content: text,
+      };
       await saveMessage(roomId, message);
       setText("");
-      setScroll(true)
+      setScroll(true);
     }
   };
 
   const getScroll = () => {
     if (scroll) {
-      setScroll(false)
-      return true
+      setScroll(false);
+      return true;
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
   const chatStyle = {
     backgroundColor: grey[400],
@@ -60,12 +58,16 @@ const Chat = ({room}) => {
     placeholder: "Aa",
     margin: "0px",
     backgroundColor: "white",
-    borderRadius: "5px"
+    borderRadius: "5px",
   };
 
   return (
     <Box sx={chatStyle}>
-      <MessageLog messages={room.messages} height="530px" scroll={getScroll()} />
+      <MessageLog
+        messages={room.messages}
+        height="530px"
+        scroll={getScroll()}
+      />
       <TextField
         sx={chatFormStyle}
         onChange={updateMessage}

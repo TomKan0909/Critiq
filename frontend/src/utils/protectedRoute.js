@@ -1,10 +1,9 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = ({
-  redirectPath = '/notavailable',
+  redirectPath = "/notavailable",
   isAdmin = false,
 }) => {
-
   if (isAdmin && sessionStorage.getItem("user")) {
     return <Navigate to={redirectPath} replace />;
   } else if (!isAdmin && sessionStorage.getItem("admin")) {

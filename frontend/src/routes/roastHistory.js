@@ -38,22 +38,21 @@ function RoastHistory() {
      user's roast history messages and pass it down as props to RoastHistoryCard
   **/
 
-
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
-  const [rooms, setRooms] = React.useState([])
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const [rooms, setRooms] = React.useState([]);
 
   React.useEffect(() => {
     const getAndSetRooms = async () => {
       try {
-        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
-        const roomsHistory = (await getHistory(currentUser._id)).data.rooms
-        setRooms(roomsHistory)
+        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        const roomsHistory = (await getHistory(currentUser._id)).data.rooms;
+        setRooms(roomsHistory);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    getAndSetRooms()
-  }, [])
+    };
+    getAndSetRooms();
+  }, []);
 
   return (
     <React.Fragment>
@@ -61,12 +60,11 @@ function RoastHistory() {
       <Grid container spacing={2}>
         {
           // Only get rooms who's host satisfy the tags
-          rooms
-            .map((room) => (
+          rooms.map((room) => (
             <Grid item xs={4}>
               <RoastHistoryCard room={room} />
-            </Grid>  
-            ))
+            </Grid>
+          ))
         }
       </Grid>
     </React.Fragment>

@@ -38,7 +38,7 @@ const Message = (props) => {
   let viewerColContent = "";
   let nonViewerColContent = "";
 
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
   if (sender._id === currentUser._id) {
     viewerColContent = content;

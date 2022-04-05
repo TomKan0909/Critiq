@@ -8,11 +8,11 @@ import {
   Container,
   InputAdornment,
   Button,
-} from '@mui/material';
-import { ImageEdit } from './image';
-import React, {useState, useEffect} from 'react';
-import exampleUser from '../../data/exampleUser';
-import {getUserProfile, updateUserProfile} from '../../apis'
+} from "@mui/material";
+import { ImageEdit } from "./image";
+import React, { useState, useEffect } from "react";
+import exampleUser from "../../data/exampleUser";
+import { getUserProfile, updateUserProfile } from "../../apis";
 
 const editProfileContext = React.createContext(null);
 
@@ -27,8 +27,9 @@ function ImageComponent() {
   return (
     <div>
       <ImageList
-        sx={{ maxWidth: 'auto', maxHeight: 'auto', margin: 'auto' }}
-        cols={3}>
+        sx={{ maxWidth: "auto", maxHeight: "auto", margin: "auto" }}
+        cols={3}
+      >
         {imageProps.map((imageProp) => (
           <ImageListItem>
             <ImageEdit {...imageProp} />
@@ -85,22 +86,23 @@ function Prompt({ promptTitle, promptContent, setPrompts, index }) {
   };
 
   const prompts = [
-    'Best travel story',
-    'A life goal of mine',
-    'I take pride in',
+    "Best travel story",
+    "A life goal of mine",
+    "I take pride in",
     "Biggest risk I've taken",
   ];
 
   return (
-    <Container size='sm' sx={{ marginY: '10px' }}>
-      <form component='form'>
+    <Container size="sm" sx={{ marginY: "10px" }}>
+      <form component="form">
         <TextField
-          label='Select a Prompt'
+          label="Select a Prompt"
           value={prompts.findIndex((e) => e === promptTitle)}
           select
           onChange={handleChangePrompt}
-          variant='filled'
-          sx={{ display: 'grid' }}>
+          variant="filled"
+          sx={{ display: "grid" }}
+        >
           {prompts.map((option, index) => (
             <MenuItem key={index} value={index}>
               {option}
@@ -108,18 +110,18 @@ function Prompt({ promptTitle, promptContent, setPrompts, index }) {
           ))}
         </TextField>
         <TextField
-          id='filled-multiline-static'
-          label='Prompt Response'
+          id="filled-multiline-static"
+          label="Prompt Response"
           onChange={handleChangeResponse}
           multiline
           Prompt
           Response
           rows={5}
           defaultValue={
-            promptContent !== '' ? promptContent : 'Enter a prompt response'
+            promptContent !== "" ? promptContent : "Enter a prompt response"
           }
-          variant='filled'
-          sx={{ display: 'grid' }}
+          variant="filled"
+          sx={{ display: "grid" }}
         />
       </form>
     </Container>
@@ -155,7 +157,7 @@ function InputForm() {
   const handleHeightChange = (event) => {
     setTags((previousTags) => ({
       ...previousTags,
-      height: event.target.value + 'cm',
+      height: event.target.value + "cm",
     }));
   };
 
@@ -188,27 +190,28 @@ function InputForm() {
   };
 
   return (
-    <Container size='sm'>
-      <form component='form'>
+    <Container size="sm">
+      <form component="form">
         <TextField
           value={name}
-          label='name'
-          sx={{ display: 'grid', marginY: '5px' }}
+          label="name"
+          sx={{ display: "grid", marginY: "5px" }}
           onChange={handleNameChange}
         />
         <TextField
           value={job}
-          label='job'
-          sx={{ display: 'grid', marginY: '5px' }}
+          label="job"
+          sx={{ display: "grid", marginY: "5px" }}
           onChange={handleJobChange}
         />
         <TextField
-          label='Gender'
+          label="Gender"
           value={tags.gender}
           onChange={handleGenderChange}
           select
-          sx={{ display: 'grid', marginY: '5px' }}>
-          {['Male', 'Female', 'Other'].map((gender, index) => (
+          sx={{ display: "grid", marginY: "5px" }}
+        >
+          {["Male", "Female", "Other"].map((gender, index) => (
             <MenuItem key={index} value={gender}>
               {gender}
             </MenuItem>
@@ -216,44 +219,45 @@ function InputForm() {
         </TextField>
         <TextField
           value={tags.age}
-          label='Age'
-          sx={{ display: 'grid', marginY: '5px' }}
+          label="Age"
+          sx={{ display: "grid", marginY: "5px" }}
           onChange={handleAgeChange}
         />
         <TextField
-          label='Height'
-          value={tags.height.replace('cm', '')}
+          label="Height"
+          value={tags.height.replace("cm", "")}
           onChange={handleHeightChange}
-          sx={{ display: 'grid', marginY: '5px' }}
+          sx={{ display: "grid", marginY: "5px" }}
           InputProps={{
-            endAdornment: <InputAdornment position='end'>cm</InputAdornment>,
+            endAdornment: <InputAdornment position="end">cm</InputAdornment>,
           }}
         />
         <TextField
-          label='Location'
-          sx={{ display: 'grid', marginY: '5px' }}
+          label="Location"
+          sx={{ display: "grid", marginY: "5px" }}
           value={tags.location}
           onChange={handleLocationChange}
         />
         <TextField
-          label='School'
-          sx={{ display: 'grid', marginY: '5px' }}
+          label="School"
+          sx={{ display: "grid", marginY: "5px" }}
           value={tags.school}
           onChange={handleSchoolChange}
         />
         <TextField
-          label='Ethnicity'
-          sx={{ display: 'grid', marginY: '5px' }}
+          label="Ethnicity"
+          sx={{ display: "grid", marginY: "5px" }}
           value={tags.ethnicity}
           onChange={handleEthnicityChange}
         />
         <TextField
-          label='Alcohol'
+          label="Alcohol"
           value={tags.alcohol}
           select
           onChange={handleAlcoholChange}
-          sx={{ display: 'grid', marginY: '5px' }}>
-          {['Yes', 'No', 'Sometimes'].map((pref, index) => (
+          sx={{ display: "grid", marginY: "5px" }}
+        >
+          {["Yes", "No", "Sometimes"].map((pref, index) => (
             <MenuItem key={index} value={pref}>
               {pref}
             </MenuItem>
@@ -265,18 +269,18 @@ function InputForm() {
 }
 
 const boxEditProfileStyle = {
-  border: '2px solid black',
-  overflowY: 'scroll',
-  alignItems: 'center',
-  margin: 'auto',
-  display: 'flex-block',
-  height: '90vh',
-  width: '50%',
+  border: "2px solid black",
+  overflowY: "scroll",
+  alignItems: "center",
+  margin: "auto",
+  display: "flex-block",
+  height: "90vh",
+  width: "50%",
 };
 
 export default function EditProfile({ open, handleClose }) {
-  const [name, setName] = React.useState('');
-  const [job, setJob] = React.useState('');
+  const [name, setName] = React.useState("");
+  const [job, setJob] = React.useState("");
   const [images, setImages] = React.useState();
   const [prompts, setPrompts] = React.useState();
   const [tags, setTags] = React.useState();
@@ -290,20 +294,20 @@ export default function EditProfile({ open, handleClose }) {
   }
 
   useEffect(() => {
-    async function getUser (){
+    async function getUser() {
       const res = await getUserProfile();
       setProps(res);
     }
-    if (open){
-      getUser().catch(console.error) 
-    } 
-  }, [open])
+    if (open) {
+      getUser().catch(console.error);
+    }
+  }, [open]);
 
-  if (!images || !prompts || !tags){
-    return (<></>)
+  if (!images || !prompts || !tags) {
+    return <></>;
   }
 
-  console.log(images)
+  console.log(images);
   async function handleSave() {
     await updateUserProfile(name, job, images, prompts, tags);
   }
@@ -320,32 +324,41 @@ export default function EditProfile({ open, handleClose }) {
         setImages,
         setPrompts,
         setTags,
-      }}>
+      }}
+    >
       <Modal
         open={open}
         onClose={handleClose}
         BackdropProps={{
-          style: { backgroundColor: 'rgba(255, 255, 255, 0.97)' },
+          style: { backgroundColor: "rgba(255, 255, 255, 0.97)" },
         }}
-        sx={{ paddingY: '2%' }}>
-        <Box marginTop='5%' sx={boxEditProfileStyle}>
+        sx={{ paddingY: "2%" }}
+      >
+        <Box marginTop="5%" sx={boxEditProfileStyle}>
           <ImageComponent />
           <PromptComponent />
           <InputForm />
           <Button // When onclick, it will poll all the data that has been filled out on the form and send a POST request to the server to update user profile
-            type='submit'
-            color='success'
-            variant='contained'
+            type="submit"
+            color="success"
+            variant="contained"
             onClick={handleSave}
-            sx={{ margin: 'auto', display: 'block', marginTop: "30px" }}>
+            sx={{ margin: "auto", display: "block", marginTop: "30px" }}
+          >
             Save
           </Button>
           <Button
-            type='submit'
-            color='primary'
-            variant='contained'
+            type="submit"
+            color="primary"
+            variant="contained"
             onClick={handleClose}
-            sx={{ margin: 'auto', display: 'block', marginTop: "30px", marginBottom: "30px"  }}>
+            sx={{
+              margin: "auto",
+              display: "block",
+              marginTop: "30px",
+              marginBottom: "30px",
+            }}
+          >
             Close
           </Button>
         </Box>

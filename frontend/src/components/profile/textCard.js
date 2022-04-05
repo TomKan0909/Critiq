@@ -1,10 +1,7 @@
 import * as React from "react";
 import { Typography, Card, CardContent } from "@mui/material";
 
-
-
 export default function TextCard({ title, content, sx }) {
-
   let cardTextCardStyle = {
     maxWidth: 420,
     borderRadius: "10px",
@@ -12,7 +9,7 @@ export default function TextCard({ title, content, sx }) {
     marginY: "20px",
   };
 
-  cardTextCardStyle = {...cardTextCardStyle, ...sx}
+  cardTextCardStyle = { ...cardTextCardStyle, ...sx };
 
   return (
     <Card sx={cardTextCardStyle}>

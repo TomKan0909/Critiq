@@ -1,6 +1,6 @@
 import { Grid, Box } from "@mui/material";
 import NavBar from "../components/home/navBar";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../components/logo";
 import TagFilter from "../components/home/tagFilter";
 import RoastList from "../components/home/roastList";
@@ -14,31 +14,34 @@ export default function HomeAdmin() {
   // let user = sessionStorage.getItem("admin");
   // user = JSON.parse(user);
   const [user, setUser] = useState();
-  const [rooms, setRooms] = useState([])
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    async function getAdmin (){
+    async function getAdmin() {
       const res = await getUserProfile();
       setUser(res);
-      sessionStorage.setItem("currentUser", JSON.stringify({isAdmin: true, ...res}))
+      sessionStorage.setItem(
+        "currentUser",
+        JSON.stringify({ isAdmin: true, ...res })
+      );
     }
-    getAdmin().catch(console.error)
-  }, [])
+    getAdmin().catch(console.error);
+  }, []);
 
   useEffect(() => {
     const getAndSetRooms = async () => {
       try {
-        const rooms = (await getAllRooms())
-        setRooms(rooms)
+        const rooms = await getAllRooms();
+        setRooms(rooms);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    getAndSetRooms()
-  }, [activeFilters])
+    };
+    getAndSetRooms();
+  }, [activeFilters]);
 
-  if (!user){
-    return ("");
+  if (!user) {
+    return "";
   }
 
   return (
@@ -55,7 +58,7 @@ export default function HomeAdmin() {
           />
         </Grid>
         <Grid item xs={5}>
-          <RoastList activeFilters={activeFilters} rooms={rooms}/>
+          <RoastList activeFilters={activeFilters} rooms={rooms} />
         </Grid>
         <Grid xs={1} />
         <Grid item xs={2}>

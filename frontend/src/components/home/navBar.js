@@ -15,7 +15,7 @@ import { createRoom, getLatestRoom } from "../../apis";
 import { getCurrentUser } from "../../apis";
 
 export default function NavBar({ inProp, setInProp }) {
-  const user = JSON.parse(sessionStorage.getItem("currentUser"))
+  const user = JSON.parse(sessionStorage.getItem("currentUser"));
 
   const navigate = useNavigate();
   const location = useLocation();

@@ -9,7 +9,7 @@ import {
   Fade,
   Slide,
 } from "@mui/material";
-import CritiqProfile from "./critiqProfile"
+import CritiqProfile from "./critiqProfile";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { getRoomById, saveMessage, stopRoom } from "../../apis";
@@ -53,7 +53,7 @@ const CritiqRoom = () => {
     //const status = await stopRoom(roomId);
     setTimeout(() => stopRoom(roomId), 1000);
     setInProp(false);
-    console.log("HERE")
+    console.log("HERE");
     if (currentUser.isAdmin) {
       setTimeout(() => navigate("/admin"), 3000);
     } else {

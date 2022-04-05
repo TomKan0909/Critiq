@@ -8,33 +8,34 @@ import StatsCard from "./../profile/stats";
 import { StickyProfile } from "./styles";
 import { createRoom, getLatestRoom } from "../../apis";
 
-export default function SideProfile({ user, inProp, setInProp}) {
-
+export default function SideProfile({ user, inProp, setInProp }) {
   const navigate = useNavigate();
 
   const handleGoLive = async () => {
-    let room = (await getLatestRoom()).data.room
-    console.log(room)
+    let room = (await getLatestRoom()).data.room;
+    console.log(room);
     if (room === undefined || !room.active) {
-      room = (await createRoom(user)).data
-      console.log(room)
+      room = (await createRoom(user)).data;
+      console.log(room);
       if (room) {
         setInProp(false);
         setTimeout(() => navigate(`/critiqRoom/${room._id}`), 1000);
       } else {
-        console.log('error')
+        console.log("error");
       }
     } else if (room !== undefined && room.active) {
-        console.log(room)
-        setInProp(false);
-        setTimeout(() => navigate(`/critiqRoom/${room._id}`), 1000);
+      console.log(room);
+      setInProp(false);
+      setTimeout(() => navigate(`/critiqRoom/${room._id}`), 1000);
     }
-  }
+  };
+
+  console.log(user);
 
   return (
     <StickyProfile>
       <Image img={user.images[0]} />
-      <TextCard title={user.job} content={user.name} />
+      <TextCard title={user.occupation} content={user.name} />
       {/*<StatsCard
         age={user.age}
         gender={user.gender}

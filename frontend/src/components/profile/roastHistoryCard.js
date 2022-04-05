@@ -26,7 +26,7 @@ const chatBarStyle = {
   borderRadius: "10px",
 };
 
-export default function RoastHistoryCard({room}) {
+export default function RoastHistoryCard({ room }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -63,10 +63,7 @@ export default function RoastHistoryCard({room}) {
           >
             Roast Room
           </Typography>
-          <MessageList
-            messages={room.messages}
-            maxHeight="90%"
-          />
+          <MessageList messages={room.messages} maxHeight="90%" />
         </Box>
       </Modal>
     </React.Fragment>

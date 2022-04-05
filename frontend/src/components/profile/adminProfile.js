@@ -14,36 +14,37 @@ const banButtonStyle = {
 
 export default function AdminProfile({ ID, name, images, prompts, tags }) {
   const [open, setOpen] = React.useState(false);
-  const [userID, setUserID] = React.useState('');
+  const [userID, setUserID] = React.useState("");
 
   const handleButtonOnClick = async () => {
     const res = await deleteUserByID(ID);
     setUserID(res.data._id);
     setOpen(true);
-  }
+  };
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-    setOpen(false)
-  }
-  
+    setOpen(false);
+  };
+
   return (
     <Box>
       <Profile {...{ name, images, prompts, tags }} />
-      <Button fullWidth variant="contained" sx={banButtonStyle} onClick={handleButtonOnClick}>
+      <Button
+        fullWidth
+        variant="contained"
+        sx={banButtonStyle}
+        onClick={handleButtonOnClick}
+      >
         Ban User
       </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert
-            onClose={handleClose}
-            severity="success"
-            sx={{ width: "100%" }}
-          >
-            User {userID} successfully deleted 
-          </Alert>
-        </Snackbar>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          User {userID} successfully deleted
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

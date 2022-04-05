@@ -17,22 +17,22 @@ const innerBoxProfileStyle = {
  * @param {tags} an object containing tags of(age, gender, height, location, ethnicity, alcohol)
  * @returns
  */
-export default function Profile({ name, images, prompts, tags}) {
+export default function Profile({ name, images, prompts, tags }) {
   return (
     <Grid container>
       <Grid item xs={6}>
-      <StatsCard {...tags} />
-      <TextCard {...prompts[0]} />
-      <TextCard {...prompts[0]} />
-      <TextCard {...prompts[1]} />
-      <TextCard {...prompts[2]} />
-      <Image img={images[1]} />
+        <StatsCard {...tags} />
+        <TextCard {...prompts[0]} />
+        <TextCard {...prompts[0]} />
+        <TextCard {...prompts[1]} />
+        <TextCard {...prompts[2]} />
+        <Image img={images[1]} />
       </Grid>
       <Grid item xs={6}>
-      <Image img={images[2]} />
-      <Image img={images[3]} />
-      <Image img={images[4]} />
-      <Image img={images[5]} />
+        <Image img={images[2]} />
+        <Image img={images[3]} />
+        <Image img={images[4]} />
+        <Image img={images[5]} />
       </Grid>
     </Grid>
   );

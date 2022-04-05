@@ -4,7 +4,7 @@ import CritiqRoom from "../components/critiqRoom/index";
 const CritiqRoomView = () => {
   return (
     <>
-      <CritiqRoom/>
+      <CritiqRoom />
       <nav>
         <Link to="/">Home</Link>
       </nav>

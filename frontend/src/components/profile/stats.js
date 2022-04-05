@@ -53,11 +53,9 @@ function StatsTop({ age, gender, height, location, ethnicity, alcohol }) {
 const ListItemWrapper = ({ text, icon }) => {
   return (
     <ListItem>
-    <ListItemIcon>
-      {icon}
-    </ListItemIcon>
-    <ListItemText primary={text} />
-  </ListItem>
+      <ListItemIcon>{icon}</ListItemIcon>
+      <ListItemText primary={text} />
+    </ListItem>
   );
 };
 
@@ -83,19 +81,22 @@ export default function StatsCard({
       <CardContent>
         <Box sx={boxStatsCardStyle}>
           <List>
-            <ListItemWrapper text={occupation} icon={<RiSuitcaseLine />}/>
+            <ListItemWrapper text={occupation} icon={<RiSuitcaseLine />} />
             <Divider />
-            <ListItemWrapper text={school} icon={<FaGraduationCap />}/>
+            <ListItemWrapper text={school} icon={<FaGraduationCap />} />
             <Divider />
-            <ListItemWrapper text={age} icon={<HiOutlineCake />}/>
+            <ListItemWrapper text={age} icon={<HiOutlineCake />} />
             <Divider />
-            <ListItemWrapper text={height} icon={<CgProfile />}/>
+            <ListItemWrapper text={height} icon={<CgProfile />} />
             <Divider />
-            <ListItemWrapper text={location} icon={<HiOutlineLocationMarker />}/>
+            <ListItemWrapper
+              text={location}
+              icon={<HiOutlineLocationMarker />}
+            />
             <Divider />
-            <ListItemWrapper text={ethnicity} icon={<RiGlobeLine />}/>
+            <ListItemWrapper text={ethnicity} icon={<RiGlobeLine />} />
             <Divider />
-            <ListItemWrapper text={alcohol} icon={<BiWine />}/>
+            <ListItemWrapper text={alcohol} icon={<BiWine />} />
           </List>
         </Box>
       </CardContent>

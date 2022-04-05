@@ -8,9 +8,9 @@ import { Grow, Box, Slide } from "@mui/material";
 export default function RoastList({ activeFilters, rooms, inProp, setInProp }) {
   let roomsList;
   if (rooms === undefined || rooms === null) {
-      roomsList = []
+    roomsList = [];
   } else {
-    roomsList = rooms
+    roomsList = rooms;
   }
 
   const checkFilter = (room) => {
@@ -41,7 +41,7 @@ export default function RoastList({ activeFilters, rooms, inProp, setInProp }) {
         roomsList.map((room) => (
           <Grow in={checkFilter(room)} mountOnEnter unmountOnExit timeout={300}>
             <Box>
-              <RoastCard room={room} inProp={inProp} setInProp={setInProp} />      
+              <RoastCard room={room} inProp={inProp} setInProp={setInProp} />
             </Box>
           </Grow>
         ))

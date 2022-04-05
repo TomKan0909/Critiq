@@ -10,7 +10,11 @@ const stackButtonStackStyle = {
   display: "grid",
 };
 
-export default function ButtonStack({ openEditProfile, setOpenEditProfile, setInProp }) {
+export default function ButtonStack({
+  openEditProfile,
+  setOpenEditProfile,
+  setInProp,
+}) {
   const [open, setOpen] = React.useState(false);
   // const [openEditProfile, setOpenEditProfile] = React.useState(false);
   const handleOpenEditProfile = () => setOpenEditProfile(true);
@@ -48,7 +52,7 @@ export default function ButtonStack({ openEditProfile, setOpenEditProfile, setIn
         size="large"
         onClick={() => {
           setInProp(false);
-          setTimeout( () => navigate("/profile/roastHistory"), 1000);
+          setTimeout(() => navigate("/profile/roastHistory"), 1000);
         }}
       >
         View Critique History

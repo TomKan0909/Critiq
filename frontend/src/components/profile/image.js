@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Card,
   CardContent,
@@ -6,46 +6,43 @@ import {
   CardActionArea,
   CardHeader,
   IconButton,
-} from '@mui/material';
-import { GrAdd } from 'react-icons/gr';
-import { IconContext } from 'react-icons';
-import { AiFillCloseCircle } from 'react-icons/ai';
-import { useTheme } from '@mui/material/styles';
-
+} from "@mui/material";
+import { GrAdd } from "react-icons/gr";
+import { IconContext } from "react-icons";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { useTheme } from "@mui/material/styles";
 
 /* param 
   img: str or w/e that represents an image in javascript 
   state: 'default' | 'edit'; default just show image or blank if no image provided, edit shows a plus sign and card is clickable */
-export default function Image({img, sx}) {
-
+export default function Image({ img, sx }) {
   let imageStyle = {
     minWidth: 200,
     minHeight: 200,
     maxWidth: 420,
     maxHeight: 420,
-    borderRadius: '10px',
-    marginX: 'auto',
-    marginY: '20px',
+    borderRadius: "10px",
+    marginX: "auto",
+    marginY: "20px",
   };
 
   if (sx) {
-    imageStyle = {...imageStyle, ...sx}
-  };
-
+    imageStyle = { ...imageStyle, ...sx };
+  }
 
   return (
     <Card sx={imageStyle}>
-      <CardMedia component='img' height='100%' width='100%' image={img} />
+      <CardMedia component="img" height="100%" width="100%" image={img} />
     </Card>
   );
 }
 
 const imageEditStyle = {
-  width: '200px',
-  height: '200px',
-  borderRadius: '10px',
-  marginX: 'auto',
-  marginY: '20px',
+  width: "200px",
+  height: "200px",
+  borderRadius: "10px",
+  marginX: "auto",
+  marginY: "20px",
 };
 
 export function ImageEdit({ image, setImages, index }) {
@@ -60,14 +57,13 @@ export function ImageEdit({ image, setImages, index }) {
     });
   };
 
-  const [compImage, setCompImage] = React.useState('')
+  const [compImage, setCompImage] = React.useState("");
 
   React.useEffect(() => {
-    if(typeof image === 'string') {
-      setCompImage(image)
+    if (typeof image === "string") {
+      setCompImage(image);
     }
-  }, [])
-
+  }, []);
 
   const hiddenFileInput = React.useRef(null);
 
@@ -78,37 +74,39 @@ export function ImageEdit({ image, setImages, index }) {
   const handleFileUpload = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
-      setCompImage(URL.createObjectURL(img))
+      setCompImage(URL.createObjectURL(img));
       setImage(img);
     }
   };
 
   const handleCloseClick = () => {
-    setImage('')
-    setCompImage('')
+    setImage("");
+    setCompImage("");
   };
 
-  console.log(image)
+  console.log(image);
   return (
     <Card sx={imageEditStyle}>
-      {compImage === undefined || compImage === '' ? (
+      {compImage === undefined || compImage === "" ? (
         <CardActionArea
           onClick={handleFileUploadClick}
-          sx={{ height: '100%', width: '100%' }}>
+          sx={{ height: "100%", width: "100%" }}
+        >
           <CardHeader
-            title={'Image ' + (index + 1)}
-            sx={{ margin: 'auto', textAlign: 'center' }}
+            title={"Image " + (index + 1)}
+            sx={{ margin: "auto", textAlign: "center" }}
           />
-          <CardContent sx={{ alignItems: 'center' }}>
+          <CardContent sx={{ alignItems: "center" }}>
             <IconContext.Provider
-              value={{ style: { margin: 'auto', display: 'block' } }}>
+              value={{ style: { margin: "auto", display: "block" } }}
+            >
               <div>
                 <GrAdd size={50} />
               </div>
             </IconContext.Provider>
           </CardContent>
           <input
-            type='file'
+            type="file"
             ref={hiddenFileInput}
             onChange={handleFileUpload}
             hidden
@@ -120,14 +118,20 @@ export function ImageEdit({ image, setImages, index }) {
             action={
               <IconButton
                 onClick={handleCloseClick}
-                sx={{ color: theme.palette.error.main }}>
+                sx={{ color: theme.palette.error.main }}
+              >
                 <AiFillCloseCircle />
               </IconButton>
             }
-            title={'Image ' + (index + 1)}
-            sx={{ margin: 'auto' }}
+            title={"Image " + (index + 1)}
+            sx={{ margin: "auto" }}
           />
-          <CardMedia component='img' height='100%' width='100%' image={compImage} />
+          <CardMedia
+            component="img"
+            height="100%"
+            width="100%"
+            image={compImage}
+          />
         </React.Fragment>
       )}
       )

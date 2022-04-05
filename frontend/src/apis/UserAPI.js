@@ -30,7 +30,7 @@ const createAccount = async ({ username, password }) => {
       username: username,
       password: password,
     });
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
 };

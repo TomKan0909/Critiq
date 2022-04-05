@@ -51,7 +51,6 @@ function App() {
 }
 
 function Home() {
-
   const [activeFilters, setActiveFilter] = React.useState([]);
   const [user, setUser] = useState();
   const [rooms, setRooms] = useState([]);
@@ -88,7 +87,7 @@ function Home() {
 
   return (
     <Box>
-      <NavBar inProp={inProp} setInProp={setInProp}/>
+      <NavBar inProp={inProp} setInProp={setInProp} />
       <Grid container justifyContent="center" spacing={2} columns={24}>
         <Fade in={inProp} timeout={800}>
           <Grid item xs={24}>

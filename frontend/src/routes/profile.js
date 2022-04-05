@@ -74,7 +74,6 @@ function ProfileView() {
   };
 
   /** This function will have a GET server call to retrieve information about current user to pass props down into Profile Component */
-  console.log(user);
   return (
     <Box>
       <NavBar inProp={inProp} setInProp={setInProp} />

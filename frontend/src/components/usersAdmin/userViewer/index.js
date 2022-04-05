@@ -15,12 +15,11 @@ const UserViewer = () => {
   const [open, setOpen] = React.useState(false);
   const [compUsers, setUsers] = React.useState({});
 
-
   const handleOpen = (event, value) => {
-    if (!value){
-      setID('')
-    } else{
-      setID(value.id)
+    if (!value) {
+      setID("");
+    } else {
+      setID(value.id);
     }
     setOpen(true);
   };
@@ -43,22 +42,22 @@ const UserViewer = () => {
 
   const getUsernames = () => {
     // server call
-    let options = []
-  
+    let options = [];
+
     for (const key in compUsers) {
-      options.push({label: compUsers[key].name, id: key})
+      options.push({ label: compUsers[key].name, id: key });
     }
-    
-    return options
+
+    return options;
   };
 
   React.useEffect(() => {
-    async function getUsers () {
+    async function getUsers() {
       const res = await getAllUsers();
-      setUsers(res)
+      setUsers(res);
     }
-    getUsers()
-  }, [open])
+    getUsers();
+  }, [open]);
 
   // let profile;
 
@@ -80,17 +79,19 @@ const UserViewer = () => {
       </Typography>
       <Autocomplete
         options={getUsernames()}
-        getOptionLabel={option=> option.label}
+        getOptionLabel={(option) => option.label}
         fullWidth
         sx={formTheme}
         onChange={handleOpen}
         renderInput={(params) => <TextField {...params} label="Users" />}
       />
-      {ID && <Modal open={open} onClose={handleClose}>
-        <Container sx={modalStyle}>
-          <AdminProfile {...{ID: ID, ...compUsers[ID]}} />
-        </Container>
-      </Modal>}
+      {ID && (
+        <Modal open={open} onClose={handleClose}>
+          <Container sx={modalStyle}>
+            <AdminProfile {...{ ID: ID, ...compUsers[ID] }} />
+          </Container>
+        </Modal>
+      )}
     </Container>
   );
 };
