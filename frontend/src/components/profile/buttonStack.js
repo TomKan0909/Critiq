@@ -51,7 +51,7 @@ export default function ButtonStack({ openEditProfile, setOpenEditProfile, setIn
           setTimeout( () => navigate("/profile/roastHistory"), 1000);
         }}
       >
-        View Roast History
+        View Critique History
       </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
