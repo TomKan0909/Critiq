@@ -506,30 +506,29 @@ Example body
 Example response
 ```
 { // instance of RoomSchema
-    room: {
-        creator: {
-        isAdmin: false,
-        name: 'John',
-        images: [...],
-        age: 999,
-        gender: 'Male',
-        height: '999cm',
-        location: 'Location',
-        ethnicity: 'Ethnicity',
-        alcohol: 'Yes',
-        occupation: 'Student',
-        school: 'School',
-        _id: ...,
-        username: '...',
-        password: '...',
-        prompts: [ [Object], [Object], [Object] ],
-        __v: 0
-      },
-      messages: [],
-      createdAt: ...,
-      updatedAt: ...,
-      __v: 0
-     }
+    creator: {
+    isAdmin: false,
+    name: 'John',
+    images: [...],
+    age: 999,
+    gender: 'Male',
+    height: '999cm',
+    location: 'Location',
+    ethnicity: 'Ethnicity',
+    alcohol: 'Yes',
+    occupation: 'Student',
+    school: 'School',
+    _id: ...,
+    username: '...',
+    password: '...',
+    prompts: [ [Object], [Object], [Object] ],
+    __v: 0
+  },
+  messages: [],
+  createdAt: ...,
+  updatedAt: ...,
+  __v: 0
+  
 }
 ```
 
@@ -546,8 +545,8 @@ Example body
 Example response
 ```
 { 
-    // Array of RoomSchema
-    rooms: [Room1, Room2, Room3]
+    // Array of RoomSchema instances
+    [Room1, Room2, Room3]
 }
 ```
 
@@ -571,8 +570,8 @@ Example body
 Example response
 ```
 { 
-    // Array of RoomSchema, more specifically array of rooms that are inactive
-    rooms: [Room1, Room2, Room3]
+    // Array of RoomSchema instances, more specifically array of rooms that are inactive
+    [Room1, Room2, Room3]
 }
 ```
 
@@ -599,7 +598,7 @@ Example session
 Example response
 ```
 { 
-    room: RoomSchema latest room that is active
+    instance of RoomSchema latest room that is active
 }
 ```
 
@@ -616,7 +615,7 @@ Example params
 Example response
 ```
 { 
-    room: RoomSchema latest room that is active for that user
+    instance of RoomSchema latest room that is active for that user
 }
 ```
 
@@ -633,7 +632,7 @@ Example params
 Example response
 ```
 { 
-    room: RoomSchema latest room that is active for that user
+    instance of RoomSchema latest room that is active for that user
 }
 ```
 
@@ -650,7 +649,7 @@ Example params
 Example response
 ```
 { 
-    data: "Message sent"
+    "Message sent"
 }
 ```
 
@@ -667,7 +666,7 @@ Example params
 Example response
 ```
 { 
-    data: "Stopped room"
+    "Stopped room"
 }
 ```
 
