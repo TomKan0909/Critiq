@@ -173,6 +173,7 @@ Example response
 Example body
 ```
 {   
+    // empty
 }
 ```
 
@@ -190,6 +191,7 @@ Example response
 Example body
 ```
 {   
+    // empty
 }
 ```
 
@@ -217,7 +219,7 @@ Example response
 Example body
 ```
 {   
-    
+    // empty
 }
 ```
 
@@ -257,7 +259,7 @@ Example response
 `get /api/rooms/:id`
 Example params
 ```
-{    
+}    
     id: ObjectId of critiqRoom
 }
 ```
