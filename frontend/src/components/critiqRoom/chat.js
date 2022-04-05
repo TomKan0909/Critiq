@@ -26,14 +26,6 @@ const Chat = ({ room }) => {
     }
   };
 
-  const getScroll = () => {
-    if (scroll) {
-      setScroll(false);
-      return true;
-    } else {
-      return false;
-    }
-  };
 
   const chatStyle = {
     backgroundColor: grey[400],
@@ -66,7 +58,8 @@ const Chat = ({ room }) => {
       <MessageLog
         messages={room.messages}
         height="530px"
-        scroll={getScroll()}
+        scroll={scroll}
+        setScroll = {setScroll}
       />
       <TextField
         sx={chatFormStyle}

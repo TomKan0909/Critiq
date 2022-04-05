@@ -4,16 +4,20 @@ import Message from "./message";
 import { grey } from "@mui/material/colors";
 
 const MessageLog = (props) => {
-  const { messages, height, scroll } = props;
+  const { messages, height, scroll, setScroll } = props;
   const messagesEndRef = React.useRef(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
-  };
+  const [numMessages, setNumMessages] = React.useState(0)
+  const [numMessagesPlusOne, setNumMessagesPlusOne] = React.useState(0)
 
-  if (scroll) {
-    scrollToBottom();
-  }
+ React.useEffect(() => {
+    if (scroll) {
+      setScroll(false)
+      messagesEndRef.current?.scrollIntoView({behavior: 'auto'});
+    }
+  })
+
+
 
   const chatStyle = {
     overflowY: "scroll",
@@ -36,9 +40,11 @@ const MessageLog = (props) => {
 
   return (
     <Box sx={chatStyle} height={height}>
-      {messages.map((message) => (
-        <Message sender={message.sender} content={message.content}></Message>
-      ))}
+      {
+        messages.map((message) => (
+          <Message sender={message.sender} content={message.content}></Message>
+        ))
+      }
       <div ref={messagesEndRef} />
     </Box>
   );
