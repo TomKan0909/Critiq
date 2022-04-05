@@ -78,7 +78,7 @@ const CritiqRoom = () => {
   let interaction;
 
   if (!room) {
-    return ('Loading')
+    return ("");
   }
 
   if (!room.active)

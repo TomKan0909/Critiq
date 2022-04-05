@@ -38,7 +38,7 @@ export default function HomeAdmin() {
   }, [activeFilters])
 
   if (!user){
-    return ('Loading')
+    return ("");
   }
 
   return (

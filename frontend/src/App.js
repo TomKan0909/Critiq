@@ -4,10 +4,10 @@ import Login from "./routes/login";
 import Profile from "./routes/profile";
 import UsersAdmin from "./routes/usersAdmin";
 import RoastHistory from "./routes/roastHistory";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { themeOptions } from "./theme";
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, Fade, Grow, Slide } from "@mui/material";
 import Logo from "./components/logo";
 
 import NavBar from "./components/home/navBar";
@@ -41,8 +41,8 @@ function App() {
             />
           </Route>
           <Route path="critiqRoom">
-              <Route path=":id" element={<CritiqRoom />} />
-          </Route> 
+            <Route path=":id" element={<CritiqRoom />} />
+          </Route>
           <Route path="notavailable" element={<p>Cannot access</p>} />
         </Routes>
       </div>
@@ -51,63 +51,74 @@ function App() {
 }
 
 function Home() {
+
   const [activeFilters, setActiveFilter] = React.useState([]);
-
-  // let user = sessionStorage.getItem("user");
-  // user = JSON.parse(user);
-
   const [user, setUser] = useState();
-  const [rooms, setRooms] = useState([])
+  const [rooms, setRooms] = useState([]);
+  const [inProp, setInProp] = React.useState(true);
 
   useEffect(() => {
     const getAndSetUser = async () => {
       try {
-        const currentUser = (await getCurrentUser()).data
-        setUser(currentUser)
-        sessionStorage.setItem("currentUser", JSON.stringify(currentUser))
+        const currentUser = (await getCurrentUser()).data;
+        setUser(currentUser);
+        sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    getAndSetUser()
-  }, [])
+    };
+    getAndSetUser();
+  }, []);
 
   useEffect(() => {
     const getAndSetRooms = async () => {
       try {
-        const rooms = (await getAllRooms())
-        setRooms(rooms)
+        const rooms = await getAllRooms();
+        setRooms(rooms);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    getAndSetRooms()
-  }, [activeFilters])
+    };
+    getAndSetRooms();
+  }, [activeFilters]);
 
-  if (!user){
-    return ('Loading')
+  if (!user) {
+    return "";
   }
 
   return (
     <Box>
-      <NavBar />
+      <NavBar inProp={inProp} setInProp={setInProp}/>
       <Grid container justifyContent="center" spacing={2} columns={24}>
-        <Grid item xs={24}>
-          <Logo />
-        </Grid>
-        <Grid item xs={24}>
-          <TagFilter
-            activeFilters={activeFilters}
-            setActiveFilter={setActiveFilter}
-          />
-        </Grid>
-        <Grid item xs={13}>
-          <RoastList activeFilters={activeFilters} rooms={rooms}/>
-        </Grid>
+        <Fade in={inProp} timeout={800}>
+          <Grid item xs={24}>
+            <Logo />
+          </Grid>
+        </Fade>
+        <Grow in={inProp} timeout={500}>
+          <Grid item xs={24}>
+            <TagFilter
+              activeFilters={activeFilters}
+              setActiveFilter={setActiveFilter}
+            />
+          </Grid>
+        </Grow>
+        <Slide in={inProp} direction="right" mountOnEnter unmountOnExit timeout={300}>
+          <Grid item xs={13}>
+            <RoastList
+              activeFilters={activeFilters}
+              rooms={rooms}
+              inProp={inProp}
+              setInProp={setInProp}
+            />
+          </Grid>
+        </Slide>
         <Grid item xs={2} />
-        <Grid item xs={4}>
-          <SideProfile user={user} />
-        </Grid>
+        <Slide in={inProp} direction="up" mountOnEnter unmountOnExit timeout={300}>
+          <Grid item xs={4}>
+            <SideProfile user={user} inProp={inProp} setInProp={setInProp} />
+          </Grid>
+        </Slide>
       </Grid>
     </Box>
   );

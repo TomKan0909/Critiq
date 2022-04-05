@@ -6,12 +6,14 @@ import {
   AppBar,
   Toolbar,
   Typography,
+  Fade,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { logout } from "../../apis";
 
-export default function NavBar() {
+export default function NavBar({ inProp, setInProp }) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const trigger = useScrollTrigger({
     threshold: 200,
@@ -20,7 +22,7 @@ export default function NavBar() {
 
   let appBarStyle = {
     background: trigger ? "black" : "transparent",
-    transition: "all .4s ease-in",
+    transition: "all .3s ease-in",
   };
 
   let iconButtonStyle = {
@@ -30,55 +32,64 @@ export default function NavBar() {
     fontWeight: "bold",
     float: "right",
     fontSize: "medium",
-    transition: "all .4s ease-in",
+    transition: "all .3s ease-in",
   };
 
   let titleStyle = {
     fontFamily: "Nunito",
     color: trigger ? "white" : "black",
-    transition: "all .4s ease-in",
+    transition: "all .3s ease-in",
   };
 
   const handleLogout = async () => {
     await logout();
-    navigate("/login");
+    setInProp(false);
+    setTimeout(() => navigate("/login"), 1000);
+  };
+
+  const handleHome = () => {
+    // Only navigate to home if not already there
+    if (location.pathname != "/") {
+      setInProp(false);
+      if (sessionStorage.getItem("admin")) {
+        setTimeout(() => navigate("/admin"), 1000);
+      } else {
+        setTimeout(() => navigate("/"), 1000);
+      }
+    }
+  };
+
+  const handleProfile = () => {
+    // Only navigate to profile if not already there
+    if (location.pathname != "/profile") {
+      setInProp(false);
+      if (sessionStorage.getItem("admin")) {
+        setTimeout(() => navigate("/usersAdmin"), 1000);
+      } else {
+        setTimeout(() => navigate("/profile"), 1000);
+      }
+    }
   };
 
   return (
-    <AppBar elevation={trigger ? 10 : 0} sx={appBarStyle}>
-      <Toolbar>
-        <Typography variant="h4" sx={titleStyle}>
-          C R I T I Q
-        </Typography>
-        <Box sx={{ flexGrow: 1 }} />
-        <IconButton
-          onClick={() => {
-            if (sessionStorage.getItem('admin')){
-              navigate("/admin")
-            } else {
-              navigate("/");
-            }
-          }}
-          sx={iconButtonStyle}
-        >
-          HOME
-        </IconButton>
-        <IconButton
-          onClick={() => {
-            if (sessionStorage.getItem('admin')){
-              navigate('/usersAdmin')
-            } else {
-             navigate("/profile"); 
-            }
-          }}
-          sx={iconButtonStyle}
-        >
-          MY PROFILE
-        </IconButton>
-        <IconButton onClick={handleLogout} sx={iconButtonStyle}>
-          LOG OUT
-        </IconButton>
-      </Toolbar>
-    </AppBar>
+    <Fade in={inProp} timeout={800}>
+      <AppBar elevation={trigger ? 10 : 0} sx={appBarStyle}>
+        <Toolbar>
+          <Typography variant="h4" sx={titleStyle}>
+            C R I T I Q
+          </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          <IconButton onClick={handleHome} sx={iconButtonStyle}>
+            HOME
+          </IconButton>
+          <IconButton onClick={handleProfile} sx={iconButtonStyle}>
+            MY PROFILE
+          </IconButton>
+          <IconButton onClick={handleLogout} sx={iconButtonStyle}>
+            LOG OUT
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </Fade>
   );
 }
