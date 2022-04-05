@@ -19,7 +19,7 @@ const innerBoxProfileStyle = {
   alignItems: "center",
   marginY: "6px",
   display: "block",
-  height: "780px",
+  height: "710px",
   "&::-webkit-scrollbar": {
     width: "0.4em",
     color: "black",

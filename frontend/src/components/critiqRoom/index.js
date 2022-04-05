@@ -61,11 +61,11 @@ const CritiqRoom = () => {
   };
 
   const ratingBoxStyle = {
-    marginTop: 8,
+    marginTop: 4,
   };
 
   const ratingStyle = {
-    marginTop: 3,
+    marginTop: 1,
   };
 
   const iconStyle = {
@@ -82,7 +82,7 @@ const CritiqRoom = () => {
   const stopButtonStyle = {
     minHeight: 80,
     fontSize: "1.5em",
-    marginTop: 8,
+    marginTop: 3,
   };
 
   let interaction;
@@ -140,7 +140,6 @@ const CritiqRoom = () => {
               <CritiqProfile user={room.creator} />
             </Grid>
           </Slide>
-          <Grid item xs={0} />
           <Fade in={inProp} timeout={800}>
             <Grid item xs={4}>
               <Chat room={room} />

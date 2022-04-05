@@ -6,7 +6,7 @@ export const RoastCardItem = styled(Box)(({ theme }) => ({
   borderRadius: "10px",
   borderWidth: "3px",
   margin: "20px",
-  maxWidth: "300px",
+  maxWidth: "260px",
   transition: "all 1s linear",
 }));
 
