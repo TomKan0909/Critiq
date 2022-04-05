@@ -2,11 +2,13 @@ import Image from "./image";
 import TextCard from "./textCard";
 import StatsCard from "./stats";
 import { Box } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import React from "react";
 
 const outerBoxProfileStyle = {
-  border: "2px solid black",
+  border: "solid",
   borderRadius: "10px",
+  backgroundColor: grey[200],
   marginLeft: "10%",
   marginRight: "10%",
   marginTop: "30px",
@@ -17,7 +19,19 @@ const innerBoxProfileStyle = {
   alignItems: "center",
   marginY: "6px",
   display: "block",
-  height: "90vh",
+  height: "780px",
+  "&::-webkit-scrollbar": {
+    width: "0.4em",
+    color: "black",
+  },
+  "::-webkit-scrollbar-thumb:vertical": {
+    backgroundColor: grey[600],
+    borderRadius: "20px"
+  },
+  "::-webkit-scrollbar-track": {
+    backgroundColor: grey[400],
+    borderRadius: "20px"
+  }
 };
 
 /**
@@ -34,12 +48,12 @@ export default function Profile({ name, images, prompts, tags }) {
         <Image img={images[0]} />
         <TextCard {...prompts[0]} />
         <StatsCard {...tags} />
-        <Image img={images[1]}/>
+        <Image img={images[1]} />
         <Image img={images[2]} />
         <TextCard {...prompts[1]} />
-        <Image img={images[3]}/>
+        <Image img={images[3]} />
         <TextCard {...prompts[2]} />
-        <Image img={images[4]}/>
+        <Image img={images[4]} />
         <Image img={images[5]} />
       </Box>
     </Box>

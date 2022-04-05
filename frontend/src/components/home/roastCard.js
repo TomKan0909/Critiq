@@ -22,12 +22,12 @@ const buttonStyle = {
   marginTop: "-60px"
 }
 
-export default function RoastCard({ room }) {
+export default function RoastCard({ room, inProp, setInProp }) {
   const handleClick = async() => {
-    const latestRoom = (await getLatestRoomByUserId(room.creator._id))
-    navigate(`/critiqRoom/${room._id}`)  
+    const latestRoom = (await getLatestRoomByUserId(room.creator._id));
+    setInProp(false);
+    setTimeout(() => navigate(`/critiqRoom/${room._id}`), 1000);
   };
-
 
   const navigate = useNavigate();
 

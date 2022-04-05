@@ -103,7 +103,7 @@ function Home() {
             />
           </Grid>
         </Grow>
-        <Slide in={inProp} direction="right" mountOnEnter unmountOnExit timeout={300}>
+        <Slide in={inProp} direction="right" timeout={300}>
           <Grid item xs={13}>
             <RoastList
               activeFilters={activeFilters}
@@ -114,7 +114,7 @@ function Home() {
           </Grid>
         </Slide>
         <Grid item xs={2} />
-        <Slide in={inProp} direction="up" mountOnEnter unmountOnExit timeout={300}>
+        <Slide in={inProp} direction="up" timeout={300}>
           <Grid item xs={4}>
             <SideProfile user={user} inProp={inProp} setInProp={setInProp} />
           </Grid>

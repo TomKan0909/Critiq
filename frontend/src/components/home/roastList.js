@@ -3,7 +3,7 @@ import React from "react";
 import RoastCard from "./roastCard";
 import { RoastCardContainer } from "./styles";
 
-export default function RoastList({ activeFilters, rooms }) {
+export default function RoastList({ activeFilters, rooms, inProp, setInProp }) {
   let roomsList
   if (rooms === undefined || rooms === null) {
       roomsList = []
@@ -17,6 +17,7 @@ export default function RoastList({ activeFilters, rooms }) {
     }
 
     for (const filter of activeFilters) {
+      console.log(Object.values(room.creator))
       if (Object.values(room.creator).includes(filter)) {
         return true;
       }
@@ -31,7 +32,7 @@ export default function RoastList({ activeFilters, rooms }) {
         roomsList
           .filter((room) => checkFilter(room))
           .map((room) => (
-            <RoastCard room={room} />
+            <RoastCard room={room} inProp={inProp} setInProp={setInProp} />
           ))
       }
     </RoastCardContainer>

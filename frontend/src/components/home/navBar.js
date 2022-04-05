@@ -26,7 +26,7 @@ export default function NavBar({ inProp, setInProp }) {
   });
 
   let appBarStyle = {
-    background: trigger ? "black" : "transparent",
+    background: trigger && inProp ? "black" : "transparent",
     transition: "all .3s ease-in",
   };
 
@@ -96,7 +96,7 @@ export default function NavBar({ inProp, setInProp }) {
   };
 
   return (
-    <AppBar elevation={trigger ? 10 : 0} sx={appBarStyle}>
+    <AppBar elevation={trigger && inProp ? 10 : 0} sx={appBarStyle}>
       <Fade in={inProp} timeout={800}>
         <Toolbar>
           <Typography variant="h4" sx={titleStyle}>

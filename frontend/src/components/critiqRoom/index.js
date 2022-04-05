@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import Chat from "./chat";
-import { Box, Button, Container, Rating, Typography } from "@mui/material";
+import { Box, Button, Container, Rating, Typography, Fade } from "@mui/material";
 import Profile from "../profile/profile";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -9,6 +9,8 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NavBar from "../home/navBar";
+import React from "react";
 
 const CritiqRoom = () => {
  
@@ -16,6 +18,7 @@ const CritiqRoom = () => {
   const roomId = useParams().id
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"))
   const navigate = useNavigate();
+  const [inProp, setInProp] = React.useState(true);
   
   useEffect(() => {
     const getAndSetRoom = async () => {
@@ -114,7 +117,9 @@ const CritiqRoom = () => {
 
   return (
     <Container>
-      <Grid container>
+      <NavBar inProp={inProp} setInProp={setInProp}/>
+      {/* <Fade in={inProp} timeout={800}> */}
+      <Grid container sx={{marginTop: "100px"}}>
         <Grid item xs={6}>
           <Profile {...room.creator} />
         </Grid>
@@ -122,7 +127,8 @@ const CritiqRoom = () => {
           <Chat room={room} />
           {interaction}
         </Grid>
-      </Grid>
+      </Grid>    
+      {/*</Container></Fade>*/}
     </Container>
   );
 };

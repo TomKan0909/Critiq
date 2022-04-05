@@ -1,6 +1,6 @@
 import * as React from "react";
 import MessageLog from "./messageLog";
-import { TextField, Typography, Box } from "@mui/material";
+import { TextField, Typography, Box, Grid } from "@mui/material";
 import { saveMessage } from "../../apis/RoomAPI";
 import { useParams } from 'react-router-dom';
 const Chat = ({room}) => {
@@ -37,11 +37,12 @@ const Chat = ({room}) => {
   }
 
   const chatStyle = {
-    border: "2px solid black",
+    border: "4px solid black",
     borderRadius: "10px",
     marginTop: "5%",
-    height: "70vh",
+    height: "65vh",
     width: "100%",
+    position: "relative",
   };
 
   const chatBarStyle = {
@@ -51,18 +52,17 @@ const Chat = ({room}) => {
   };
 
   const chatFormStyle = {
-    position: "sticky",
-    top: "65%",
+    position: "absolute",
+    bottom: "30px",
+    left: "29px",
     width: "90%",
     placeholder: "Aa",
+    margin: "0px"
   };
 
   return (
     <Box sx={chatStyle}>
-      <Typography variant="h4" sx={chatBarStyle} align="center" gutterBottom>
-        critiq room
-      </Typography>
-      <MessageLog messages={room.messages} maxHeight="75%" scroll={getScroll()}></MessageLog>
+      <MessageLog messages={room.messages} maxHeight="600px" scroll={getScroll()} />
       <TextField
         sx={chatFormStyle}
         onChange={updateMessage}
@@ -70,7 +70,7 @@ const Chat = ({room}) => {
         placeholder={"Aa"}
         value={text}
         inputProps={{ style: { fontSize: "1.2rem" } }}
-      ></TextField>
+      />
     </Box>
     // https://stackoverflow.com/a/55992355
   );

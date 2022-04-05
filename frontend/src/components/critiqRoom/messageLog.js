@@ -17,7 +17,10 @@ const MessageLog = (props) => {
 
   const chatStyle = {
     overflowY: "scroll",
+    borderRadius: "10px",
+    backgroundColor: "red"
   };
+
   return (
     <Box sx={chatStyle} maxHeight={maxHeight}>
       {messages.map((message) => (

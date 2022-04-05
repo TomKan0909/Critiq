@@ -6,7 +6,7 @@ const random = (range, offset) => {
   return (Math.floor(Math.random() * range) + offset).toString();
 };
 
-export const genders = ["M", "F", "Other"];
+export const genders = ["Male", "Female", "Other"];
 export const locations = [
   "Toronto",
   "Waterloo",

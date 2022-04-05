@@ -34,7 +34,7 @@ function ProfileView() {
   }, [openEditProfile])
 
   if (!user){
-    return ('Loading ...')
+    return ("")
   }
 
   /** This function will have a GET server call to retrieve information about current user to pass props down into Profile Component */
