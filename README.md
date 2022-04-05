@@ -113,6 +113,57 @@ Example response
 
 ## Create a critiqRoom
 `post /api/rooms`
+Example body
+```
+{
+    creator: {
+    isAdmin: false,
+    name: 'John',
+    images: [...],
+    age: 999,
+    gender: 'Male',
+    height: '999cm',
+    location: 'Location',
+    ethnicity: 'Ethnicity',
+    alcohol: 'Yes',
+    occupation: 'Student',
+    school: 'School',
+    _id: ...,
+    username: '...',
+    password: '...',
+    prompts: [ [Object], [Object], [Object] ],
+    __v: 0
+  },
+}
+```
+
+Example response
+```
+{
+    creator: {
+    isAdmin: false,
+    name: 'John',
+    images: [...],
+    age: 999,
+    gender: 'Male',
+    height: '999cm',
+    location: 'Location',
+    ethnicity: 'Ethnicity',
+    alcohol: 'Yes',
+    occupation: 'Student',
+    school: 'School',
+    _id: ...,
+    username: '...',
+    password: '...',
+    prompts: [ [Object], [Object], [Object] ],
+    __v: 0
+  },
+  messages: [],
+  createdAt: ...,
+  updatedAt: ...,
+  __v: 0
+}
+```
 
 ---
 ## Get all active critiqRoom
