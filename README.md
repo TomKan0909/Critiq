@@ -12,7 +12,7 @@ From our discussion, we have:
 
 We hope you enjoy our website and are looking forward to Phase 2!
 
-## Setup
+## Run locally  
 
 1. In the project directory first run to install all project depedencies:
 
@@ -45,6 +45,85 @@ Login with username: admin, password: admin to access the admin's features
 | [http://localhost:3000/critiqRoomAdmin](http://localhost:3000/critiqRoomAdmin) | Admin can see the Critiq room and all live chat logs. Admin can moderate the room by click stop room if the comments get too toxic |
 | [http://localhost:3000/usersAdmin](http://localhost:3000/usersAdmin) | Admin can view the relevant statistic of all users  in the left dropdown of site. On the right side of page, admin can search up users by name and click on them to have a user modal popup. Admin can they decide whether they want to ban the user or not.
 
+## Express Routes
+## **User Routes**
+
+### Login
+`post /api/users/login`
+
+---
+
+### Logout
+`get /api/users/logout`
+
+---
+
+### Create a user
+`post /api/users`
+
+---
+
+### Get current user profile
+`get /api/users`
+
+---
+
+### Get user profile by id
+`get /api/users/:id`
+
+---
+
+### Delete user profile by id
+`delete /api/users/:id`
+
+---
+
+### Get all users
+`get /api/usersAll`
+
+---
+### Update user profile (non-images)
+`patch /api/users`
+
+---
+### Update user profile (images)
+`patch /api/users/images`
+
+---
+
+## **CritiqRoom Routes**
+
+## Create a critiqRoom
+`post /api/rooms`
+
+---
+## Get all active critiqRoom
+`get /api/rooms`
+
+---
+## Get critiqRoom history filtered by userid
+`get /api/rooms/:userid/history`
+
+
+---
+## Get the latest critiqRoom 
+`get /api/rooms/latest`
+
+---
+## Get the latest critiqRoom filtered by userid
+`get /api/rooms/latest/:userid`
+
+---
+## Get a critiqRoom by id
+`get /api/rooms/:id`
+
+---
+## Post a new message to a critiqRoom filtered by id
+`post /api/rooms/:id/messages`
+
+---
+## Update a critiqRoom to set it's status to stop
+`patch /api/rooms/:id/stop`
 
 
 ## List of Libraries Used 
