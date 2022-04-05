@@ -62,23 +62,6 @@ router.get("/api/users/logout", (req, res) => {
   });
 });
 
-// A route to check if a user is logged in on the session
-router.get("/api/users/check-session", (req, res) => {
-  if (env !== "production" && USE_TEST_USER) {
-    // test user on development environment.
-    req.session.user = TEST_USER_ID;
-    req.session.email = TEST_USER_EMAIL;
-    res.send({ currentUser: TEST_USER_EMAIL });
-    return;
-  }
-
-  if (req.session.user) {
-    res.send({ currentUser: req.session.email });
-  } else {
-    res.status(401).send();
-  }
-});
-
 /*********************************************************/
 
 /*** API Routes below ************************************/
