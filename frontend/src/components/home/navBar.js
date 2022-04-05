@@ -15,17 +15,7 @@ import { createRoom, getLatestRoom } from "../../apis";
 import { getCurrentUser } from "../../apis";
 
 export default function NavBar({ inProp, setInProp }) {
-  const [user, setUser] = useState();
-  const getAndSetUser = async () => {
-    try {
-      const currentUser = (await getCurrentUser()).data;
-      setUser(currentUser);
-      sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  getAndSetUser();
+  const user = JSON.parse(sessionStorage.getItem("currentUser"))
 
   const navigate = useNavigate();
   const location = useLocation();
