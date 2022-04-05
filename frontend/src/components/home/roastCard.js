@@ -24,7 +24,6 @@ const buttonStyle = {
 
 export default function RoastCard({ room, inProp, setInProp }) {
   const handleClick = async () => {
-    const latestRoom = await getLatestRoomByUserId(room.creator._id);
     setInProp(false);
     setTimeout(() => navigate(`/critiqRoom/${room._id}`), 1000);
   };

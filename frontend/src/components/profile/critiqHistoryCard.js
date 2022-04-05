@@ -7,21 +7,19 @@ import {
   Card,
 } from "@mui/material";
 import React from "react";
-import MessageList from "../critiqRoom/messageLog";
+import MessageLog from "../critiqRoom/messageLog";
 import exampleUser from "../../data/exampleUser";
 
 const chatStyle = {
-  border: "2px solid black",
-  borderRadius: "10px",
+  border: "3px solid black",
+  borderTopLeftRadius: "10px",
   height: "90vh",
   width: "50%",
   margin: "auto",
   marginTop: "50px",
-  backgroundColor: "#F8F0E3",
 };
 
 const chatBarStyle = {
-  backgroundColor: "pink",
   width: "100%",
   borderRadius: "10px",
 };
@@ -55,15 +53,7 @@ export default function CritiqHistoryCard({ room }) {
       </Card>
       <Modal open={open} onClose={handleClose}>
         <Box sx={chatStyle}>
-          <Typography
-            variant="h4"
-            sx={chatBarStyle}
-            align="center"
-            gutterBottom
-          >
-            Roast Room
-          </Typography>
-          <MessageList messages={room.messages} maxHeight="90%" />
+          <MessageLog messages={room.messages} height={"90vh"}/>
         </Box>
       </Modal>
     </React.Fragment>
