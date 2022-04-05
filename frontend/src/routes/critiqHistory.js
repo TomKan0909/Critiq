@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import ButtonStack from "../components/profile/buttonStack";
 import { Typography } from "@mui/material";
 import React from "react";
-import RoastHistoryCard from "../components/profile/roastHistoryCard";
+import CritiqHistoryCard from "../components/profile/critiqHistoryCard";
 import exampleUser from "../data/exampleUser";
 import users from "../data/users";
 import { getHistory } from "../apis";
@@ -66,7 +66,7 @@ function CritiqHistory() {
           // Only get rooms who's host satisfy the tags
           rooms.map((room) => (
             <Grid item xs={4}>
-              <RoastHistoryCard room={room} />
+              <CritiqHistoryCard room={room} />
             </Grid>
           ))
         }

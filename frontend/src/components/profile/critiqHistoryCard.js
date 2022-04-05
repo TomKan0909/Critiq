@@ -26,7 +26,7 @@ const chatBarStyle = {
   borderRadius: "10px",
 };
 
-export default function RoastHistoryCard({ room }) {
+export default function CritiqHistoryCard({ room }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
