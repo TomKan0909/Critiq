@@ -1,11 +1,9 @@
-import { TextField, Button, Container, Grid } from "@mui/material";
+import { TextField, Button, Container, Grid, Fade, Grow } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import exampleUser from "../../data/exampleUser";
-import adminUser from "../../data/adminUser";
 import { login, createAccount } from "../../apis";
 
-export default function LoginForm() {
+export default function LoginForm({inProp, setInProp}) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState(false);
@@ -17,10 +15,12 @@ export default function LoginForm() {
       const res = await login({ username, password });
       if (res.data.currentUser === "admin") {
         sessionStorage.setItem("admin", "admin");
-        navigate("/admin");
+        setTimeout(() => navigate("/admin"), 1000);
       } else if (res.data.currentUser) {
         sessionStorage.setItem("user", "user");
-        navigate("/");
+        setInProp(false);
+        console.log("HERE");
+        setTimeout(() => navigate("/"), 1000);
       } else {
         setError(true);
       }
@@ -36,6 +36,7 @@ export default function LoginForm() {
 
   return (
     <Container component="form">
+      <Grow in={inProp} timeout={500}>   
       <TextField
         label="Username"
         error={error ? true : false}
@@ -46,30 +47,35 @@ export default function LoginForm() {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
+     </Grow>
+     <Grow in={inProp} timeout={800}>
       <TextField
         label="Password"
         error={error ? true : false}
         rows={1}
         variant={"outlined"}
-        sx={{ display: "grid", marginTop: "20px" }}
+        sx={{ display: "grid", marginTop: "20px"}}
         name="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         type="password"
         helperText={error ? "Incorrect username/password." : ""}
       />
+      </Grow>
+      <Fade in={inProp} timeout={800}>
+
       <Grid container justifyContent="center">
-        <Grid item xs={12}>
-          <Button
-            sx={{ marginTop: "40px" }}
-            onClick={handleLogin}
-            variant="contained"
-            color="primary"
-            size="large"
-          >
-            Login
-          </Button>
-        </Grid>
+          <Grid item xs={12}>
+            <Button
+              sx={{ marginTop: "40px" }}
+              onClick={handleLogin}
+              variant="contained"
+              color="primary"
+              size="large"
+            >
+              Login
+            </Button>
+          </Grid>
         <Grid item xs={12}>
           <Button
             sx={{ marginTop: "30px" }}
@@ -81,6 +87,8 @@ export default function LoginForm() {
           </Button>
         </Grid>
       </Grid>
+              
+      </Fade>
     </Container>
   );
 }
