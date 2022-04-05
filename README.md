@@ -115,7 +115,7 @@ Example response
 `post /api/rooms`
 Example body
 ```
-{
+{   // instance of UserSchema
     creator: {
     isAdmin: false,
     name: 'John',
@@ -139,60 +139,169 @@ Example body
 
 Example response
 ```
-{
-    creator: {
-    isAdmin: false,
-    name: 'John',
-    images: [...],
-    age: 999,
-    gender: 'Male',
-    height: '999cm',
-    location: 'Location',
-    ethnicity: 'Ethnicity',
-    alcohol: 'Yes',
-    occupation: 'Student',
-    school: 'School',
-    _id: ...,
-    username: '...',
-    password: '...',
-    prompts: [ [Object], [Object], [Object] ],
-    __v: 0
-  },
-  messages: [],
-  createdAt: ...,
-  updatedAt: ...,
-  __v: 0
+{ // instance of RoomSchema
+    room: {
+        creator: {
+        isAdmin: false,
+        name: 'John',
+        images: [...],
+        age: 999,
+        gender: 'Male',
+        height: '999cm',
+        location: 'Location',
+        ethnicity: 'Ethnicity',
+        alcohol: 'Yes',
+        occupation: 'Student',
+        school: 'School',
+        _id: ...,
+        username: '...',
+        password: '...',
+        prompts: [ [Object], [Object], [Object] ],
+        __v: 0
+      },
+      messages: [],
+      createdAt: ...,
+      updatedAt: ...,
+      __v: 0
+     }
 }
 ```
 
 ---
 ## Get all active critiqRoom
 `get /api/rooms`
+Example body
+```
+{   
+}
+```
+
+Example response
+```
+{ 
+    // Array of RoomSchema
+    rooms: [Room1, Room2, Room3]
+}
+```
 
 ---
 ## Get critiqRoom history filtered by userid
 `get /api/rooms/:userid/history`
+Example body
+```
+{   
+}
+```
+
+Example body
+```
+{  
+    userid: ObjectId of user
+}
+```
+
+Example response
+```
+{ 
+    // Array of RoomSchema, more specifically array of rooms that are inactive
+    rooms: [Room1, Room2, Room3]
+}
+```
+
+
 
 
 ---
-## Get the latest critiqRoom 
+## Get the latest critiqRoom for current logged in user (used in go live to check if active room exists)
 `get /api/rooms/latest`
+Example body
+```
+{   
+    
+}
+```
+
+Example session
+```
+{   
+    user: ObjectId of user 
+}
+```
+
+Example response
+```
+{ 
+    room: RoomSchema latest room that is active
+}
+```
 
 ---
-## Get the latest critiqRoom filtered by userid
+## Get the latest critiqRoom filtered by userid (used in join rooms)
 `get /api/rooms/latest/:userid`
+Example params
+```
+{    
+    userid: ObjectId of user 
+}
+```
+
+Example response
+```
+{ 
+    room: RoomSchema latest room that is active for that user
+}
+```
 
 ---
 ## Get a critiqRoom by id
 `get /api/rooms/:id`
+Example params
+```
+{    
+    id: ObjectId of critiqRoom
+}
+```
+
+Example response
+```
+{ 
+    room: RoomSchema latest room that is active for that user
+}
+```
 
 ---
-## Post a new message to a critiqRoom filtered by id
+## Post a new message to a critiqRoom filtered by id (adds new message to room)
 `post /api/rooms/:id/messages`
+Example params
+```
+{    
+    id: ObjectId of critiqRoom
+}
+```
+
+Example response
+```
+{ 
+    data: "Message sent"
+}
+```
 
 ---
 ## Update a critiqRoom to set it's status to stop
 `patch /api/rooms/:id/stop`
+Example params
+```
+{    
+    id: ObjectId of critiqRoom
+}
+```
+
+Example response
+```
+{ 
+    data: "Stopped room"
+}
+```
 
 
 ## List of Libraries Used 
