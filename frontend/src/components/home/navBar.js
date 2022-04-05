@@ -77,21 +77,24 @@ export default function NavBar({ inProp, setInProp }) {
   };
 
   const handleGoLive = async () => {
-    let room = (await getLatestRoom()).data.room;
-    console.log(room);
-    if (room === undefined || !room.active) {
-      room = (await createRoom(user)).data;
+    // Only navigate to profile if not already there
+    if (location.pathname.includes("critiqRoom") == false) {
+      let room = (await getLatestRoom()).data.room;
       console.log(room);
-      if (room) {
+      if (room === undefined || !room.active) {
+        room = (await createRoom(user)).data;
+        console.log(room);
+        if (room) {
+          setInProp(false);
+          setTimeout(() => navigate(`/critiqRoom/${room._id}`), 1000);
+        } else {
+          console.log("error");
+        }
+      } else if (room !== undefined && room.active) {
+        console.log(room);
         setInProp(false);
         setTimeout(() => navigate(`/critiqRoom/${room._id}`), 1000);
-      } else {
-        console.log("error");
       }
-    } else if (room !== undefined && room.active) {
-      console.log(room);
-      setInProp(false);
-      setTimeout(() => navigate(`/critiqRoom/${room._id}`), 1000);
     }
   };
 
@@ -108,6 +111,7 @@ export default function NavBar({ inProp, setInProp }) {
             color="highlight"
             onClick={handleGoLive}
             sx={{ ...iconButtonStyle, ...{ color: "white" } }}
+            disabled={location.pathname.includes("critiqRoom")}
           >
             GO LIVE
           </Button>
