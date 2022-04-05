@@ -59,8 +59,7 @@ function CritiqHistory() {
   return (
     <React.Fragment>
       <NavBar inProp={inProp} setInProp={setInProp} /> 
-      <React.Fragment></React.Fragment>
-      <Typography variant="h1">Critique History</Typography>
+      <Typography variant="h1" marginTop={'200px'}>Critique History</Typography>
       <Grid container spacing={2}>
         {
           // Only get rooms who's host satisfy the tags
