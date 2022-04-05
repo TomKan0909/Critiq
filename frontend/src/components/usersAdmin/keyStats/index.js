@@ -24,7 +24,11 @@ const KeyStats = ({ inProp }) => {
           <DataSelector source={source} onChange={handleChange} />
         </Box>
       </Grow>
-      <Plot source={source} />
+      <Fade in={inProp} timeout={800}>
+        <Box>
+          <Plot source={source} />
+        </Box>
+      </Fade>
     </Container>
   );
 };
