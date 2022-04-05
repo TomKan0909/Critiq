@@ -8,7 +8,7 @@ import StatsCard from "../profile/stats";
 import { StickyProfile } from "./styles";
 import exampleUser from "../../data/exampleUser";
 
-export default function SideProfile({ user }) {
+export default function SideProfile({ user, inProp, setInProp }) {
   const navigate = useNavigate();
   return (
     <StickyProfile>
@@ -20,7 +20,8 @@ export default function SideProfile({ user }) {
           variant="contained"
           size="large"
           onClick={() => {
-            navigate("/usersAdmin");
+            setInProp(false);
+            setTimeout( () => navigate("/usersAdmin"), 1000);
           }}
         >
           View Site Stats
