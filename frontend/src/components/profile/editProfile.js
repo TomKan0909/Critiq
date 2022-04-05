@@ -299,7 +299,7 @@ export default function EditProfile({ open, handleClose }) {
     } 
   }, [open])
 
-  if (!name || !job || !images || !prompts || !tags){
+  if (!images || !prompts || !tags){
     return (<></>)
   }
 
