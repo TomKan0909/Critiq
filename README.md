@@ -1,4 +1,4 @@
-# team25
+# Critiq
 
 ## Access URL
 [https://guarded-sierra-01184.herokuapp.com/login](https://guarded-sierra-01184.herokuapp.com/login)
