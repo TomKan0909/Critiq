@@ -1,4 +1,7 @@
 # Critiq
+<img width="1904" alt="Screen Shot 2022-09-14 at 8 13 09 PM" src="https://user-images.githubusercontent.com/43018123/190305355-ed253732-b286-4098-9b05-dfe6698c8e02.png">
+
+
 
 ## Access URL
 [https://guarded-sierra-01184.herokuapp.com/login](https://guarded-sierra-01184.herokuapp.com/login)
