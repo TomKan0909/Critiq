@@ -1,4 +1,7 @@
 # Critiq
+A social media platform where users can get their dating profile reviewed by others in a chat room. Includes admin functionality to look at user demographics and monitor chat rooms.
+
+
 <img width="1904" alt="Screen Shot 2022-09-14 at 8 13 09 PM" src="https://user-images.githubusercontent.com/43018123/190305355-ed253732-b286-4098-9b05-dfe6698c8e02.png">
 
 
