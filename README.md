@@ -1,9 +1,11 @@
 # Critiq
 A social media platform where users can get their dating profile reviewed by others in a chat room. Includes admin functionality to look at user demographics and monitor chat rooms. Website can be found here [https://guarded-sierra-01184.herokuapp.com/login](https://guarded-sierra-01184.herokuapp.com/login).
 
-
+User pov
 <img width="1904" alt="Screen Shot 2022-09-14 at 8 13 09 PM" src="https://user-images.githubusercontent.com/43018123/190305355-ed253732-b286-4098-9b05-dfe6698c8e02.png">
 
+Admin pov 
+<img width="1920" alt="Screen Shot 2022-10-03 at 1 30 42 PM" src="https://user-images.githubusercontent.com/43018123/193641325-66064499-78db-49d8-8c5f-dfbebbaefd13.png">
 
 ## Acknowledgement
 As a foreword, we would like to thank Mark and Carlos for the constructive feedback in Phase 2.
