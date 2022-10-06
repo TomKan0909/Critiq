@@ -15,13 +15,7 @@ import React from "react";
 import { grey } from "@mui/material/colors";
 
 function ProfileView() {
-  // const { state } = useLocation();
-  // console.log(state);
-  // const { user } = state;
-
-  // let user = sessionStorage.getItem("user");
-  // user = JSON.parse(user);
-
+  
   const [user, setUser] = useState();
   const [openEditProfile, setOpenEditProfile] = useState(false);
   const [inProp, setInProp] = React.useState(true);
