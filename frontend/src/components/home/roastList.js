@@ -28,14 +28,6 @@ export default function RoastList({ activeFilters, rooms, inProp, setInProp }) {
 
   return (
     <RoastCardContainer container justifyContent="space-around">
-      {/*
-        // Only get rooms who's host satisfy the tags
-        roomsList
-          .filter((room) => checkFilter(room))
-          .map((room) => (
-            <RoastCard room={room} inProp={inProp} setInProp={setInProp} />
-          ))
-      */}
       {
         // Only get rooms who's host satisfy the tags
         roomsList.map((room) => (
