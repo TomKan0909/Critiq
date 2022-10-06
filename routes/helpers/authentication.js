@@ -22,14 +22,4 @@ module.exports = {
       res.status(401).send("Unauthorized");
     }
   },
-
-  // Our own express middleware to check for
-  // an active user on the session cookie (indicating a logged in user.)
-  // sessionChecker: (req, res, next) => {
-  //     if (req.session.user) {
-  //         res.redirect('/dashboard'); // redirect to dashboard if logged in.
-  //     } else {
-  //         next(); // next() moves on to the route.
-  //     }
-  // }
 };
