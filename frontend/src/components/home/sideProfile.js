@@ -49,16 +49,6 @@ export default function SideProfile({ user, inProp, setInProp }) {
         content={user.name}
         sx={textCardStyle}
       />
-      {/*<StatsCard
-        age={user.age}
-        gender={user.gender}
-        height={user.height}
-        location={user.location}
-        ethnicity={user.ethnicity}
-        alcohol={user.alcohol}
-        occupation={user.occupation}
-        school={user.school}
-      />*/}
       <Stack spacing="20px" sx={{ marginTop: "40px", marginBottom: "20px" }}>
         <Button
           color="primary"
