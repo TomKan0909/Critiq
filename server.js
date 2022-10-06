@@ -57,52 +57,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // parsing URL-encoded form 
 const session = require("express-session");
 const MongoStore = require("connect-mongo"); // to store session information on the database in production
 
-// const queue = require('express-queue');
-// app.use(queue({ activeLimit: 1, queuedLimit: -1 }));
-
-function isMongoError(error) {
-  // checks for first error returned by promise rejection if Mongo database suddently disconnects
-  return (
-    typeof error === "object" &&
-    error !== null &&
-    error.name === "MongoNetworkError"
-  );
-}
-
-// middleware for mongo connection error for routes that need it
-const mongoChecker = (req, res, next) => {
-  // check mongoose connection established.
-  if (mongoose.connection.readyState != 1) {
-    log("Issue with mongoose connection");
-    res.status(500).send("Internal server error");
-    return;
-  } else {
-    next();
-  }
-};
-
-// Middleware for authentication of resources
-const authenticate = (req, res, next) => {
-  if (env !== "production" && USE_TEST_USER) req.session.user = TEST_USER_ID; // test user on development. (remember to run `TEST_USER_ON=true node server.js` if you want to use this user.)
-
-  if (req.session.user) {
-    User.findById(req.session.user)
-      .then((user) => {
-        if (!user) {
-          return Promise.reject();
-        } else {
-          req.user = user;
-          next();
-        }
-      })
-      .catch((error) => {
-        res.status(401).send("Unauthorized");
-      });
-  } else {
-    res.status(401).send("Unauthorized");
-  }
-};
-
 /*** Session handling **************************************/
 // Create a session and session cookie
 app.use(
@@ -147,13 +101,6 @@ app.use(express.static(path.join(__dirname, "./frontend/build")));
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
   // check for page routes that we expect in the frontend to provide correct status code.
-  // const goodPageRoutes = ["/", "/login", "/dashboard"];
-  // if (!goodPageRoutes.includes(req.url)) {
-  //     // if url not in expected page routes, set status to 404.
-  //     res.status(404);
-  // }
-
-  // send index.html
   res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
 });
 
