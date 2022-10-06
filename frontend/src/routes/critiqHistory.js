@@ -14,27 +14,6 @@ import NavBar from "../components/home/navBar";
 
 import { Slide, Fade, Grid } from "@mui/material";
 
-const exampleHistoryCard = {
-  messages: [
-    { sender: exampleUser, content: "loren ipsum" },
-    { sender: exampleUser, content: "loren ipsum" },
-    { sender: exampleUser, content: "loren ipsum" },
-    { sender: exampleUser, content: "loren ipsum" },
-    { sender: users["Eda"], content: "loren ipsum" },
-    { sender: users["Eda"], content: "loren ipsum" },
-    { sender: users["Eda"], content: "loren ipsum" },
-    { sender: exampleUser, content: "loren ipsum" },
-    { sender: exampleUser, content: "loren ipsum" },
-    { sender: exampleUser, content: "loren ipsum" },
-    { sender: exampleUser, content: "loren ipsum" },
-    { sender: users["Eda"], content: "loren ipsum" },
-    { sender: users["Eda"], content: "loren ipsum" },
-    { sender: users["Eda"], content: "loren ipsum" },
-  ],
-  roomID: 340598,
-  date: new Date(),
-};
-
 function CritiqHistory() {
   /* This function will have an useEffect hook to send a authorized GET call to our server to retrieve
      user's roast history messages and pass it down as props to RoastHistoryCard
